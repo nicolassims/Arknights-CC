@@ -27,11 +27,16 @@ guerroforest.append([1, 1, 0, 0, 0, 0, 0, 1])
 guerroforest.append([1, 1, 1, 1, 1, 1, 1, 1])
 '''
 
-label Crawl(map, startingy, startingx, knowledgemap):
+label Crawl(map, startingy, startingx, knowledgemap, new):
     python:
         x = startingx
         y = startingy
         exit = False
+    
+        if (new):
+            for i in range(len(map)):
+                for j in range(len(map[i])):
+                    knowledgemap[j][i] = 0
     
     window hide#Ren'Py function that hides the built-in gui
     show screen buttons()#Custom func that will show the nav arrows/enable wasd
@@ -92,7 +97,7 @@ label Crawl(map, startingy, startingx, knowledgemap):
                     hide screen mini_map_scr
         #if this cell has any other kind of special event...
         elif (map[y][x] <= -2):
-            #then send it to the callEvent script, which will handle it.
+            #then send it to the crawlEvent script, which will handle it.
             call CrawlEvent(map.name, map[y][x])
             
     return

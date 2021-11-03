@@ -125,7 +125,7 @@ label start:
     
     show ace at midleft with ease
     
-    call Crawl(guerroforest, 6, 3, guerroknowledge)
+    call Crawl(guerroforest, 6, 3, guerroknowledge, True)
     
     show ace at center with ease
     
