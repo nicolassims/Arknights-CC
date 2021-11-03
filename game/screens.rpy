@@ -1539,12 +1539,12 @@ screen mini_map_scr(map):
             for i in range(len(map)):
                 for j in range(len(map[0])):
                     if i == y and j == x:
-                        $ tile = Solid("#FF0000", xmaximum=32, ymaximum=32)
+                        $ tile = Solid("#FF0000", xmaximum=64, ymaximum=64)
                     elif map[i][j] < 1 and knowledgemap[i][j] == 1:
-                        $ tile = Solid("#ffffff", xmaximum=32, ymaximum=32)
+                        $ tile = Solid("#ffffff", xmaximum=64, ymaximum=64)
                     elif map[i][j] == 1 and knowledgemap[i][j] == 1:
-                        $ tile = Solid("#008000", xmaximum=32, ymaximum=32)
+                        $ tile = Solid("#008000", xmaximum=64, ymaximum=64)
                     else:
-                        $ tile = Solid("#000000", xmaximum=32, ymaximum=32)
+                        $ tile = Solid("#000000", xmaximum=64, ymaximum=64)
                     
                     add tile

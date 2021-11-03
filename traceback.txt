@@ -1,15 +1,15 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 107, in script
-    show ace with moveleft
-Exception: Parameter 'new_widget' is not known by ATL Transform.
+  File "game/script.rpy", line 90, in script
+    show ruinedTent behind ace with Dissolve(2)
+IOError: Couldn't find file 'forest.mp3'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 107, in script
-    show ace with moveleft
+  File "game/script.rpy", line 90, in script
+    show ruinedTent behind ace with Dissolve(2)
   File "renpy/ast.py", line 1443, in execute
     renpy.exports.with_statement(trans, paired)
   File "renpy/exports.py", line 1682, in with_statement
@@ -18,13 +18,23 @@ Full traceback:
     clear=clear)
   File "renpy/display/core.py", line 3315, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
-  File "renpy/display/core.py", line 3674, in interact_core
-    new_widget=layers_root)
-  File "renpy/atl.py", line 462, in __call__
-    raise Exception('Parameter %r is not known by ATL Transform.' % k)
-Exception: Parameter 'new_widget' is not known by ATL Transform.
+  File "renpy/display/core.py", line 4020, in interact_core
+    renpy.audio.audio.periodic()
+  File "renpy/audio/audio.py", line 1162, in periodic
+    raise_(exc[0], exc[1], exc[2])
+  File "renpy/audio/audio.py", line 1140, in periodic_thread_main
+    periodic_pass()
+  File "renpy/audio/audio.py", line 1082, in periodic_pass
+    c.periodic()
+  File "renpy/audio/audio.py", line 518, in periodic
+    topf = load(filename)
+  File "renpy/audio/audio.py", line 69, in load
+    rv = renpy.loader.load(fn)
+  File "renpy/loader.py", line 798, in load
+    raise IOError("Couldn't find file '%s'." % name)
+IOError: Couldn't find file 'forest.mp3'.
 
 Windows-10-10.0.19041
 Ren'Py 7.4.10.2178
 Arknights CC 1.0
-Tue Nov  2 22:35:18 2021
+Tue Nov  2 23:00:05 2021

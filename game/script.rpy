@@ -21,6 +21,7 @@ image black = "#000000"
 image white = "#ffffff"
 image ruinedTent = im.Scale("ruinedtent.png", 1920, 1080)
 image forest = im.Scale("forest.png", 1920, 1080)
+image outcounty = im.Scale("outcounty.png", 1920, 1080)
 
 # Characters
 image ace = "ace.png"
@@ -41,6 +42,8 @@ label start:
     a "...Ow."
     
     a "...Where am I?"
+    
+    play sound "audio/footstep.mp3"
     
     who "..."
     
@@ -80,6 +83,8 @@ label start:
     
     "You open your eyes."
     
+    play music "audio/forest.mp3" loop
+    
     nvl clear
     
     window hide dissolve
@@ -96,9 +101,23 @@ label start:
     
     a "Guess I better make something up..."
     
+    label namechoice1:
+    
     $ playerfirstname = renpy.input("My first name'll be...", allow='QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890-.', length=12).strip().title()
+    
+    if (playerfirstname == ""):
+        a "I can't just say my name is nothing. If a man's got nothing else, he's got his name."
+        
+        jump namechoice1
+        
+    label namechoice2:
        
     $ playerlastname = renpy.input("Sure, sure. And my last name'll be...", allow='QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890-.', length=12).strip().title()
+    
+    if (playerlastname == ""):
+        a "I can't just say my name is nothing. If a man's got nothing else, he's got his name."
+        
+        jump namechoice2
     
     a "Huh. This uniform's got a patch that says \"Ace\" on it. And... Rhodes Island? Is that who I work with?"
     
@@ -107,6 +126,16 @@ label start:
     show ace at midleft with ease
     
     call Crawl(guerroforest, 6, 3, guerroknowledge)
+    
+    show ace at center with ease
+    
+    show outcounty behind ace with dissolve
+    
+    a "Finally an end to all that grass and smoke. It's a miracle the whole forest didn't burn down from whatever caused... that."
+    
+    a "Looks like there's a village ahead. With any luck, they'll have a way to get in contact with these \"Rhodes Island\" people."
+    
+    
 
     
 
@@ -115,6 +144,13 @@ label start:
     a "You've created a new Ren'Py game."
 
     a "Once you add a story, pictures, and music, you can release it to the world!"
+    
+    
+    nvl show dissolve
+    
+    "And now, the requisite credits. I'll move these to the main menu later."
+    
+    "The Forest and the Trees by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4494-the-forest-and-the-trees. License: https://filmmusic.io/standard-license"
 
     # This ends the game.
 

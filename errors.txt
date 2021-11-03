@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 4: expected statement.
-    midleft = Position(xpos = 0.25)
-            ^
-
-File "game/script.rpy", line 5: expected statement.
-    midright = Position(xpos = 0.75)
-             ^
+File "game/script.rpy", line 113: expected ':' not found.
+    label namechoice2
+                     ^
 
 Ren'Py Version: Ren'Py 7.4.10.2178
-Tue Nov  2 22:03:51 2021
+Tue Nov  2 23:07:56 2021
