@@ -1,0 +1,14 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 4: expected statement.
+    midleft = Position(xpos = 0.25)
+            ^
+
+File "game/script.rpy", line 5: expected statement.
+    midright = Position(xpos = 0.75)
+             ^
+
+Ren'Py Version: Ren'Py 7.4.10.2178
+Tue Nov  2 22:03:51 2021
