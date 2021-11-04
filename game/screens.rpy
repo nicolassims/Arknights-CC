@@ -1516,9 +1516,9 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
-    
+
 #player-made screens
-screen buttons():        
+screen buttons():
         if (map[y - 1][x] < 1 and y != 0):
             textbutton "↑" action Return(value='F') xalign .9 yalign .7 text_size 200
             key "K_UP" action Return(value='F')
@@ -1527,12 +1527,12 @@ screen buttons():
             key "K_RIGHT" action Return(value='R')
         if (map[y + 1][x] < 1 and y != len(map) - 1):
             textbutton "↓" action Return(value='B') xalign .9 yalign .96 text_size 200
-            key "K_DOWN" action Return(value='B') 
+            key "K_DOWN" action Return(value='B')
         if (map[y][x - 1] < 1 and x != 0):
             textbutton "←" action Return(value='L') xalign .83 yalign .83 text_size 200
             key "K_LEFT" action Return(value='L')
-                
-screen mini_map_scr(map):    
+
+screen mini_map_scr(map):
     frame:
         align (0.5, 0.5)
         grid len(map) len(map[0]):
@@ -1546,40 +1546,74 @@ screen mini_map_scr(map):
                         $ tile = Solid("#008000", xmaximum=64, ymaximum=64)
                     else:
                         $ tile = Solid("#000000", xmaximum=64, ymaximum=64)
-                    
-                    add tile
-                    
-screen battleui():
-    vbox:
-        xalign .9 yalign .1 xmaximum 500
-        bar range theirMaxHP value theirHP bar_invert True left_bar gui.accent_color right_bar gui.hover_color
-        text (str(theirHP) + "/" + str(theirMaxHP)) color "#fff"
 
-    vbox:
-        xalign .1 yalign .1 xmaximum 500
-        bar range myMaxHP value myHP left_bar gui.hover_color right_bar gui.accent_color
-        text (str(myHP) + "/" + str(myMaxHP)) color "#fff"
-        
+                    add tile
+
+screen setup():
+    $ squaresize = 200
+    $ spacesize = 20
+
+    for i in range(12):
+        transform:
+            image "shadow.png"
+            anchor (0.5, 0.5)
+            pos (20 + (i % 4) * (squaresize + spacesize) + squaresize / 2, 0.29 * (math.floor(i / 4.0) + 1) + 0.08)
+
+    for i, op in enumerate(ops):
+        $ portrait = Image(op.getparameter(PORTRAITS)[0])
+
+        imagebutton:
+            pos (20 + (i % 4) * (squaresize + spacesize) + squaresize / 2, 0.29 * (math.floor(i / 4.0) + 1) + 0.09)
+            anchor (0.5, 1.0)
+            idle Transform(portrait, fit="contain", xysize=(squaresize, 1000), ypos=0)
+            hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 1000), ypos=50)
+            action [Show("setupstatus")]
+
+screen setupstatus():
+    image "gui/setupmenu.png"
+
+
+screen battle():
+    #vbox:
+    #    xalign .9 yalign .1 xmaximum 500
+    #    bar range theirMaxHP value theirHP bar_invert True left_bar gui.accent_color right_bar gui.hover_color
+    #    text (str(theirHP) + "/" + str(theirMaxHP)) color "#fff"
+    #
+    #vbox:
+    #    xalign .1 yalign .1 xmaximum 500
+    #    bar range myMaxHP value myHP left_bar gui.hover_color right_bar gui.accent_color
+    #    text (str(myHP) + "/" + str(myMaxHP)) color "#fff"
+
     python:
         screenwidth = 1920
         spacesize = 20
         totalspace = spacesize * 10
         squaresize = (screenwidth - totalspace) / 9
-        
+
     for i, op in enumerate(battlefield):
             if (op != None):
-                add Solid(gui.hover_color if op.getparameter(ALLY) else "#E0A366", 
+                add Solid(gui.hover_color if op.getparameter(ALLY) else "#E0A366",
                       xpos = 20 + i * (squaresize + spacesize), ypos = 800,
                       xsize = squaresize, ysize = squaresize)
-                
-                add Transform(Image(op.getparameter(PORTRAITS)[0]), 
-                              fit="contain", 
-                              xysize=(squaresize, 1000), 
-                              anchor=(0.5, 1.0), 
-                              xpos = 20 + i * (squaresize + spacesize) + squaresize / 2, 
-                              ypos = 800 + squaresize / 2,
-                              xzoom = 1 if op.getparameter(ALLY) else -1)
+
+                #add Transform(Image(op.getparameter(PORTRAITS)[0]),
+                #              fit="contain",
+                #              xysize=(squaresize, 1000),
+                #              anchor=(0.5, 1.0),
+                #              xpos = 20 + i * (squaresize + spacesize) + squaresize / 2,
+                #              ypos = 800 + squaresize / 2,
+                #              xzoom = 1 if op.getparameter(ALLY) else -1)
             else:
-                add Solid("#FFF", 
+                add Solid("#FFF",
                       xpos = 20 + i * (squaresize + spacesize), ypos = 800,
                       xsize = squaresize, ysize = squaresize)
+
+screen battleui():
+    use battle()
+
+    vbox:
+        xalign .5 yalign .5
+        textbutton "Attack" action Return(value='attack') xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
+        textbutton " Tech " action Return(value='tech') xminimum 350 text_xalign .5 text_size 60 text_color "#826926" text_hover_color "#c98022" background Frame("gui/button/choice_idle_background.png")
+        textbutton " Move " action Return(value='move') xminimum 350 text_xalign .5 text_size 60 text_color "#437128" text_hover_color "#459426" background Frame("gui/button/choice_idle_background.png")
+        textbutton " Item " action Return(value='item') xminimum 350 text_xalign .5 text_size 60 text_color "#295272" text_hover_color "#256799" background Frame("gui/button/choice_idle_background.png")
