@@ -11,6 +11,8 @@ init python:
     # Declare variables used by this game
     playerfirstname = "You"
     playerlastname = "The Operator"
+    
+    party = [aceop]
 
 define who = Character("???")
 define a = DynamicCharacter("playerfirstname")
@@ -19,13 +21,13 @@ define narrator = nvl_narrator
 # Backgrounds
 image black = "#000000"
 image white = "#ffffff"
-image ruinedTent = im.Scale("ruinedtent.png", 1920, 1080)
-image forest = im.Scale("forest.png", 1920, 1080)
-image outcounty = im.Scale("outcounty.png", 1920, 1080)
+image ruinedTent = im.Scale("bgs/ruinedtent.png", 1920, 1080)
+image forest = im.Scale("bgs/forest.png", 1920, 1080)
+image outcounty = im.Scale("bgs/outcounty.png", 1920, 1080)
 
 # Characters
-image ace = "ace.png"
-image ace shadow = "shadowace.png"
+image ace = "chars/ace/ace.png"
+image ace shadow = "chars/ace/shadowace.png"
 
 #Transitions
 transform moveleft:
@@ -133,9 +135,11 @@ label start:
     
     a "Finally an end to all that grass and smoke. It's a miracle the whole forest didn't burn down from whatever caused... that."
     
-    a "Looks like there's a village ahead. With any luck, they'll have a way to get in contact with these \"Rhodes Island\" people."
+    a "Looks like there's a village ahead. With any luck, they'll have a way to get in contact with these \"Rhodes Island\" people. Maybe they'll be able to tell me why I'm wearing their getup.\n...Maybe they'll have a paycheck for me."
     
+    a "...What the hell is that running towards me?"
     
+    call Battle(party, [enemyaceop])
 
     
 
