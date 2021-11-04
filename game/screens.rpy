@@ -1548,3 +1548,38 @@ screen mini_map_scr(map):
                         $ tile = Solid("#000000", xmaximum=64, ymaximum=64)
                     
                     add tile
+                    
+screen battleui():
+    vbox:
+        xalign .9 yalign .1 xmaximum 500
+        bar range theirMaxHP value theirHP bar_invert True left_bar gui.accent_color right_bar gui.hover_color
+        text (str(theirHP) + "/" + str(theirMaxHP)) color "#fff"
+
+    vbox:
+        xalign .1 yalign .1 xmaximum 500
+        bar range myMaxHP value myHP left_bar gui.hover_color right_bar gui.accent_color
+        text (str(myHP) + "/" + str(myMaxHP)) color "#fff"
+        
+    python:
+        screenwidth = 1920
+        spacesize = 20
+        totalspace = spacesize * 10
+        squaresize = (screenwidth - totalspace) / 9
+        
+    for i, op in enumerate(battlefield):
+            if (op != None):
+                add Solid(gui.hover_color if op.getparameter(ALLY) else "#E0A366", 
+                      xpos = 20 + i * (squaresize + spacesize), ypos = 800,
+                      xsize = squaresize, ysize = squaresize)
+                
+                add Transform(Image(op.getparameter(PORTRAITS)[0]), 
+                              fit="contain", 
+                              xysize=(squaresize, 1000), 
+                              anchor=(0.5, 1.0), 
+                              xpos = 20 + i * (squaresize + spacesize) + squaresize / 2, 
+                              ypos = 800 + squaresize / 2,
+                              xzoom = 1 if op.getparameter(ALLY) else -1)
+            else:
+                add Solid("#FFF", 
+                      xpos = 20 + i * (squaresize + spacesize), ypos = 800,
+                      xsize = squaresize, ysize = squaresize)
