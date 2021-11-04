@@ -1,16 +1,14 @@
-﻿label Battle(ops, otherops):
-    python:
-        firstOp = ops[0]
-        theirFirstOp = otherops[0]
-        myMaxHP = 10
-        theirMaxHP = 10
-        myHP = 7
-        theirHP = 3
-        mostleft = 0
-        mostright = 8
-        battlefield = [firstOp, None, None, None, None, None, None, None, theirFirstOp]
-    
+﻿label Battle(ops, otherOps):
     window hide#Ren'Py function that hides the built-in gui
+
+    scene tactics with dissolve
+
+    python:
+        battlefield = [None, None, None, None, None, None, None, None, None]
+        frontman = renpy.call_screen("setup")
+        print(frontman)
+
+
     show screen battleui()
-    
+
     pause(5.0)
