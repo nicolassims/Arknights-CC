@@ -5,10 +5,12 @@
 
     python:
         battlefield = [None, None, None, None, None, None, None, None, None]
-        frontman = renpy.call_screen("setup")
-        print(frontman)
+
+        renpy.show_screen("frontman")
+        first = renpy.call_screen("setup")
 
 
-    show screen battleui()
+    #show screen battleui()
+    #show screen frontman()
 
     pause(5.0)

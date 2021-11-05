@@ -1549,13 +1549,16 @@ screen mini_map_scr(map):
 
                     add tile
 
+screen frontman():
+    text "Choose a\nFrontman" xpos 0.7 xanchor 0.5 yalign 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
+
 screen setup():
     $ squaresize = 200
     $ spacesize = 20
 
     for i in range(12):
         transform:
-            image "shadow.png"
+            image "ui/shadow.png"
             anchor (0.5, 0.5)
             pos (20 + (i % 4) * (squaresize + spacesize) + squaresize / 2, 0.29 * (math.floor(i / 4.0) + 1) + 0.08)
 
@@ -1567,12 +1570,14 @@ screen setup():
             anchor (0.5, 1.0)
             idle Transform(portrait, fit="contain", xysize=(squaresize, 1000), ypos=0)
             hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 1000), ypos=50)
-            action [Show("setupstatus", op=op)]
+            action [Hide("frontman"), Show("setupstatus", op=op)]
 
 screen setupstatus(op):
-    image "gui/setupmenu.png"
+    image "ui/setupmenu.png"
 
-    text op.getparameter(CODENAME) pos (0.5, 0.5) color "#FFF"
+    image "ui/classicons/" + op.getparameter(CLASS).lower() + ".png" xysize (140, 140) pos (0.915, 0.02)
+    text op.getparameter(CODENAME) size 90 xpos 0.56 color "#FFF" bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
+    text op.getparameter(SUBCLASS) + " " + op.getparameter(CLASS) size 50 pos (0.58, 0.1) color "#414342" bold True
 
 
 screen battle():
