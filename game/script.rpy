@@ -12,7 +12,7 @@ init python:
     playerfirstname = "You"
     playerlastname = "The Operator"
 
-    party = [aceop, aceop, aceop, aceop, aceop, aceop, aceop, aceop, aceop, aceop, aceop, aceop]
+    party = [aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop]
 
 define who = Character("???")
 define a = DynamicCharacter("playerfirstname")

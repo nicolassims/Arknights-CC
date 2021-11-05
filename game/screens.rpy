@@ -1567,10 +1567,12 @@ screen setup():
             anchor (0.5, 1.0)
             idle Transform(portrait, fit="contain", xysize=(squaresize, 1000), ypos=0)
             hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 1000), ypos=50)
-            action [Show("setupstatus")]
+            action [Show("setupstatus", op=op)]
 
-screen setupstatus():
+screen setupstatus(op):
     image "gui/setupmenu.png"
+
+    text op.getparameter(CODENAME) pos (0.5, 0.5) color "#FFF"
 
 
 screen battle():
