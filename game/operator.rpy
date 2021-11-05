@@ -1,7 +1,7 @@
 ﻿init python:
     import math
-    
-    #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,ally
+
+    #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,ally,techs
     class Operator(ChangingClass):
         def __init__(self, id, level, ally):
             self.parameters = []
@@ -18,7 +18,9 @@
                 else:
                     self.parameters.append(opdex[id][x])
             self.parameters.append(ally)# set ALLY
+            self.parameters.append([])# set TECHS
 
     #define specific Operators here.
     aceop = Operator(ACE, 1, True)
+    kroosop = Operator(KROOS, 2, True)
     enemyaceop = Operator(ACE, 1, False)
