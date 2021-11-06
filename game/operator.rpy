@@ -19,6 +19,7 @@
                     self.parameters.append(opdex[id][x])
             self.parameters.append(ally)# set ALLY
             self.parameters.append([])# set TECHS
+            self.parameters.append(level)# set LEVEL
 
     #define specific Operators here.
     aceop = Operator(ACE, 1, True)

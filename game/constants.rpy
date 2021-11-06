@@ -2,7 +2,7 @@
 
     #For class operator, and the opdex
     #opdex:    ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits
-    #operator: ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,ally,techs
+    #operator: ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,ally,techs,level
 
     ID = 0
     FIRSTNAME = 1
@@ -24,6 +24,7 @@
     PORTRAITS = 17
     ALLY = 18
     TECHS = 19
+    LEVEL = 20
 
     ACE = 1
     KROOS = 2
