@@ -1612,10 +1612,32 @@ screen setupstatus(op):
             text str(op.getparameter(DEF)) size 40
             text str(op.getparameter(ARTSDEF)) size 40
 
-    textbutton op.getparameter(TALENT) action Show("talentblurb", id=str(op.getparameter(ID))) background Frame("gui/button/choice_idle_background.png") xminimum 350 text_xalign .5 align (.83, .47)
+    textbutton op.getparameter(TALENT) action Show("talentblurb", id=int(op.getparameter(ID))) background Frame("gui/button/choice_idle_background.png") xminimum 350 text_xalign .5 align (.83, .47)
 
 screen talentblurb(id):
-    text "clicked!"
+    python:
+        id -= 1
+        talenttext = "{b}" + opdex[id][CODENAME] + "'s Talent: " + opdex[id][TALENT] + "{/b}\n"
+        id += 1
+
+        if (id == ACE):
+            talenttext += "A sturdy and no-nonsense soldier with decades of experience, even if you don't remember it. Your combat training has taught you the importance of not losing ground; in battle, nothing on Terra can move you back even one step."
+        elif (id == KROOS):
+            talenttext += "A seemingly lazy and flippant young sniper whose skill is unparalleled... at avoiding work. Still, her desire to get back to bed as soon as possible means she prioritizes headshots, hitting for 160% damage 20% of the time."
+        else:
+            talenttext += "This shouldn't show up."
+
+    imagebutton:
+        xfill True
+        yfill True
+        idle "ui/empty.png"
+        action [Hide("talentblurb")]
+
+    frame:
+        align (0.5, 0.5)
+        margin (200, 100)
+        padding (100, 50)
+        text talenttext xalign 0.5
 
 screen battle():
     #vbox:
