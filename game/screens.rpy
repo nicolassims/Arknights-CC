@@ -1710,3 +1710,10 @@ screen battleui():
         textbutton " Tech " action Return(value='tech') xminimum 350 text_xalign .5 text_size 60 text_color "#826926" text_hover_color "#c98022" background Frame("gui/button/choice_idle_background.png")
         textbutton " Move " action Return(value='move') xminimum 350 text_xalign .5 text_size 60 text_color "#437128" text_hover_color "#459426" background Frame("gui/button/choice_idle_background.png")
         textbutton " Item " action Return(value='item') xminimum 350 text_xalign .5 text_size 60 text_color "#295272" text_hover_color "#256799" background Frame("gui/button/choice_idle_background.png")
+
+#location is an int from 0-8
+#minrange is an int
+#maxrange is an int >= minrange
+#aoe is a boolean
+screen targeting(location, minrange, maxrange, aoe):
+    text "IN progress"

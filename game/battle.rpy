@@ -6,6 +6,7 @@
     python:
         import random
 
+        actionlist = []
         battlefield = [None, None, None, None, None, None, None, None, None]
 
         renpy.show_screen("frontman")#display the prompt to select the frontman for the battle
@@ -15,15 +16,22 @@
         myCost = first.getparameter(COST)#get the DP saved by choosing this frontman
         otherCost = otherOps[0].getparameter(COST)#get the DP saved by the enemy
         #It's your turn if you saved less than the foe, or if you saved the same amount, but got lucky
-        myTurn = myCost < otherCost or (myCost == otherCost and random.randrange(10) <= 5)
+        actionlist.append(first)
+        if (myCost < otherCost or (myCost == otherCost and random.randrange(10) <= 5)):
+            actionlist.append(otherOps[0])
+        else:
+            actionlist.insert(0, otherOps[0])
 
     hide tactics with dissolve
 
     while(True):
-        if myTurn:
+        $ actor = actionlist[0]
+        if actor.getparameter(ALLY):
             $ action = renpy.call_screen("battleui")
 
             if (action == 'attack'):
+                $ target = renpy.call_screen("targeting", location=battlefield.index(actor), minrange=actor.getparameter(MINRANGE), maxrange=actor.getparameter(MAXRANGE), aoe=False)
+
                 $ print("chose an attack")
 
             elif (action == 'tech'):
@@ -38,6 +46,7 @@
             $ print("foe's turn happened")
 
 
-        myTurn = !myTurn
+        $ actionlist.pop(0)
+        $ actionlist.append(actor)
 
     pause(5.0)
