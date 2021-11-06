@@ -1518,6 +1518,12 @@ style slider_slider:
     xsize 900
 
 #player-made screens
+python:
+    screenwidth = 1920
+    spacesize = 20
+    totalspace = spacesize * 10
+    squaresize = (screenwidth - totalspace) / 9
+
 screen buttons():
         if (map[y - 1][x] < 1 and y != 0):
             textbutton "↑" action Return(value='F') xalign .9 yalign .7 text_size 200
@@ -1716,4 +1722,25 @@ screen battleui():
 #maxrange is an int >= minrange
 #aoe is a boolean
 screen targeting(location, minrange, maxrange, aoe):
-    text "IN progress"
+    use battle()
+
+    python:
+        screenwidth = 1920
+        spacesize = 20
+        totalspace = spacesize * 10
+        squaresize = (screenwidth - totalspace) / 9
+
+
+    textbutton "Back" action Return(value=-1) xalign .5 yalign .5 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
+
+    if (aoe):
+        $ print("HANDLE THIS!")
+
+    for i, op in enumerate(battlefield):
+        if (location + minrange <= i <= location + maxrange):
+            imagebutton:
+                pos (20 + i * (squaresize + spacesize), 800)
+                xysize (squaresize, squaresize)
+                idle Solid((155, 81, 81, 200))
+                hover Solid((208, 59, 61, 200))
+                action Return(value=i)
