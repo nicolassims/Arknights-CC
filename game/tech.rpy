@@ -10,7 +10,7 @@
                 if (x != ICON):
                     self.parameters.append(techdex[id][x])
                 else:
-                    self.parameters.append("ui/techicons" + techdex[id][x])
+                    self.parameters.append("ui/techicons/" + techdex[id][x])
             self.parameters.append(techdex[id][START])# add points as basic starting value
 
     #define specific Techs here.
