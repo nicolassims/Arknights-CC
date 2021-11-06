@@ -16,6 +16,7 @@
                     self.parameters.append(newarray)
                 else:
                     self.parameters.append(opdex[id][x])
+            self.parameters[HEALTH] *= 5# increase health by proper amount
             self.parameters.append(ally)# set ALLY
             self.parameters.append([])# set TECHS
             self.parameters.append(level)# set LEVEL
