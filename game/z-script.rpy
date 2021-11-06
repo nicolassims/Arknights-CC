@@ -140,6 +140,8 @@ label start:
 
     a "...What the hell is that running towards me?"
 
+    hide ace with dissolve
+
     call Battle(party, [enemyaceop])
 
 
