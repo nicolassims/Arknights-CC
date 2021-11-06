@@ -1552,6 +1552,9 @@ screen mini_map_scr(map):
 screen frontman():
     text "Choose a\nFrontman" xpos 0.7 xanchor 0.5 yalign 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
 
+screen go(op):
+    textbutton "GO!" action [Hide("go"), Hide("setupstatus"), Return(op)] xpos 0.79 xanchor 0.5 yalign 0.94 text_size 90 text_bold True text_outlines [ (absolute(10), "#000", absolute(0), absolute(0)) ]
+
 screen setup():
     $ squaresize = 200
     $ spacesize = 20
@@ -1570,7 +1573,7 @@ screen setup():
             anchor (0.5, 1.0)
             idle Transform(portrait, fit="contain", xysize=(squaresize, 1000), ypos=0)
             hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 1000), ypos=50)
-            action [Hide("frontman"), Show("setupstatus", op=op)]
+            action [Hide("frontman"), Show("setupstatus", op=op), Show("go", op=op)]
 
 screen setupstatus(op):
     image "ui/setupmenu.png"
@@ -1612,7 +1615,17 @@ screen setupstatus(op):
             text str(op.getparameter(DEF)) size 40
             text str(op.getparameter(ARTSDEF)) size 40
 
-    textbutton op.getparameter(TALENT) action Show("talentblurb", id=int(op.getparameter(ID))) background Frame("gui/button/choice_idle_background.png") xminimum 350 text_xalign .5 align (.83, .47)
+    textbutton op.getparameter(TALENT) action Show("talentblurb", id=int(op.getparameter(ID))) background Frame("gui/button/choice_idle_background.png") xanchor 0.5 xminimum 350 text_xalign .5 align (.785, .475)
+
+    hbox:
+        align(0.785, 0.69)
+        xanchor 0.5
+        spacing 60
+        for x in op.getparameter(TECHS):
+            imagebutton:
+                idle Transform(x.getparameter(ICON), size=(200, 200), matrixcolor=InvertMatrix(0.0))
+                hover Transform(x.getparameter(ICON), size=(200, 200), matrixcolor=InvertMatrix(1.0))
+                action [Show("techblurb", op=op, id=int(x.getparameter(ID)))]
 
 screen talentblurb(id):
     python:
@@ -1638,6 +1651,30 @@ screen talentblurb(id):
         margin (200, 100)
         padding (100, 50)
         text talenttext xalign 0.5
+
+screen techblurb(op, id):
+    python:
+        id -= 1
+        techtext = "{b}" + op.getparameter(CODENAME) + "'s Tech: " + techdex[id][NAME] + "{/b}\n"
+
+        if (id == 0):#doubletapauto
+            techtext += "After two attacks, hit 1.4 times as hard, twice in one turn. Shoot element."
+        elif (id == 1):#hammerdown
+            techtext += "After being hit twice, retaliate at 2.5 times your normal strength. Power element."
+        else:
+            techtext += "This shouldn't show up."
+
+    imagebutton:
+        xfill True
+        yfill True
+        idle "ui/empty.png"
+        action [Hide("techblurb")]
+
+    frame:
+        align (0.5, 0.5)
+        margin (200, 100)
+        padding (100, 50)
+        text techtext xalign 0.5
 
 screen battle():
     #vbox:
