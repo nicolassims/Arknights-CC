@@ -1,7 +1,7 @@
-﻿init python:
+﻿init 2 python:
     import math
 
-    #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,ally,techs
+    #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,ally,techs,level
     class Operator(ChangingClass):
         def __init__(self, id, level, ally):
             self.parameters = []
@@ -23,5 +23,10 @@
 
     #define specific Operators here.
     aceop = Operator(ACE, 1, True)
+    aceop.setparameter(TECHS, [ hammerdown ])
+
     kroosop = Operator(KROOS, 2, True)
+    kroosop.setparameter(TECHS, [ doubletapauto ])
+
     enemyaceop = Operator(ACE, 1, False)
+    enemyaceop.setparameter(TECHS, [ hammerdown ])

@@ -3,7 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-init python:
+init 3 python:
     # Declare positions used by this game
     midleft = Position(xpos = 0.25)
     midright = Position(xpos = 0.75)
