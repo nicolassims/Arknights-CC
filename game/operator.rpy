@@ -7,7 +7,6 @@
             self.parameters = []
             id -= 1
             for x in range(PORTRAITS + 1):
-                print(x)
                 if (HEALTH <= x <= ARTSDEF):
                     self.parameters.append(math.ceil(opdex[id][x] * (10 + level)))
                 elif (x == PORTRAITS):

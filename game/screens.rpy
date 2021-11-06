@@ -1612,6 +1612,10 @@ screen setupstatus(op):
             text str(op.getparameter(DEF)) size 40
             text str(op.getparameter(ARTSDEF)) size 40
 
+    textbutton op.getparameter(TALENT) action Show("talentblurb", id=str(op.getparameter(ID))) background Frame("gui/button/choice_idle_background.png") xminimum 350 text_xalign .5 align (.83, .47)
+
+screen talentblurb(id):
+    text "clicked!"
 
 screen battle():
     #vbox:
