@@ -23,7 +23,7 @@
 
     #define specific Operators here.
     aceop = Operator(ACE, 1, True)
-    aceop.setparameter(TECHS, [ hammerdown ])
+    aceop.setparameter(TECHS, [ hammerdown, hammerdown, hammerdown ])
 
     kroosop = Operator(KROOS, 2, True)
     kroosop.setparameter(TECHS, [ doubletapauto ])
