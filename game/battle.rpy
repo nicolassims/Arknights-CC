@@ -4,8 +4,6 @@
     show tactics with dissolve
 
     python:
-        import random
-
         actionlist = []
         battlefield = [None, None, None, None, None, None, None, None, None]
 
@@ -17,7 +15,7 @@
         otherCost = otherOps[0].getparameter(COST)#get the DP saved by the enemy
         #It's your turn if you saved less than the foe, or if you saved the same amount, but got lucky
         actionlist.append(first)
-        if (myCost < otherCost or (myCost == otherCost and random.randrange(10) <= 5)):
+        if (myCost < otherCost or (myCost == otherCost and renpy.random.random() <= .5)):
             actionlist.append(otherOps[0])
         else:
             actionlist.insert(0, otherOps[0])
