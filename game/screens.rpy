@@ -1579,6 +1579,39 @@ screen setupstatus(op):
     text op.getparameter(CODENAME) size 90 xpos 0.56 color "#FFF" bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
     text op.getparameter(SUBCLASS) + " " + op.getparameter(CLASS) size 50 pos (0.58, 0.1) color "#414342" bold True
 
+    hbox:
+        pos (0.6, 0.2)
+        spacing 40
+        vbox:
+            spacing 20
+            text "Level:" bold True size 40
+            text "Health:" bold True size 40
+            text "Attack:" bold True size 40
+            text "Arts:" bold True size 40
+
+        vbox:
+            spacing 20
+            text str(op.getparameter(LEVEL)) size 40
+            text str(op.getparameter(HEALTH)) size 40
+            text str(op.getparameter(ATK)) size 40
+            text str(op.getparameter(ARTS)) size 40
+
+        vbox:
+            xpos 100
+            spacing 20
+            text "Cost:" bold True size 40
+            text "Move:" bold True size 40
+            text "Defense:" bold True size 40
+            text "Arts Def:" bold True size 40
+
+        vbox:
+            xpos 90
+            spacing 20
+            text str(op.getparameter(COST)) size 40
+            text str(op.getparameter(MOV)) size 40
+            text str(op.getparameter(DEF)) size 40
+            text str(op.getparameter(ARTSDEF)) size 40
+
 
 screen battle():
     #vbox:
