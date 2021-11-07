@@ -2,4 +2,7 @@
 - Implement Kroos' skill
 - Implement Ace's skill
 - Implement ability to gain skill points
+
+###LATER
+- Implement Ace's talent
 - Implement aoe basic attacks
