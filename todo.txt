@@ -3,4 +3,3 @@
 - Implement Ace's skill
 - Implement ability to gain skill points
 - Implement aoe basic attacks
-- Hilight current operator
