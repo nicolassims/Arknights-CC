@@ -1656,6 +1656,20 @@ screen techblurb(op, id, fullscreen):
     python:
         id -= 1
         techtext = "{b}" + op.getparameter(CODENAME) + "'s Tech: " + techdex[id][NAME] + "{/b}\n"
+        techtext += "Gain SP by " + techdex[id][GAINTYPE].lower() + ".\n"
+
+        currentsp = 0
+        for tech in op.getparameter(TECHS):
+            if (tech.getparameter(ID) - 1 == id):
+                currentsp = tech.getparameter(POINTS)
+
+        techtext += "Current SP: " + str(currentsp) + "/" + str(tech.getparameter(COST)) + "."
+
+        charges = tech.getparameter(CHARGES)
+        if (charges > 1):
+            techtext += " Holds " + str(charges) + "."
+
+        techtext += "\n"
 
         if (id == 0):#doubletapauto
             techtext += "After two attacks, hit 1.4 times as hard, twice in one turn. Shoot element."
