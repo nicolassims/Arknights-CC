@@ -6,3 +6,17 @@ init python:
             return 1
         else:
             return 3
+
+    def hitsStrings(hits):
+        if (hits == 1):
+            return ""
+        elif (hits == 2):
+            return " with two hits"
+        elif (hits == 3):
+            return " with three hits"
+        elif (hits == 4):
+            return " with four hits"
+        elif (hits == 5):
+            return " with five hits"
+        else:
+            return "ERROR"
