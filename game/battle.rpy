@@ -5,8 +5,8 @@
 
     python:
         actionlist = []
-        battlefield = [None, otherOps[0], None, None, None, None, None, None, None]
-        ownedfield = [True, False, None, None, None, None, None, None, False]#cycles through None, True, and False
+        battlefield = [None, None, None, None, None, None, None, None, None]
+        ownedfield = [True, None, None, None, None, None, None, None, False]#cycles through None, True, and False
         mydp = 0
         otherdp = 0
 
@@ -79,6 +79,7 @@
                         operator = renpy.call_screen("deploy")
                         targetpos = renpy.call_screen("targeting", location=0, minrange=0, maxrange=8, aoe=False, target="empty", deploying=operator.getparameter(COST))[0]
                         battlefield[targetpos] = operator
+                        actionlist.append(operator)
                         ops.remove(operator)
                         mydp -= operator.getparameter(COST) + targetpos * 10
 

@@ -1817,7 +1817,7 @@ screen useattack(source, targets, hits, atkbuff, elements):
 
             damagereport += ("Ally " if source.getparameter(ALLY) else "Foe ")
             damagereport += source.getparameter(CODENAME) + " dealt " + str(dmg) + " damage to the "
-            damagereport += ("foe " if target.getparameter(ALLY) else "ally ")
+            damagereport += ("ally " if target.getparameter(ALLY) else "foe ")
             damagereport += target.getparameter(CODENAME)
             damagereport += hitsStrings(hits)
             damagereport += "! "
