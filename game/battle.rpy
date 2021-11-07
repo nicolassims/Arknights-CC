@@ -45,7 +45,7 @@
                             del op
 
                     elif (action == 'tech'):
-                        print("chose a tech")
+                        techchoice = renpy.call_screen("usetech", op=actor)
 
                     elif (action == 'move'):
                         #this list should always only have one element, so just pull the first element from the list for the targetpos
