@@ -48,10 +48,13 @@
                         techchoice = renpy.call_screen("usetech", op=actor)
                         targetpos = renpy.call_screen("targeting", location=actorpos, minrange=techchoice.getparameter(MINRANGE), maxrange=techchoice.getparameter(MAXRANGE), aoe=techchoice.getparameter(AOE), target="op")
                         targets = []
+
                         for i in targetpos:
                             targets.append(battlefield[i])
 
                         incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE))
+
+                        techchoice.setparameter(POINTS, techchoice.getparameter(POINTS) - techchoice.getparameter(COST))
 
                         for op in list(set(incapacitated)):
                             battlefield[battlefield.index(op)] = None
