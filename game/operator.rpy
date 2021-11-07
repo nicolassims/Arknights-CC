@@ -1,7 +1,7 @@
 ﻿init 2 python:
     import math
 
-    #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,ally,techs,level
+    #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts,ally,techs,level
     class Operator(ChangingClass):
         def __init__(self, id, level, ally):
             self.parameters = []

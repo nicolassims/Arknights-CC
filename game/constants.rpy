@@ -1,8 +1,8 @@
 ﻿init python:
 
     #For class operator, and the opdex
-    #opdex:    ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits
-    #operator: ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,ally,techs,level
+    #opdex:    ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts
+    #operator: ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts,ally,techs,level
 
     #techdex:  ID,name,damage,hits,aoe,dmgtype,dmgto,gaintype,start,gainper,cost,icon,charges,element,minrange,maxrange,effect,effectPower1,effectPower2,effectPower3
     #tech:     ID,name,damage,hits,aoe,dmgtype,dmgto,gaintype,start,gainper,cost,icon,charges,element,minrange,maxrange,effect,effectPower1,effectPower2,effectPower3,points
@@ -26,9 +26,10 @@
     MAXRANGE = 15
     TALENT = EFFFECT = 16
     PORTRAITS = EFFECTPOWER1 = 17
-    ALLY = EFFECTPOWER2 = 18
-    TECHS = EFFECTPOWER3 = 19
-    LEVEL = POINTS = 20
+    USESARTS = EFFECTPOWER2 = 18
+    ALLY = EFFECTPOWER3 = 19
+    TECHS = POINTS = 20
+    LEVEL = 21
 
 
 
