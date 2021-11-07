@@ -6,7 +6,7 @@
         def __init__(self, id, level, ally):
             self.parameters = []
             id -= 1
-            for x in range(PORTRAITS + 1):
+            for x in range(USESARTS + 1):
                 if (HEALTH <= x <= ARTSDEF):
                     self.parameters.append(math.ceil(opdex[id][x] * (10 + level)))
                 elif (x == PORTRAITS):
@@ -17,6 +17,8 @@
                 else:
                     self.parameters.append(opdex[id][x])
             self.parameters[HEALTH] *= 5# increase health by proper amount
+            self.parameters[ATK] = math.ceil(self.parameters[ATK] * 2.5)# increase dmg by proper amount
+            self.parameters[ARTS] = math.ceil(self.parameters[ARTS] * 2.5)# increase dmg by proper amount
             self.parameters.append(ally)# set ALLY
             self.parameters.append([])# set TECHS
             self.parameters.append(level)# set LEVEL

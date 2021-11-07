@@ -1749,13 +1749,20 @@ screen targeting(location, minrange, maxrange, aoe):
 screen useattack(source, targets):
     use battle()
 
+    $ damagereport = ""
+
     for target in targets:
         python:
             if (source.getparameter(USESARTS)):
-                dmg = source.getparameter(ATK) - target.getparameter(DEF)
+                dmg = max(1, 0.05 * source.getparameter(ATK), source.getparameter(ATK) - target.getparameter(DEF))
             else:
-                dmg = source.getparameter(ARTS) - target.getparameter(ARTSDEF)
+                dmg = max(1, 0.05 * source.getparameter(ARTS), source.getparameter(ARTS) - target.getparameter(ARTSDEF))
 
             target.setparameter(HEALTH, target.getparameter(HEALTH) - dmg)
+
+            damagereport = source.getparameter(CODENAME) + " dealt " + str(dmg) + " damage to the foe " + target.getparameter(CODENAME) + "!\n"
+
+            print(damagereport)
+
             if (target.getparameter(HEALTH) <= 0):
                 del op

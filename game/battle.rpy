@@ -36,7 +36,7 @@
                         for i in targetpos:
                             targets.append(battlefield[i])
 
-                        attack = renpy.call_screen("useattack", source=actor, targets=targets)
+                        renpy.show_screen("useattack", source=actor, targets=targets)
                         print("chose an attack")
 
                     elif (action == 'tech'):
