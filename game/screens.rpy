@@ -1625,7 +1625,7 @@ screen setupstatus(op):
             imagebutton:
                 idle Transform(x.getparameter(ICON), size=(200, 200), matrixcolor=InvertMatrix(0.0))
                 hover Transform(x.getparameter(ICON), size=(200, 200), matrixcolor=InvertMatrix(1.0))
-                action [Show("techblurb", op=op, id=int(x.getparameter(ID)))]
+                action [Show("techblurb", op=op, id=int(x.getparameter(ID)), fullscreen=True)]
 
 screen talentblurb(id):
     python:
@@ -1652,7 +1652,7 @@ screen talentblurb(id):
         padding (100, 50)
         text talenttext xalign 0.5
 
-screen techblurb(op, id):
+screen techblurb(op, id, fullscreen):
     python:
         id -= 1
         techtext = "{b}" + op.getparameter(CODENAME) + "'s Tech: " + techdex[id][NAME] + "{/b}\n"
@@ -1664,11 +1664,12 @@ screen techblurb(op, id):
         else:
             techtext += "This shouldn't show up."
 
-    imagebutton:
-        xfill True
-        yfill True
-        idle "ui/empty.png"
-        action [Hide("techblurb")]
+    if (fullscreen):
+        imagebutton:
+            xfill True
+            yfill True
+            idle "ui/empty.png"
+            action [Hide("techblurb")]
 
     frame:
         align (0.5, 0.5)
@@ -1788,3 +1789,22 @@ screen useattack(source, targets):
         margin (200, 100)
         padding (100, 50)
         text damagereport xalign 0.5
+
+#source is an operator object
+#target is an operator object
+screen usetech(op):
+    use battle()
+
+    hbox:
+        spacing 50
+        align (0.5, 0.1)
+        for tech in op.getparameter(TECHS):
+            $ ready = tech.getparameter(POINTS) >= tech.getparameter(COST)
+            imagebutton:
+                idle Transform(tech.getparameter(ICON), size=(200, 200), matrixcolor=(InvertMatrix(0) if ready else SaturationMatrix(0)))
+                hover Transform(tech.getparameter(ICON), size=(200, 200), matrixcolor=InvertMatrix(1) if ready else SaturationMatrix(0))
+                hovered Show("techblurb", op=op, id=int(tech.getparameter(ID)), fullscreen=False)
+                unhovered Hide("techblurb")
+                action ([Return(value=tech), Hide("techblurb")] if ready else NullAction())
+
+    textbutton "Back" action Jump("badmove") xalign .5 yalign .5 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
