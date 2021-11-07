@@ -77,3 +77,11 @@ init python:
         fullstring += ("... " if effectiveness < 1 else "! ")
 
         return fullstring
+
+    def passtring(id):
+        if (id == ACE):
+            return "A wasted turn. I need to avoid those."
+        elif (id == KROOS):
+            return "Eh? Are we taking a nap on the battlefield? That might be a bit too much, even for me."
+        else:
+            return "ERROR"

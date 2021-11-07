@@ -14,6 +14,8 @@ init 3 python:
 
     party = [aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop]
 
+    inventory = []
+
 define who = Character("???")
 define a = DynamicCharacter("playerfirstname")
 define narrator = nvl_narrator

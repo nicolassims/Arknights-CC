@@ -74,7 +74,7 @@
                         print("chose an item")
 
                     elif (action == 'pass'):
-                        renpy.say(a, "A wasted turn. Poor strategy on my part.")
+                        renpy.say(actor.getparameter(CODENAME), passtring(actor.getparameter(ID)))
 
                 else:
                     print("foe's turn happened")
