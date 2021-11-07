@@ -1775,8 +1775,16 @@ screen useattack(source, targets):
 
     $ damagereport = ""
 
+    for tech in source.getparameter(TECHS):
+        if (tech.getparameter(GAINTYPE) == "Attacking"):
+            $ tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
+
     for target in targets:
         python:
+            for tech in target.getparameter(TECHS):
+                if (tech.getparameter(GAINTYPE) == "Defending"):
+                    tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
+
             incapacitated = []
 
             if (source.getparameter(USESARTS)):

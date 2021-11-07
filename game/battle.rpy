@@ -69,6 +69,10 @@
                 if (actor.getparameter(MOVEPOINTS) < 1):#if this unit can't move at least one square yet...
                     actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) + actor.getparameter(MOV))#increase their move points by the requisite amount
 
+                for tech in actor.getparameter(TECHS):
+                    if (tech.getparameter(GAINTYPE) == "Waiting"):
+                        tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
+
                 for i, claim in enumerate(ownedfield):
                     if (claim == True):
                         mydp = min(99, mydp + battlefieldPoints(i))
