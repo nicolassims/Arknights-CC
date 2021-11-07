@@ -1788,12 +1788,21 @@ screen useattack(source, targets, hits, atkbuff, elements):
                     tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
 
             effectiveness = effectiveness(elements, target.getparameter(ELEMENT))
-            print(effectiveness)
             power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * atkbuff * effectiveness
             defense = (target.getparameter(ARTSDEF) if source.getparameter(USESARTS) else target.getparameter(DEF))
 
-            dmg = int(max(1, 0.05 * power, power - defense) * hits)
+            dmg = 0
+            for hit in range(hits):
+                dmg += max(1, 0.05 * power, power - defense)
 
+                if (source.getparameter(ID) == KROOS and renpy.random.random() <= 0.2):#KROOS TALENT, Kroos' talent
+                    if ("{b}Kroos gets serious!{/b} " not in damagereport):
+                        damagereport += "{b}Kroos gets serious!{/b} "
+                    else:
+                        damagereport = damagereport.replace("{b}Kroos gets serious!{/b} ", "{b}Kroos gets {i}deadly{/i} serious!{/b} ")
+                    dmg *= 1.6
+
+            dmg = int(dmg)
             target.setparameter(HEALTH, target.getparameter(HEALTH) - dmg)
 
             damagereport += ("Ally " if source.getparameter(ALLY) else "Foe ")

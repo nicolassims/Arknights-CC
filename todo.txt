@@ -1,5 +1,3 @@
-- Implement Kroos' Talent
-
 ###LATER
 - Implement Ace's talent
 - Implement aoe basic attacks
