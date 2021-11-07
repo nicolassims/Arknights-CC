@@ -30,7 +30,7 @@
                 if actor.getparameter(ALLY):
                     action = renpy.call_screen("battleui")
                     if (action == 'attack'):
-                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=actor.getparameter(MINRANGE), maxrange=actor.getparameter(MAXRANGE), aoe=False)
+                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=actor.getparameter(MINRANGE), maxrange=actor.getparameter(MAXRANGE), aoe=False, target="op")
                         targets = []
                         for i in targetpos:
                             targets.append(battlefield[i])
@@ -45,10 +45,18 @@
                         print("chose a tech")
 
                     elif (action == 'move'):
-                        print("chose to move")
+                        #this list should always only have one element, so just pull the first element from the list for the targetpos
+                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=0, maxrange=math.floor(actor.getparameter(MOVEPOINTS)), aoe=False, target="empty")[0]
+                        actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) - abs(actorpos-targetpos))
+                        battlefield[actorpos] = None
+                        battlefield[targetpos] = actor
 
                     elif (action == 'item'):
                         print("chose an item")
+
+                    elif (action == 'pass'):
+                        renpy.say(a, "A wasted turn. Poor strategy on my part.")
+
                 else:
                     print("foe's turn happened")
 
