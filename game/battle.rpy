@@ -38,7 +38,7 @@
                         for i in targetpos:
                             targets.append(battlefield[i])
 
-                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=1, atkbuff=1)
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=1, atkbuff=1, elements=[None])
                         for op in incapacitated:
                             battlefield[battlefield.index(op)] = None
                             actionlist.remove(op)
@@ -52,7 +52,7 @@
                         for i in targetpos:
                             targets.append(battlefield[i])
 
-                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE))
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE), elements=[techchoice.getparameter(ELEMENT)])
 
                         techchoice.setparameter(POINTS, techchoice.getparameter(POINTS) - techchoice.getparameter(COST))
 

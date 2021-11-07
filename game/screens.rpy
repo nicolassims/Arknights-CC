@@ -1751,7 +1751,7 @@ screen targeting(location, minrange, maxrange, aoe, target):
         totalspace = spacesize * 10
         squaresize = (screenwidth - totalspace) / 9
 
-    textbutton "Back" action Jump("badmove") xalign .5 yalign .5 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
+    textbutton "Back" action Jump("badmove") xalign .5 yalign .4 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
 
     if (aoe):
         $ print("HANDLE THIS!")
@@ -1770,7 +1770,7 @@ screen targeting(location, minrange, maxrange, aoe, target):
 
 #source is an operator object
 #target is an operator object
-screen useattack(source, targets, hits, atkbuff):
+screen useattack(source, targets, hits, atkbuff, elements):
     use battle()
 
     $ damagereport = ""
@@ -1787,7 +1787,9 @@ screen useattack(source, targets, hits, atkbuff):
                 if (tech.getparameter(GAINTYPE) == "Defending"):
                     tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
 
-            power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * atkbuff
+            effectiveness = effectiveness(elements, target.getparameter(ELEMENT))
+            print(effectiveness)
+            power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * atkbuff * effectiveness
             defense = (target.getparameter(ARTSDEF) if source.getparameter(USESARTS) else target.getparameter(DEF))
 
             dmg = int(max(1, 0.05 * power, power - defense) * hits)
@@ -1799,10 +1801,11 @@ screen useattack(source, targets, hits, atkbuff):
             damagereport += ("foe " if target.getparameter(ALLY) else "ally ")
             damagereport += target.getparameter(CODENAME)
             damagereport += hitsStrings(hits)
-            damagereport += "!\n"
+            damagereport += "! "
+            damagereport += effectivestring(effectiveness, elements, target.getparameter(ELEMENT))
 
             if (target.getparameter(HEALTH) <= 0):
-                damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!\n"
+                damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!"
                 incapacitated.append(target)
 
     imagebutton:
@@ -1812,7 +1815,7 @@ screen useattack(source, targets, hits, atkbuff):
         action [Return(value=incapacitated)]
 
     frame:
-        align (0.5, 0.5)
+        align (0.5, 0.3)
         margin (200, 100)
         padding (100, 50)
         text damagereport xalign 0.5
@@ -1834,4 +1837,4 @@ screen usetech(op):
                 unhovered Hide("techblurb")
                 action ([Return(value=tech), Hide("techblurb")] if ready else NullAction())
 
-    textbutton "Back" action Jump("badmove") xalign .5 yalign .5 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
+    textbutton "Back" action Jump("badmove") xalign .5 yalign .4 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")

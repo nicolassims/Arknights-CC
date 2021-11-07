@@ -20,3 +20,60 @@ init python:
             return " with five hits"
         else:
             return "ERROR"
+
+    def effectiveness(offensetypes, defensetypes):
+        effect = 1
+        for atktype in offensetypes:
+            for deftype in defensetypes:
+                if (atktype == "Shoot"):
+                    if (deftype == "Shield"):
+                        effect *= 0.5
+                    elif (deftype == "Strike"):
+                        effect *= 2
+                elif (atktype == "Shield"):
+                    if (deftype == "Shoot"):
+                        effect *= 2
+                    elif (deftype == "Strike"):
+                        effect *= 0.5
+                elif (atktype == "Strike"):
+                    if (deftype == "Shield"):
+                        effect *= 2
+                    elif (deftype == "Shoot"):
+                        effect *= 0.5
+                elif (atktype == "Arts"):
+                    if (deftype == "Power"):
+                        effect *= 2
+                    elif (deftype == "Wit"):
+                        effect *= 0.5
+                elif (atktype == "Power"):
+                    if (deftype == "Wit"):
+                        effect *= 2
+                    elif (deftype == "Arts"):
+                        effect *= 0.5
+                elif (atktype == "Wit"):
+                    if (deftype == "Arts"):
+                        effect *= 2
+                    elif (deftype == "Power"):
+                        effect *= 0.5
+        return effect
+
+    def effectivestring(effectiveness, atkelements, defelements):
+        if (effectiveness == 1):
+            return ""
+
+        fullstring = ""
+        atkelement = ""
+        defelement = ""
+
+        for i, element in enumerate(atkelements):
+            atkelement += ("/" if i != 0 else "") + element
+
+        for i, element in enumerate(defelements):
+            defelement += ("/" if i != 0 else "") + element
+
+        fullstring += atkelement + " style is "
+        fullstring += ("resisted by " if effectiveness < 1 else "strong against ")
+        fullstring += defelement + " style"
+        fullstring += ("... " if effectiveness < 1 else "! ")
+
+        return fullstring

@@ -1,6 +1,4 @@
 - Implement Kroos' Talent
-- Implement Kroos' skill
-- Implement Ace's skill
 
 ###LATER
 - Implement Ace's talent
