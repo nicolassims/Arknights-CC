@@ -1711,17 +1711,21 @@ screen battleui():
     use battle()
 
     vbox:
-        xalign .5 yalign .5
-        textbutton "Attack" action Return(value='attack') xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
-        textbutton " Tech " action Return(value='tech') xminimum 350 text_xalign .5 text_size 60 text_color "#826926" text_hover_color "#c98022" background Frame("gui/button/choice_idle_background.png")
-        textbutton " Move " action Return(value='move') xminimum 350 text_xalign .5 text_size 60 text_color "#437128" text_hover_color "#459426" background Frame("gui/button/choice_idle_background.png")
-        textbutton " Item " action Return(value='item') xminimum 350 text_xalign .5 text_size 60 text_color "#295272" text_hover_color "#256799" background Frame("gui/button/choice_idle_background.png")
+        xalign .5 yalign .3
+        hbox:
+            textbutton "Attack" action Return(value='attack') xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
+            textbutton " Tech " action Return(value='tech') xminimum 350 text_xalign .5 text_size 60 text_color "#826926" text_hover_color "#c98022" background Frame("gui/button/choice_idle_background.png")
+        hbox:
+            textbutton " Move " action Return(value='move') xminimum 350 text_xalign .5 text_size 60 text_color "#437128" text_hover_color "#459426" background Frame("gui/button/choice_idle_background.png")
+            textbutton " Item " action Return(value='item') xminimum 350 text_xalign .5 text_size 60 text_color "#295272" text_hover_color "#256799" background Frame("gui/button/choice_idle_background.png")
+        textbutton " Pass " action Return(value='pass') xalign .5 xminimum 350 text_xalign .5 text_size 60 text_color gui.accent_color text_hover_color gui.hover_color background Frame("gui/button/choice_idle_background.png")
 
 #location is an int from 0-8
 #minrange is an int
 #maxrange is an int >= minrange
 #aoe is a boolean
-screen targeting(location, minrange, maxrange, aoe):
+#target is one of "op", "empty", or "both"
+screen targeting(location, minrange, maxrange, aoe, target):
     use battle()
 
     python:
@@ -1736,12 +1740,15 @@ screen targeting(location, minrange, maxrange, aoe):
         $ print("HANDLE THIS!")
 
     for i, op in enumerate(battlefield):
-        if (op != None and location + minrange <= i <= location + maxrange):
+        if (((target == "op" and op != None)#if we're targeting an operator, and there's an operator on this battlefield slot...
+            or (target == "empty" and op == None)#or we're targeting an empty square, and there's no operator on this battlefield slot...
+            or target == "both")#or if we're targeting either
+            and location + minrange <= i <= location + maxrange):#and the possible target is within our targeting range...
             imagebutton:
                 pos (20 + i * (squaresize + spacesize), 800)
                 xysize (squaresize, squaresize)
-                idle Solid((155, 81, 81, 200))
-                hover Solid((208, 59, 61, 200))
+                idle (Solid((155, 81, 81, 200)) if target != "empty" else Solid((67, 113, 40, 200)))#choose a red color if you can target an operator
+                hover (Solid((208, 59, 61, 200)) if target != "empty" else Solid((69, 148, 38, 200)))#choose a green color if you can target the ground
                 action Return(value=[i])
 
 #source is an operator object
