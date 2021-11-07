@@ -1704,6 +1704,9 @@ screen battle():
                           ypos = 800 + squaresize / 2,
                           xzoom = 1 if op.getparameter(ALLY) else -1)
 
+            if (op == actor):
+                add Transform(Image("ui/cursor.png"), anchor=(1.0, 1.0), xpos = 20 + i * (squaresize + spacesize) + squaresize / 2, ypos = 700, xzoom = 0.25, yzoom = 0.25)
+
         text str(battlefieldPoints(i)) size 180 color (0, 0, 0, 60) xpos 60 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
 
 screen battleui():

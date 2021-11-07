@@ -74,6 +74,5 @@
                         mydp = min(99, mydp + battlefieldPoints(i))
                     elif (claim == False):
                         otherdp = min(99, otherdp + battlefieldPoints(i))
-
                 actionlist.pop(0)
                 actionlist.append(actor)
