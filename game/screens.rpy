@@ -1730,8 +1730,7 @@ screen targeting(location, minrange, maxrange, aoe):
         totalspace = spacesize * 10
         squaresize = (screenwidth - totalspace) / 9
 
-
-    textbutton "Back" action Return(value=-1) xalign .5 yalign .5 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
+    textbutton "Back" action Jump("badmove") xalign .5 yalign .5 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
 
     if (aoe):
         $ print("HANDLE THIS!")
@@ -1743,4 +1742,20 @@ screen targeting(location, minrange, maxrange, aoe):
                 xysize (squaresize, squaresize)
                 idle Solid((155, 81, 81, 200))
                 hover Solid((208, 59, 61, 200))
-                action Return(value=i)
+                action Return(value=[i])
+
+#source is an operator object
+#target is an operator object
+screen useattack(source, targets):
+    use battle()
+
+    for target in targets:
+        python:
+            if (source.getparameter(USESARTS)):
+                dmg = source.getparameter(ATK) - target.getparameter(DEF)
+            else:
+                dmg = source.getparameter(ARTS) - target.getparameter(ARTSDEF)
+
+            target.setparameter(HEALTH, target.getparameter(HEALTH) - dmg)
+            if (target.getparameter(HEALTH) <= 0):
+                del op

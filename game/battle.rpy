@@ -5,7 +5,7 @@
 
     python:
         actionlist = []
-        battlefield = [None, None, None, None, None, None, None, None, None]
+        battlefield = [None, otherOps[0], None, None, None, None, None, None, None]
 
         renpy.show_screen("frontman")#display the prompt to select the frontman for the battle
         first = renpy.call_screen("setup")#select the frontman
@@ -23,28 +23,35 @@
     hide tactics with dissolve
 
     while(True):
-        $ actor = actionlist[0]
-        if actor.getparameter(ALLY):
-            $ action = renpy.call_screen("battleui")
+        label badmove:
+            python:
+                actor = actionlist[0]
+                actorpos = battlefield.index(actor)
+                if actor.getparameter(ALLY):
+                    action = renpy.call_screen("battleui")
 
-            if (action == 'attack'):
-                $ target = renpy.call_screen("targeting", location=battlefield.index(actor), minrange=actor.getparameter(MINRANGE), maxrange=actor.getparameter(MAXRANGE), aoe=False)
+                    if (action == 'attack'):
+                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=actor.getparameter(MINRANGE), maxrange=actor.getparameter(MAXRANGE), aoe=False)
+                        targets = []
+                        for i in targetpos:
+                            targets.append(battlefield[i])
 
-                $ print("chose an attack")
+                        attack = renpy.call_screen("useattack", source=actor, targets=targets)
+                        print("chose an attack")
 
-            elif (action == 'tech'):
-                $ print("chose a tech")
+                    elif (action == 'tech'):
+                        print("chose a tech")
 
-            elif (action == 'move'):
-                $ print("chose to move")
+                    elif (action == 'move'):
+                        print("chose to move")
 
-            elif (action == 'item'):
-                $ print("chose an item")
-        else:
-            $ print("foe's turn happened")
+                    elif (action == 'item'):
+                        print("chose an item")
+                else:
+                    print("foe's turn happened")
 
 
-        $ actionlist.pop(0)
-        $ actionlist.append(actor)
+                actionlist.pop(0)
+                actionlist.append(actor)
 
     pause(5.0)
