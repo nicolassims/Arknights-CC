@@ -2,5 +2,4 @@
 - Implement Kroos' skill
 - Implement Ace's skill
 - Implement ability to gain skill points
-- Implement ability to gain deployment points
 - Implement aoe basic attacks

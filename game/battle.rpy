@@ -6,6 +6,9 @@
     python:
         actionlist = []
         battlefield = [None, otherOps[0], None, None, None, None, None, None, None]
+        ownedfield = [True, False, None, None, None, None, None, None, False]#cycles through None, True, and False
+        mydp = 0
+        otherdp = 0
 
         renpy.show_screen("frontman")#display the prompt to select the frontman for the battle
         first = renpy.call_screen("setup")#select the frontman
@@ -50,6 +53,8 @@
                         actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) - abs(actorpos-targetpos))
                         battlefield[actorpos] = None
                         battlefield[targetpos] = actor
+                        ownedfield[targetpos] = True
+                        actorpos = targetpos#make actorpos accurate again, in case of use later
 
                     elif (action == 'item'):
                         print("chose an item")
@@ -60,8 +65,15 @@
                 else:
                     print("foe's turn happened")
 
+                #run end of turn clean-up
                 if (actor.getparameter(MOVEPOINTS) < 1):#if this unit can't move at least one square yet...
                     actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) + actor.getparameter(MOV))#increase their move points by the requisite amount
+
+                for i, claim in enumerate(ownedfield):
+                    if (claim == True):
+                        mydp = min(99, mydp + battlefieldPoints(i))
+                    elif (claim == False):
+                        otherdp = min(99, otherdp + battlefieldPoints(i))
 
                 actionlist.pop(0)
                 actionlist.append(actor)

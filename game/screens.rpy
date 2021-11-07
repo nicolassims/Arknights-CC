@@ -1518,12 +1518,6 @@ style slider_slider:
     xsize 900
 
 #player-made screens
-python:
-    screenwidth = 1920
-    spacesize = 20
-    totalspace = spacesize * 10
-    squaresize = (screenwidth - totalspace) / 9
-
 screen buttons():
         if (map[y - 1][x] < 1 and y != 0):
             textbutton "↑" action Return(value='F') xalign .9 yalign .7 text_size 200
@@ -1689,25 +1683,28 @@ screen battle():
         totalspace = spacesize * 10
         squaresize = (screenwidth - totalspace) / 9
 
+    text str(mydp) + " DP" xpos 0.1 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
+    text str(otherdp) + " DP" xpos 0.9 xanchor 1.0 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
+
     for i, op in enumerate(battlefield):
-            if (op != None):
-                add Solid(gui.hover_color if op.getparameter(ALLY) else "#E0A366",
-                      xpos = 20 + i * (squaresize + spacesize), ypos = 800,
-                      xsize = squaresize, ysize = squaresize)
+        $ color = "#FFF"
+        if (ownedfield[i] == True):
+            $ color = gui.hover_color
+        elif (ownedfield[i] == False):
+            $ color = "#E0A366"
 
-                add Transform(Image(op.getparameter(PORTRAITS)[0]),
-                              fit="contain",
-                              xysize=(squaresize, 1000),
-                              anchor=(0.5, 1.0),
-                              xpos = 20 + i * (squaresize + spacesize) + squaresize / 2,
-                              ypos = 800 + squaresize / 2,
-                              xzoom = 1 if op.getparameter(ALLY) else -1)
-            else:
-                add Solid("#FFF",
-                      xpos = 20 + i * (squaresize + spacesize), ypos = 800,
-                      xsize = squaresize, ysize = squaresize)
+        add Solid(color, xpos = 20 + i * (squaresize + spacesize), ypos = 800, xysize = (squaresize, squaresize))
 
-            text str(battlefieldPoints(i)) size 180 color (0, 0, 0, 60) xpos 60 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
+        if (op != None):
+            add Transform(Image(op.getparameter(PORTRAITS)[0]),
+                          fit="contain",
+                          xysize=(squaresize, 1000),
+                          anchor=(0.5, 1.0),
+                          xpos = 20 + i * (squaresize + spacesize) + squaresize / 2,
+                          ypos = 800 + squaresize / 2,
+                          xzoom = 1 if op.getparameter(ALLY) else -1)
+
+        text str(battlefieldPoints(i)) size 180 color (0, 0, 0, 60) xpos 60 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
 
 screen battleui():
     use battle()
