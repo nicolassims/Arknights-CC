@@ -16,5 +16,3 @@
     #define specific Techs here.
     doubletapauto = Tech(1)
     hammerdown = Tech(2)
-    readyhammerdown = Tech(2)
-    readyhammerdown.setparameter(POINTS, 2)
