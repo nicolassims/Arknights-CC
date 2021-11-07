@@ -1707,6 +1707,8 @@ screen battle():
                       xpos = 20 + i * (squaresize + spacesize), ypos = 800,
                       xsize = squaresize, ysize = squaresize)
 
+            text str(battlefieldPoints(i)) size 180 color (0, 0, 0, 60) xpos 60 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
+
 screen battleui():
     use battle()
 
