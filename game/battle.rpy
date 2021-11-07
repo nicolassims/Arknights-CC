@@ -53,5 +53,3 @@
 
                 actionlist.pop(0)
                 actionlist.append(actor)
-
-    pause(5.0)
