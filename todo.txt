@@ -1,3 +1,4 @@
 ###LATER
 - Implement Ace's talent
 - Implement aoe basic attacks
+- Implement ability to actually use items in the inventory
