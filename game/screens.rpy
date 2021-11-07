@@ -1736,7 +1736,7 @@ screen targeting(location, minrange, maxrange, aoe):
         $ print("HANDLE THIS!")
 
     for i, op in enumerate(battlefield):
-        if (location + minrange <= i <= location + maxrange):
+        if (op != None and location + minrange <= i <= location + maxrange):
             imagebutton:
                 pos (20 + i * (squaresize + spacesize), 800)
                 xysize (squaresize, squaresize)
@@ -1753,16 +1753,29 @@ screen useattack(source, targets):
 
     for target in targets:
         python:
+            incapacitated = []
+
             if (source.getparameter(USESARTS)):
-                dmg = max(1, 0.05 * source.getparameter(ATK), source.getparameter(ATK) - target.getparameter(DEF))
-            else:
                 dmg = max(1, 0.05 * source.getparameter(ARTS), source.getparameter(ARTS) - target.getparameter(ARTSDEF))
+            else:
+                dmg = max(1, 0.05 * source.getparameter(ATK), source.getparameter(ATK) - target.getparameter(DEF))
 
             target.setparameter(HEALTH, target.getparameter(HEALTH) - dmg)
 
-            damagereport = source.getparameter(CODENAME) + " dealt " + str(dmg) + " damage to the foe " + target.getparameter(CODENAME) + "!\n"
-
-            print(damagereport)
+            damagereport += source.getparameter(CODENAME) + " dealt " + str(dmg) + " damage to the foe " + target.getparameter(CODENAME) + "!\n"
 
             if (target.getparameter(HEALTH) <= 0):
-                del op
+                damagereport += "Foe " + target.getparameter(CODENAME) + " incapacitated!\n"
+                incapacitated.append(target)
+
+    imagebutton:
+        xfill True
+        yfill True
+        idle "ui/empty.png"
+        action [Return(value=incapacitated)]
+
+    frame:
+        align (0.5, 0.5)
+        margin (200, 100)
+        padding (100, 50)
+        text damagereport xalign 0.5

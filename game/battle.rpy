@@ -29,15 +29,17 @@
                 actorpos = battlefield.index(actor)
                 if actor.getparameter(ALLY):
                     action = renpy.call_screen("battleui")
-
                     if (action == 'attack'):
                         targetpos = renpy.call_screen("targeting", location=actorpos, minrange=actor.getparameter(MINRANGE), maxrange=actor.getparameter(MAXRANGE), aoe=False)
                         targets = []
                         for i in targetpos:
                             targets.append(battlefield[i])
 
-                        renpy.show_screen("useattack", source=actor, targets=targets)
-                        print("chose an attack")
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets)
+                        for op in incapacitated:
+                            battlefield[battlefield.index(op)] = None
+                            actionlist.remove(op)
+                            del op
 
                     elif (action == 'tech'):
                         print("chose a tech")
@@ -50,6 +52,8 @@
                 else:
                     print("foe's turn happened")
 
+                if (actor.getparameter(MOVEPOINTS) < 1):#if this unit can't move at least one square yet...
+                    actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) + actor.getparameter(MOV))#increase their move points by the requisite amount
 
                 actionlist.pop(0)
                 actionlist.append(actor)

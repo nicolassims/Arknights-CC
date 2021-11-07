@@ -30,6 +30,7 @@
     ALLY = EFFECTPOWER3 = 19
     TECHS = POINTS = 20
     LEVEL = 21
+    MOVEPOINTS = 22
 
 
 
