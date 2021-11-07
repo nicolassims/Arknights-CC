@@ -1847,3 +1847,19 @@ screen usetech(op):
                 action ([Return(value=tech), Hide("techblurb")] if ready else NullAction())
 
     textbutton "Back" action Jump("badmove") xalign .5 yalign .4 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
+
+screen useitem():
+    use battle()
+
+    if (len(inventory) == 0):
+        frame:
+            align (0.5, 0.4)
+            margin (200, 100)
+            padding (100, 50)
+            text "You don't have any items!" xalign 0.5
+
+        imagebutton:
+            xfill True
+            yfill True
+            idle "ui/empty.png"
+            action [Jump("badmove")]

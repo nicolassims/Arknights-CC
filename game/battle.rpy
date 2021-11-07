@@ -71,7 +71,7 @@
                         actorpos = targetpos#make actorpos accurate again, in case of use later
 
                     elif (action == 'item'):
-                        print("chose an item")
+                        techchoice = renpy.call_screen("useitem")
 
                     elif (action == 'pass'):
                         renpy.say(actor.getparameter(CODENAME), passtring(actor.getparameter(ID)))
