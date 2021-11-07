@@ -11,7 +11,7 @@
         otherdp = 0
 
         renpy.show_screen("frontman")#display the prompt to select the frontman for the battle
-        first = renpy.call_screen("setup")#select the frontman
+        first = renpy.call_screen("setup", back=False)#select the frontman
         battlefield[0] = first#assign the chosen frontman to square 1
         battlefield[8] = otherOps[0]#assign the enemy's frontman to square 9
         myCost = first.getparameter(COST)#get the DP saved by choosing this frontman

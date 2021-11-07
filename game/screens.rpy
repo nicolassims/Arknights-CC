@@ -1555,7 +1555,7 @@ screen frontman():
 screen go(op):
     textbutton "GO!" action [Hide("go"), Hide("setupstatus"), Return(op)] xpos 0.79 xanchor 0.5 yalign 0.94 text_size 90 text_bold True text_outlines [ (absolute(10), "#000", absolute(0), absolute(0)) ]
 
-screen setup():
+screen setup(back):
     $ squaresize = 200
     $ spacesize = 20
 
@@ -1573,14 +1573,17 @@ screen setup():
             anchor (0.5, 1.0)
             idle Transform(portrait, fit="contain", xysize=(squaresize, 1000), ypos=0)
             hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 1000), ypos=50)
-            action [Hide("frontman"), Show("setupstatus", op=op), Show("go", op=op)]
+            action [Hide("frontman"), Show("setupstatus", op=op, back=back), Show("go", op=op)]
 
-screen setupstatus(op):
+screen setupstatus(op, back):
     image "ui/setupmenu.png"
 
     image "ui/classicons/" + op.getparameter(CLASS).lower() + ".png" xysize (140, 140) pos (0.915, 0.02)
     text op.getparameter(CODENAME) size 90 xpos 0.56 color "#FFF" bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
     text op.getparameter(SUBCLASS) + " " + op.getparameter(CLASS) size 50 pos (0.58, 0.1) color "#414342" bold True
+
+    if (back):
+        textbutton "Back" action [Hide("setupstatus"), Hide("go"), Jump("badmove")] xalign .65 yalign .85 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
 
     hbox:
         pos (0.6, 0.2)
@@ -1865,3 +1868,28 @@ screen useitem():
             yfill True
             idle "ui/empty.png"
             action [Jump("badmove")]
+
+screen deploy():
+    use battle()
+
+    $ opsinbank = 0
+
+    for op in party:
+        if op not in battlefield:
+            $ opsinbank += 1
+
+    if (opsinbank == 0):
+        frame:
+            align (0.5, 0.4)
+            margin (200, 100)
+            padding (100, 50)
+            text "You have no undeployed operators!" xalign 0.5
+
+        imagebutton:
+            xfill True
+            yfill True
+            idle "ui/empty.png"
+            action [Jump("badmove")]
+    else:
+        image Transform("bgs/tactics.png", matrixcolor=SaturationMatrix(0), xsize=1920, ysize=1080)
+        use setup(back=True)
