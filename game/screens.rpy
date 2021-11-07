@@ -1770,7 +1770,7 @@ screen targeting(location, minrange, maxrange, aoe, target):
 
 #source is an operator object
 #target is an operator object
-screen useattack(source, targets):
+screen useattack(source, targets, hits, atkbuff):
     use battle()
 
     $ damagereport = ""
@@ -1779,25 +1779,30 @@ screen useattack(source, targets):
         if (tech.getparameter(GAINTYPE) == "Attacking"):
             $ tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
 
+    $ incapacitated = []
+
     for target in targets:
         python:
             for tech in target.getparameter(TECHS):
                 if (tech.getparameter(GAINTYPE) == "Defending"):
                     tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
 
-            incapacitated = []
+            power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * atkbuff
+            defense = (target.getparameter(ARTSDEF) if source.getparameter(USESARTS) else target.getparameter(DEF))
 
-            if (source.getparameter(USESARTS)):
-                dmg = max(1, 0.05 * source.getparameter(ARTS), source.getparameter(ARTS) - target.getparameter(ARTSDEF))
-            else:
-                dmg = max(1, 0.05 * source.getparameter(ATK), source.getparameter(ATK) - target.getparameter(DEF))
+            dmg = int(max(1, 0.05 * power, power - defense) * hits)
 
             target.setparameter(HEALTH, target.getparameter(HEALTH) - dmg)
 
-            damagereport += source.getparameter(CODENAME) + " dealt " + str(dmg) + " damage to the foe " + target.getparameter(CODENAME) + "!\n"
+            damagereport += ("Ally " if source.getparameter(ALLY) else "Foe ")
+            damagereport += source.getparameter(CODENAME) + " dealt " + str(dmg) + " damage to the "
+            damagereport += ("foe " if target.getparameter(ALLY) else "ally ")
+            damagereport += target.getparameter(CODENAME)
+            damagereport += hitsStrings(hits)
+            damagereport += "!\n"
 
             if (target.getparameter(HEALTH) <= 0):
-                damagereport += "Foe " + target.getparameter(CODENAME) + " incapacitated!\n"
+                damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!\n"
                 incapacitated.append(target)
 
     imagebutton:
