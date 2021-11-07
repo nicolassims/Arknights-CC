@@ -1735,7 +1735,9 @@ screen battleui():
         hbox:
             textbutton " Move " action Return(value='move') xminimum 350 text_xalign .5 text_size 60 text_color "#437128" text_hover_color "#459426" background Frame("gui/button/choice_idle_background.png")
             textbutton " Item " action Return(value='item') xminimum 350 text_xalign .5 text_size 60 text_color "#295272" text_hover_color "#256799" background Frame("gui/button/choice_idle_background.png")
-        textbutton " Pass " action Return(value='pass') xalign .5 xminimum 350 text_xalign .5 text_size 60 text_color gui.accent_color text_hover_color gui.hover_color background Frame("gui/button/choice_idle_background.png")
+        hbox:
+            textbutton "Deploy" action Return(value='deploy') xminimum 350 text_xalign .5 text_size 60 text_color "#772372" text_hover_color "#B739B0" background Frame("gui/button/choice_idle_background.png")
+            textbutton " Pass " action Return(value='pass') xminimum 350 text_xalign .5 text_size 60 text_color gui.accent_color text_hover_color gui.hover_color background Frame("gui/button/choice_idle_background.png")
 
 #location is an int from 0-8
 #minrange is an int

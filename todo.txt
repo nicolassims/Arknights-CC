@@ -1,3 +1,6 @@
+- Implement ability to deploy new operators
+- Highlight buttons that can actually be used
+
 ###LATER
 - Implement Ace's talent
 - Implement aoe basic attacks

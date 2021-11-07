@@ -73,6 +73,9 @@
                     elif (action == 'item'):
                         techchoice = renpy.call_screen("useitem")
 
+                    elif (action == 'deploy'):
+                        operator = renpy.call_screen("deploy")
+
                     elif (action == 'pass'):
                         renpy.say(actor.getparameter(CODENAME), passtring(actor.getparameter(ID)))
 
