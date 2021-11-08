@@ -22,6 +22,8 @@
             actionlist.append(otherOps[0])
         else:
             actionlist.insert(0, otherOps[0])
+        ops.remove(battlefield[0])#remove your frontman from your party
+        otherOps.remove(battlefield[8])#remove your enemy's frontman from your enemy's party
 
     hide tactics with dissolve
 
@@ -33,7 +35,7 @@
                 if actor.getparameter(ALLY):
                     action = renpy.call_screen("battleui")
                     if (action == 'attack'):
-                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=actor.getparameter(MINRANGE), maxrange=actor.getparameter(MAXRANGE), aoe=False, target="op")
+                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=actor.getparameter(MINRANGE), maxrange=actor.getparameter(MAXRANGE), aoe=False, target="op", deploying=0)
                         targets = []
                         for i in targetpos:
                             targets.append(battlefield[i])
@@ -46,7 +48,7 @@
 
                     elif (action == 'tech'):
                         techchoice = renpy.call_screen("usetech", op=actor)
-                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=techchoice.getparameter(MINRANGE), maxrange=techchoice.getparameter(MAXRANGE), aoe=techchoice.getparameter(AOE), target="op")
+                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=techchoice.getparameter(MINRANGE), maxrange=techchoice.getparameter(MAXRANGE), aoe=techchoice.getparameter(AOE), target="op", deploying=0)
                         targets = []
 
                         for i in targetpos:
@@ -63,7 +65,7 @@
 
                     elif (action == 'move'):
                         #this list should always only have one element, so just pull the first element from the list for the targetpos
-                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=0, maxrange=math.floor(actor.getparameter(MOVEPOINTS)), aoe=False, target="empty")[0]
+                        targetpos = renpy.call_screen("targeting", location=actorpos, minrange=0, maxrange=math.floor(actor.getparameter(MOVEPOINTS)), aoe=False, target="empty", deploying=0)[0]
                         actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) - abs(actorpos-targetpos))
                         battlefield[actorpos] = None
                         battlefield[targetpos] = actor
@@ -75,6 +77,10 @@
 
                     elif (action == 'deploy'):
                         operator = renpy.call_screen("deploy")
+                        targetpos = renpy.call_screen("targeting", location=0, minrange=0, maxrange=8, aoe=False, target="empty", deploying=operator.getparameter(COST))[0]
+                        battlefield[targetpos] = operator
+                        ops.remove(operator)
+                        mydp -= operator.getparameter(COST) + targetpos * 10
 
                     elif (action == 'pass'):
                         renpy.say(actor.getparameter(CODENAME), passtring(actor.getparameter(ID)))

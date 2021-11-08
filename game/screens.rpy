@@ -1747,7 +1747,8 @@ screen battleui():
 #maxrange is an int >= minrange
 #aoe is a boolean
 #target is one of "op", "empty", or "both"
-screen targeting(location, minrange, maxrange, aoe, target):
+#deploying is an int, with 0 representing not deploying
+screen targeting(location, minrange, maxrange, aoe, target, deploying):
     use battle()
 
     python:
@@ -1765,6 +1766,7 @@ screen targeting(location, minrange, maxrange, aoe, target):
         if (((target == "op" and op != None)#if we're targeting an operator, and there's an operator on this battlefield slot...
             or (target == "empty" and op == None)#or we're targeting an empty square, and there's no operator on this battlefield slot...
             or target == "both")#or if we're targeting either
+            and (deploying == 0 or deploying > 0 and ownedfield[i] == True)#or if not deploying, or if you are deploying, and own that tile
             and location + minrange <= i <= location + maxrange):#and the possible target is within our targeting range...
             imagebutton:
                 pos (20 + i * (squaresize + spacesize), 800)
@@ -1772,6 +1774,9 @@ screen targeting(location, minrange, maxrange, aoe, target):
                 idle (Solid((155, 81, 81, 200)) if target != "empty" else Solid((67, 113, 40, 200)))#choose a red color if you can target an operator
                 hover (Solid((208, 59, 61, 200)) if target != "empty" else Solid((69, 148, 38, 200)))#choose a green color if you can target the ground
                 action Return(value=[i])
+
+            if (deploying > 0):
+                text str(deploying + i * 10) + "\nDP" size 80 color (255, 255, 255, 255) xpos 50 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
 
 #source is an operator object
 #target is an operator object
@@ -1874,7 +1879,7 @@ screen deploy():
 
     $ opsinbank = 0
 
-    for op in party:
+    for op in ops:
         if op not in battlefield:
             $ opsinbank += 1
 
