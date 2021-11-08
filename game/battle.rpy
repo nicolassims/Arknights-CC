@@ -24,6 +24,9 @@
             actionlist.insert(0, otherOps[0])
         ops.remove(battlefield[0])#remove your frontman from your party
         otherOps.remove(battlefield[8])#remove your enemy's frontman from your enemy's party
+        battlefield[0].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
+        battlefield[8].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
+
 
     hide tactics with dissolve
 
@@ -82,18 +85,15 @@
                     action = prioritize(0)
                     actiontype = action[0]
 
-                    #("attack", [op])
-                    if (actiontype == 'attack'):
+                    if (actiontype == 'attack'):#("attack", [op])
                         incapacitated = renpy.call_screen("useattack", source=actor, targets=action[1], hits=1, atkbuff=1, elements=[None])
 
-                    #("tech", tech, [op])
-                    elif (actiontype == 'tech'):
+                    elif (actiontype == 'tech'):#("tech", tech, [op])
                         techchoice = action[1]
                         incapacitated = renpy.call_screen("useattack", source=actor, targets=action[2], hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE), elements=[techchoice.getparameter(ELEMENT)])
                         techchoice.setparameter(POINTS, techchoice.getparameter(POINTS) - techchoice.getparameter(COST))
 
-                    #("move", i)
-                    elif (actiontype == 'move'):
+                    elif (actiontype == 'move'):#("move", i)
                         #this list should always only have one element, so just pull the first element from the list for the targetpos
                         targetpos = action[1]
                         actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) - abs(actorpos-targetpos))
@@ -102,16 +102,15 @@
                         ownedfield[targetpos] = False
                         actorpos = targetpos#make actorpos accurate again, in case of use later
 
-                    #("deploy", op, i)
-                    elif (actiontype == 'deploy'):
+                    elif (actiontype == 'deploy'):#("deploy", op, i)
                         operator = action[1]
                         targetpos = action[2]
                         battlefield[targetpos] = operator
                         actionlist.append(operator)
-                        ops.remove(operator)
-                        otherdp -= operator.getparameter(COST) + targetpos * 10
+                        otherOps.remove(operator)
+                        otherdp -= operator.getparameter(COST) + (8 - targetpos) * 10
 
-                    elif (actiontype == 'pass'):
+                    elif (actiontype == 'pass'):#("pass")
                         renpy.say(a, "Looks like they're just watching and waiting...")
 
                 #run end of turn clean-up
@@ -132,5 +131,6 @@
                         mydp = min(99, mydp + battlefieldPoints(i))
                     elif (claim == False):
                         otherdp = min(99, otherdp + battlefieldPoints(i))
+
                 actionlist.pop(0)
                 actionlist.append(actor)
