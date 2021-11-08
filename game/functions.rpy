@@ -90,19 +90,16 @@ init python:
     def prioritize(ai):
         #can I deploy
         for op in otherOps:#for every enemy operator
-            for i, op in enumerate(battlefield):#for every square on the battlefield
-                if (op.getparameter(COST) + i * 10 <= otherdp and op == None):#if you have enough dp to deploy there and the square is unoccupied
+            for i, square in enumerate(battlefield):#for every square on the battlefield
+                if (op.getparameter(COST) + (8 - i) * 10 <= otherdp and square == None):#if you have enough dp to deploy there and the square is unoccupied
                     return ("deploy", op, i)#return "deploy", the enemy operator being deployed, and the cell they're being deployed to
 
         print("can't deploy")
 
         #can I use a tech
         for tech in actor.getparameter(TECHS):#for every tech of the active actor
-            print("found tech - " + tech.getparameter(NAME))
             if (tech.getparameter(POINTS) >= tech.getparameter(COST)):#if that tech has enough points to use
-                print("tech has enough points")
-                for i in range(actorpos - tech.getparameter(MAXRANGE), actorpos - tech.getparameter(MINRANGE) + 1):#look at every cell within those points
-                    print("looking at cell - " + str(i))
+                for i in reversed(range(actorpos - tech.getparameter(MAXRANGE), actorpos - tech.getparameter(MINRANGE) + 1)):#look at every cell within those points
                     op = battlefield[i]
                     if (op != None and op.getparameter(ALLY)):#if that cell isn't empty, and contains an ally
                         return ("tech", tech, [op])#return "tech", the tech being used, and the ally operator being targeted by the tech
@@ -110,7 +107,7 @@ init python:
         print("can't use tech")
 
         #can I use an attack
-        for i in range(actorpos - actor.getparameter(MAXRANGE), actorpos - actor.getparameter(MINRANGE) + 1):#look at every cell within the actor's range
+        for i in reversed(range(actorpos - actor.getparameter(MAXRANGE), actorpos - actor.getparameter(MINRANGE) + 1)):#look at every cell within the actor's range
             op = battlefield[i]
             if (op != None and op.getparameter(ALLY)):#if that cell isn't empty, and contains an ally
                 return ("attack", [op])#return "attack" and the operator being targeted
@@ -119,7 +116,7 @@ init python:
 
         #can I move
         if (actor.getparameter(MOVEPOINTS) >= 1):
-            for i in range(actorpos - actor.getparameter(MOVEPOINTS), actorpos):
+            for i in range(actorpos - int(math.floor(actor.getparameter(MOVEPOINTS))), actorpos):
                 if (battlefield[i] == None):
                     return ("move", i)
 
