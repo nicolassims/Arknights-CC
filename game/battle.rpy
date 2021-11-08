@@ -79,7 +79,7 @@
                         renpy.say(actor.getparameter(CODENAME), passtring(actor.getparameter(ID)))
 
                 else:
-                    action = prioritize(ai)
+                    action = prioritize(0)
                     actiontype = action[0]
 
                     #("attack", [op])
@@ -99,7 +99,7 @@
                         actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) - abs(actorpos-targetpos))
                         battlefield[actorpos] = None
                         battlefield[targetpos] = actor
-                        ownedfield[targetpos] = True
+                        ownedfield[targetpos] = False
                         actorpos = targetpos#make actorpos accurate again, in case of use later
 
                     #("deploy", op, i)
