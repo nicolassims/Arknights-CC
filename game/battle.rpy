@@ -132,5 +132,5 @@
                     elif (claim == False):
                         otherdp = min(99, otherdp + battlefieldPoints(i))
 
-                actionlist.pop(0)
+                actionlist.pop(0)#this might become a problem someday if an operator can incapacitate themself
                 actionlist.append(actor)

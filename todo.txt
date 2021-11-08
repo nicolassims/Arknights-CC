@@ -1,9 +1,9 @@
-- Make enemies actually take turns
 - Highlight buttons that can actually be used
 - draw healthbars
 - draw movebars
 
 ###LATER
+- make sure that allies who can incapacitate themselves are handled properly at the end of the turn
 - Define different kinds of AI
 - Implement Ace's talent
 - Implement aoe basic attacks for both players and AI
