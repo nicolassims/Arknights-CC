@@ -1618,7 +1618,7 @@ screen setupstatus(op, back):
             text str(op.getparameter(DEF)) size 40
             text str(op.getparameter(ARTSDEF)) size 40
 
-    text op.getparameter(ELEMENT)[0] + "/" + op.getparameter(ELEMENT)[1] size 30 xanchor 0.5 pos (0.785, 0.51) color "#FFF" bold True
+    text "Fighting Style: " + op.getparameter(ELEMENT)[0] + "/" + op.getparameter(ELEMENT)[1] size 30 xanchor 0.5 pos (0.785, 0.51) color "#FFF" bold True
 
     textbutton op.getparameter(TALENT) action Show("talentblurb", id=int(op.getparameter(ID))) background Frame("gui/button/choice_idle_background.png") xanchor 0.5 xminimum 350 text_xalign .5 align (.785, .475)
 
@@ -1677,9 +1677,9 @@ screen techblurb(op, id, fullscreen):
         techtext += "\n"
 
         if (id == 0):#doubletapauto
-            techtext += "After two attacks, hit 1.4 times as hard, twice in one turn. Shoot element."
+            techtext += "After two attacks, hit 1.4 times as hard, twice in one turn. Shoot style."
         elif (id == 1):#hammerdown
-            techtext += "After being hit twice, retaliate at 2.5 times your normal strength. Power element."
+            techtext += "After being hit twice, retaliate at 2.5 times your normal strength. Power style."
         else:
             techtext += "This shouldn't show up."
 
