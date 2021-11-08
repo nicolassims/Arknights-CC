@@ -1618,6 +1618,8 @@ screen setupstatus(op, back):
             text str(op.getparameter(DEF)) size 40
             text str(op.getparameter(ARTSDEF)) size 40
 
+    text op.getparameter(ELEMENT)[0] + "/" + op.getparameter(ELEMENT)[1] size 30 xanchor 0.5 pos (0.785, 0.51) color "#FFF" bold True
+
     textbutton op.getparameter(TALENT) action Show("talentblurb", id=int(op.getparameter(ID))) background Frame("gui/button/choice_idle_background.png") xanchor 0.5 xminimum 350 text_xalign .5 align (.785, .475)
 
     hbox:
@@ -1713,7 +1715,29 @@ screen battle():
 
         add Solid(color, xpos = 20 + i * (squaresize + spacesize), ypos = 800, xysize = (squaresize, squaresize))
 
+        text str(battlefieldPoints(i)) size 180 color (0, 0, 0, 60) xpos 60 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
+
         if (op != None):
+            bar:
+                xpos 20 + i * (squaresize + spacesize) + squaresize / 2
+                ypos 800 + squaresize / 2
+                xanchor 0.5
+                xsize squaresize - 20
+                range opdex[op.getparameter(ID) - 1][HEALTH] * (10 + op.getparameter(LEVEL)) * 5
+                value op.getparameter(HEALTH)
+                right_bar gui.muted_color
+                left_bar "#F69122"
+
+            bar:
+                xpos 20 + i * (squaresize + spacesize) + squaresize / 2
+                ypos 800 + squaresize / 2 + 50
+                xanchor 0.5
+                xsize squaresize - 20
+                range 10
+                value op.getparameter(MOVEPOINTS) * 10
+                right_bar gui.muted_color
+                left_bar "#459426"
+
             add Transform(Image(op.getparameter(PORTRAITS)[0]),
                           fit="contain",
                           xysize=(squaresize, 1000),
@@ -1724,8 +1748,6 @@ screen battle():
 
             if (op == actor):
                 add Transform(Image("ui/cursor.png"), anchor=(1.0, 1.0), xpos = 20 + i * (squaresize + spacesize) + squaresize / 2, ypos = 700, xzoom = 0.25, yzoom = 0.25)
-
-        text str(battlefieldPoints(i)) size 180 color (0, 0, 0, 60) xpos 60 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
 
 screen battleui():
     use battle()

@@ -1,6 +1,4 @@
 - Highlight buttons that can actually be used
-- draw healthbars
-- draw movebars
 
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
