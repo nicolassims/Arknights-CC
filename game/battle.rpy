@@ -144,8 +144,6 @@
                     else:
                         oneEnemy = True
 
-                print ("ally:" + str(oneAlly) + ", enemy:" + str(oneEnemy))
-
                 if (not oneEnemy):
                     renpy.say(a, "...Secured the battlefield. That looks like a victory to me.")
                     exiting = True
