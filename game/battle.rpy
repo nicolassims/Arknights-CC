@@ -9,6 +9,7 @@
         ownedfield = [True, None, None, None, None, None, None, None, False]#cycles through None, True, and False
         mydp = 0
         otherdp = 0
+        exiting = False
 
         renpy.show_screen("frontman")#display the prompt to select the frontman for the battle
         first = renpy.call_screen("setup", back=False)#select the frontman
@@ -30,7 +31,7 @@
 
     hide tactics with dissolve
 
-    while(True):
+    while(not exiting):
         label badmove:
             python:
                 actor = actionlist[0]
@@ -134,3 +135,22 @@
 
                 actionlist.pop(0)#this might become a problem someday if an operator can incapacitate themself
                 actionlist.append(actor)
+
+                oneAlly = False
+                oneEnemy = False
+                for op in actionlist:
+                    if op.getparameter(ALLY):
+                        oneAlly = True
+                    else:
+                        oneEnemy = True
+
+                print ("ally:" + str(oneAlly) + ", enemy:" + str(oneEnemy))
+
+                if (not oneEnemy):
+                    renpy.say(a, "...Secured the battlefield. That looks like a victory to me.")
+                    exiting = True
+
+                if (not oneAlly):
+                    renpy.say(a, "...Cut off and surrounded by enemies. Time for another last stand.")
+                    renpy.say("", "Doctor, surely, you're not going to leave it at that, will you? Go on, reload your save. Fight for the dawn.")
+                    MainMenu(confirm=False)()
