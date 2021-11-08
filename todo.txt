@@ -1,4 +1,4 @@
-- Implement ability to deploy new operators
+- Make enemies actually take turns
 - Highlight buttons that can actually be used
 
 ###LATER
