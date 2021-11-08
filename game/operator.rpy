@@ -33,3 +33,6 @@
 
     enemyaceop = Operator(ACE, 1, False)
     enemyaceop.setparameter(TECHS, [ hammerdown ])
+
+    enemykroosop = Operator(KROOS, 2, False)
+    enemykroosop.setparameter(TECHS, [ doubletapauto ])

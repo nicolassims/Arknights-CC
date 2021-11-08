@@ -144,7 +144,7 @@ label start:
 
     hide ace with dissolve
 
-    call Battle(party, [enemyaceop])
+    call Battle(party, [enemyaceop, enemykroosop])
 
 
 
