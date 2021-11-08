@@ -115,3 +115,13 @@ init python:
                     return ("move", i)
 
         return ("pass")
+
+    def orderstring(ind):
+        if (ind == 0):
+            return "Current"
+        elif (ind == 1):
+            return "Next"
+        elif (ind == 2):
+            return "3rd Up"
+        else:
+            return str(ind + 1) +"th Up"

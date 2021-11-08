@@ -1746,6 +1746,8 @@ screen battle():
                           ypos = 800 + squaresize / 2,
                           xzoom = 1 if op.getparameter(ALLY) else -1)
 
+            text orderstring(actionlist.index(op)) xanchor 0.5 xpos 20 + i * (squaresize + spacesize) + squaresize / 2 ypos 800 + squaresize / 2 - 50 outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
+
             if (op == actor):
                 add Transform(Image("ui/cursor.png"), anchor=(1.0, 1.0), xpos = 20 + i * (squaresize + spacesize) + squaresize / 2, ypos = 700, xzoom = 0.25, yzoom = 0.25)
 
