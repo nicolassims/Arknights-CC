@@ -32,6 +32,7 @@
             python:
                 actor = actionlist[0]
                 actorpos = battlefield.index(actor)
+                incapacitated = []
                 if actor.getparameter(ALLY):
                     action = renpy.call_screen("battleui")
                     if (action == 'attack'):
@@ -41,10 +42,6 @@
                             targets.append(battlefield[i])
 
                         incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=1, atkbuff=1, elements=[None])
-                        for op in incapacitated:
-                            battlefield[battlefield.index(op)] = None
-                            actionlist.remove(op)
-                            del op
 
                     elif (action == 'tech'):
                         techchoice = renpy.call_screen("usetech", op=actor)
@@ -57,11 +54,6 @@
                         incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE), elements=[techchoice.getparameter(ELEMENT)])
 
                         techchoice.setparameter(POINTS, techchoice.getparameter(POINTS) - techchoice.getparameter(COST))
-
-                        for op in list(set(incapacitated)):
-                            battlefield[battlefield.index(op)] = None
-                            actionlist.remove(op)
-                            del op
 
                     elif (action == 'move'):
                         #this list should always only have one element, so just pull the first element from the list for the targetpos
@@ -87,9 +79,47 @@
                         renpy.say(actor.getparameter(CODENAME), passtring(actor.getparameter(ID)))
 
                 else:
-                    print("foe's turn happened")
+                    action = prioritize(ai)
+                    actiontype = action[0]
+
+                    #("attack", [op])
+                    if (actiontype == 'attack'):
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=action[1], hits=1, atkbuff=1, elements=[None])
+
+                    #("tech", tech, [op])
+                    elif (actiontype == 'tech'):
+                        techchoice = action[1]
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=action[2], hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE), elements=[techchoice.getparameter(ELEMENT)])
+                        techchoice.setparameter(POINTS, techchoice.getparameter(POINTS) - techchoice.getparameter(COST))
+
+                    #("move", i)
+                    elif (actiontype == 'move'):
+                        #this list should always only have one element, so just pull the first element from the list for the targetpos
+                        targetpos = action[1]
+                        actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) - abs(actorpos-targetpos))
+                        battlefield[actorpos] = None
+                        battlefield[targetpos] = actor
+                        ownedfield[targetpos] = True
+                        actorpos = targetpos#make actorpos accurate again, in case of use later
+
+                    #("deploy", op, i)
+                    elif (actiontype == 'deploy'):
+                        operator = action[1]
+                        targetpos = action[2]
+                        battlefield[targetpos] = operator
+                        actionlist.append(operator)
+                        ops.remove(operator)
+                        otherdp -= operator.getparameter(COST) + targetpos * 10
+
+                    elif (actiontype == 'pass'):
+                        renpy.say(a, "Looks like they're just watching and waiting...")
 
                 #run end of turn clean-up
+                for op in incapacitated:
+                    battlefield[battlefield.index(op)] = None
+                    actionlist.remove(op)
+                    del op
+
                 if (actor.getparameter(MOVEPOINTS) < 1):#if this unit can't move at least one square yet...
                     actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) + actor.getparameter(MOV))#increase their move points by the requisite amount
 
