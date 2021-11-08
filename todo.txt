@@ -1,4 +1,4 @@
-- Highlight buttons that can actually be used
+- Look into DP gain weirdness
 
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
