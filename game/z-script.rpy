@@ -12,7 +12,7 @@ init 3 python:
     playerfirstname = "You"
     playerlastname = "The Operator"
 
-    party = [aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop, aceop, kroosop]
+    party = [aceop, kroosop]
 
     inventory = []
 
