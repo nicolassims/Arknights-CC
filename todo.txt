@@ -1,4 +1,3 @@
-- Create functions for skill blurbs
 - Create functions for talent blurbs
 
 ###LATER

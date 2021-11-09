@@ -128,3 +128,13 @@ init python:
 
     def maxhp(op):
         return math.ceil(opdex[op.getparameter(ID) - 1][HEALTH] * (10 + op.getparameter(LEVEL)) * 5)
+
+    def gettechblurb(id):
+        if (id == 0):#doubletapauto
+            techtext += "After two attacks, hit 1.4 times as hard, twice in one turn. Shoot style."
+        elif (id == 1):#hammerdown
+            techtext += "After being hit twice, retaliate at 2.5 times your normal strength. Power style."
+        elif (id == 2):#rocklaw
+            techtext += "A desperate, clumsy swipe that drains a foe's blood, healing you by as much damage as you deal. Strike style."
+        else:
+            techtext += "This shouldn't show up."
