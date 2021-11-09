@@ -12,7 +12,7 @@ init 3 python:
     playerfirstname = "You"
     playerlastname = "The Operator"
 
-    party = [aceop, kroosop]
+    party = [aceop]
 
     inventory = []
 
@@ -124,7 +124,11 @@ label start:
 
         jump namechoice2
 
-    a "Huh. This uniform's got a patch that says \"Ace\" on it. And... Rhodes Island? Is that who I work with?"
+    a "%(playerfirstname)s %(playerlastname)s, huh?"
+
+    a "...Looks like this uniform's got a patch that says \"Ace\" on it. What's that, a callsign?"
+
+    a "And... \"Rhodes Island?\" Is that who I work with?"
 
     a "...Ugh. I better find someone who can point me in the right direction. And maybe tell me what the right direction is, too."
 
@@ -144,7 +148,7 @@ label start:
 
     hide ace with dissolve
 
-    call Battle(party, [enemyaceop, enemykroosop])
+    call Battle(party, [Operator(ROCKSICK, -5, False, [ rocklaw ])])
 
 
 
