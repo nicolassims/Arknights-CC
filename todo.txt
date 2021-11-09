@@ -1,3 +1,7 @@
+- Create functions for skill blurbs
+- Create functions for talent blurbs
+- Add ROCKSICK operator
+
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
 - Define different kinds of AI
