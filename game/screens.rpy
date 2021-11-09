@@ -1571,8 +1571,8 @@ screen setup(back):
         imagebutton:
             pos (20 + (i % 4) * (squaresize + spacesize) + squaresize / 2, 0.29 * (math.floor(i / 4.0) + 1) + 0.09)
             anchor (0.5, 1.0)
-            idle Transform(portrait, fit="contain", xysize=(squaresize, 1000), ypos=0)
-            hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 1000), ypos=50)
+            idle Transform(portrait, fit="contain", xysize=(squaresize, 400), ypos=0)
+            hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 450), ypos=50)
             action [Hide("frontman"), Show("setupstatus", op=op, back=back), Show("go", op=op)]
 
 screen setupstatus(op, back):
@@ -1642,6 +1642,8 @@ screen talentblurb(id):
             talenttext += "A sturdy and no-nonsense soldier with decades of experience, even if you don't remember it. Your combat training has taught you the importance of not losing ground; in battle, nothing on Terra can move you back even one step."
         elif (id == KROOS):
             talenttext += "A seemingly lazy and flippant young sniper whose skill is unparalleled... at avoiding work. Still, her desire to get back to bed as soon as possible means she prioritizes headshots, hitting for 160% damage 20% of the time."
+        elif (id == ROCKSICK):
+            talenttext += "A moaning, shambling figure. Its constant cries of pain are the only sign it's still alive. However, its unterran endurance works well in battle, regenerating 10% of its max health every time it attacks."
         else:
             talenttext += "This shouldn't show up."
 
@@ -1680,6 +1682,8 @@ screen techblurb(op, id, fullscreen):
             techtext += "After two attacks, hit 1.4 times as hard, twice in one turn. Shoot style."
         elif (id == 1):#hammerdown
             techtext += "After being hit twice, retaliate at 2.5 times your normal strength. Power style."
+        elif (id == 2):#rocklaw
+            techtext += "A desperate, clumsy swipe that drains a foe's blood, healing you by as much damage as you deal. Strike style."
         else:
             techtext += "This shouldn't show up."
 
@@ -1723,13 +1727,13 @@ screen battle():
                 ypos 800 + squaresize / 2
                 xanchor 0.5
                 xsize squaresize - 20
-                range opdex[op.getparameter(ID) - 1][HEALTH] * (10 + op.getparameter(LEVEL)) * 5
+                range int(opdex[op.getparameter(ID) - 1][HEALTH] * (10 + op.getparameter(LEVEL)) * 5)
                 value op.getparameter(HEALTH)
                 right_bar gui.muted_color
                 left_bar "#F69122"
 
-            if (op.getparameter(ALLY)):
-                text str(op.getparameter(HEALTH)) + "HP" xanchor 0.5 xpos 20 + i * (squaresize + spacesize) + squaresize / 2 ypos 797 + squaresize / 2 outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
+            #if (op.getparameter(ALLY)):
+            text str(op.getparameter(HEALTH)) + "HP" xanchor 0.5 xpos 20 + i * (squaresize + spacesize) + squaresize / 2 ypos 797 + squaresize / 2 outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
 
             bar:
                 xpos 20 + i * (squaresize + spacesize) + squaresize / 2
@@ -1810,7 +1814,11 @@ screen targeting(location, minrange, maxrange, aoe, target, deploying):
 
 #source is an operator object
 #target is an operator object
-screen useattack(source, targets, hits, atkbuff, elements):
+#hits is an int
+#atkbuff is a float, with 1 as default
+#elements is an array of element strings, usually just one
+#effect is either zero or a tech object
+screen useattack(source, targets, hits, atkbuff, elements, effect):
     use battle()
 
     $ damagereport = ""
@@ -1842,8 +1850,14 @@ screen useattack(source, targets, hits, atkbuff, elements):
                         damagereport = damagereport.replace("{b}Kroos gets serious!{/b} ", "{b}Kroos gets {i}deadly{/i} serious!{/b} ")
                     dmg *= 1.6
 
-            dmg = int(dmg)
+            dmg = int(min(target.getparameter(HEALTH), dmg))
             target.setparameter(HEALTH, target.getparameter(HEALTH) - dmg)
+
+            if (source.getparameter(ID) == ROCKSICK):#ROCKSICK TALENT, Rocksick's talent
+                max = maxhp(source)
+                healthgained = min(max - source.getparameter(HEALTH), max / 10)
+                source.setparameter(HEALTH, source.getparameter(HEALTH) + healthgained)
+                damagereport += "{b}Rocksick regenerates, gaining " + str(healthgained) + " health!{/b} "
 
             damagereport += ("Ally " if source.getparameter(ALLY) else "Foe ")
             damagereport += source.getparameter(CODENAME) + " dealt " + str(dmg) + " damage to the "
@@ -1852,6 +1866,13 @@ screen useattack(source, targets, hits, atkbuff, elements):
             damagereport += hitsStrings(hits)
             damagereport += "! "
             damagereport += effectivestring(effectiveness, elements, target.getparameter(ELEMENT))
+
+            if (effect != 0):
+                effectnum = effect.getparameter(EFFECT)
+                if (effectnum == 1):#draining health, used by rocklaw. Uses effectpower1 as percentage of damage done.
+                    max = maxhp(source)
+                    source.setparameter(HEALTH, min(max, source.getparameter(HEALTH) + dmg * effect.getparameter(EFFECTPOWER1)))
+                    damagereport += source.getparameter(CODENAME) + " drains " + str(dmg) + " health! "
 
             if (target.getparameter(HEALTH) <= 0):
                 damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!"

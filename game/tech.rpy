@@ -16,3 +16,4 @@
     #define specific Techs here.
     doubletapauto = Tech(1)
     hammerdown = Tech(2)
+    rocklaw = Tech(3)
