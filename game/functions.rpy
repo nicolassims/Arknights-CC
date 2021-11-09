@@ -125,3 +125,6 @@ init python:
             return "3rd Up"
         else:
             return str(ind + 1) +"th Up"
+
+    def maxhp(op):
+        return math.ceil(opdex[op.getparameter(ID) - 1][HEALTH] * (10 + op.getparameter(LEVEL)) * 5)
