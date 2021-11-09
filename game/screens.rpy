@@ -1636,16 +1636,8 @@ screen talentblurb(id):
     python:
         id -= 1
         talenttext = "{b}" + opdex[id][CODENAME] + "'s Talent: " + opdex[id][TALENT] + "{/b}\n"
-        id += 1
 
-        if (id == ACE):
-            talenttext += "A sturdy and no-nonsense soldier with decades of experience, even if you don't remember it. Your combat training has taught you the importance of not losing ground; in battle, nothing on Terra can move you back even one step."
-        elif (id == KROOS):
-            talenttext += "A seemingly lazy and flippant young sniper whose skill is unparalleled... at avoiding work. Still, her desire to get back to bed as soon as possible means she prioritizes headshots, hitting for 160% damage 20% of the time."
-        elif (id == ROCKSICK):
-            talenttext += "A moaning, shambling figure. Its constant cries of pain are the only sign it's still alive. However, its unterran endurance works well in battle, regenerating 10% of its max health every time it attacks."
-        else:
-            talenttext += "This shouldn't show up."
+        talentext += gettalentblurb(id + 1)
 
     imagebutton:
         xfill True
