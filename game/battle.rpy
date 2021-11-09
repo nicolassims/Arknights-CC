@@ -45,7 +45,7 @@
                         for i in targetpos:
                             targets.append(battlefield[i])
 
-                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=1, atkbuff=1, elements=[None])
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=1, atkbuff=1, elements=[None], effect=0)
 
                     elif (action == 'tech'):
                         techchoice = renpy.call_screen("usetech", op=actor)
@@ -55,7 +55,7 @@
                         for i in targetpos:
                             targets.append(battlefield[i])
 
-                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE), elements=[techchoice.getparameter(ELEMENT)])
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=targets, hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE), elements=[techchoice.getparameter(ELEMENT)], effect=techchoice)
 
                         techchoice.setparameter(POINTS, techchoice.getparameter(POINTS) - techchoice.getparameter(COST))
 
@@ -87,11 +87,11 @@
                     actiontype = action[0]
 
                     if (actiontype == 'attack'):#("attack", [op])
-                        incapacitated = renpy.call_screen("useattack", source=actor, targets=action[1], hits=1, atkbuff=1, elements=[None])
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=action[1], hits=1, atkbuff=1, elements=[None], effect=0)
 
                     elif (actiontype == 'tech'):#("tech", tech, [op])
                         techchoice = action[1]
-                        incapacitated = renpy.call_screen("useattack", source=actor, targets=action[2], hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE), elements=[techchoice.getparameter(ELEMENT)])
+                        incapacitated = renpy.call_screen("useattack", source=actor, targets=action[2], hits=techchoice.getparameter(HITS), atkbuff=techchoice.getparameter(DAMAGE), elements=[techchoice.getparameter(ELEMENT)], effect=techchoice)
                         techchoice.setparameter(POINTS, techchoice.getparameter(POINTS) - techchoice.getparameter(COST))
 
                     elif (actiontype == 'move'):#("move", i)
