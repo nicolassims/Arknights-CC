@@ -3,7 +3,7 @@
 
     #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts,ally,techs,level,movepoints
     class Operator(ChangingClass):
-        def __init__(self, id, level, ally):
+        def __init__(self, id, level, ally, techs=[]):
             self.parameters = []
             id -= 1
             for x in range(USESARTS + 1):
@@ -16,23 +16,17 @@
                     self.parameters.append(newarray)
                 else:
                     self.parameters.append(opdex[id][x])
-            self.parameters[HEALTH] *= 5# increase health by proper amount
             self.parameters[ATK] = math.ceil(self.parameters[ATK] * 2.5)# increase dmg by proper amount
             self.parameters[ARTS] = math.ceil(self.parameters[ARTS] * 2.5)# increase dmg by proper amount
             self.parameters.append(ally)# set ALLY
-            self.parameters.append([])# set TECHS
+            self.parameters.append(techs)# set TECHS
             self.parameters.append(level)# set LEVEL
+            self.parameters[HEALTH] = maxhp(self)# increase health by proper amount
             self.parameters.append(0)# set MOVEPOINTS
 
     #define specific Operators here.
-    aceop = Operator(ACE, 1, True)
-    aceop.setparameter(TECHS, [ hammerdown ])
+    aceop = Operator(ACE, 1, True, [ hammerdown ])
 
-    kroosop = Operator(KROOS, 2, True)
-    kroosop.setparameter(TECHS, [ doubletapauto ])
+    kroosop = Operator(KROOS, 2, True, [ doubletapauto ])
 
-    enemyaceop = Operator(ACE, 1, False)
-    enemyaceop.setparameter(TECHS, [ hammerdown ])
-
-    enemykroosop = Operator(KROOS, 2, False)
-    enemykroosop.setparameter(TECHS, [ doubletapauto ])
+    rocksickop = Operator(ROCKSICK, 1, False, [ rocklaw ])
