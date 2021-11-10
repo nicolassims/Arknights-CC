@@ -148,3 +148,7 @@ init python:
             return "A moaning, shambling figure. Its constant cries of pain are the only sign it's still alive. However, its unterran endurance works well in battle, regenerating 10% of its max health every time it attacks."
         else:
             return "This shouldn't show up."
+
+    #height is an int in centimeters
+    def scaleportrait(picture, height, flip=False):
+        return Transform(picture, ysize=int(5.08 * height), fit="contain", xzoom=(-1 if flip else 1))

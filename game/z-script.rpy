@@ -38,10 +38,15 @@ image village = Transform("bgs/village.png", xsize=1920, ysize=1080)
 image innervillage = Transform("bgs/village2.png", xsize=1920, ysize=1080)
 
 # Characters
-image ace = "chars/ace/ace.png"
-image ace shadow = "chars/ace/shadowace.png"
-image rocksick = "chars/rocksick/rocksick.png"
-image rocksick left = Transform("chars/rocksick/rocksick.png", xzoom=-1)
+image ace = scaleportrait("chars/ace/ace.png", 190)
+image ace shadow = scaleportrait("chars/ace/shadowace.png", 190)
+image rocksick = scaleportrait("chars/rocksick/rocksick.png", 195)
+image rocksick left = scaleportrait("chars/rocksick/rocksick.png", 195, True)
+image chiave = scaleportrait("chars/chiave/chiave.png", 182)
+image broca = "chars/broca/broca.png"
+image broca angry = scaleportrait("chars/broca/angrybroca.png", 189)
+image aosta = "chars/aosta/aosta.png"
+image aosta nervous left = scaleportrait("chars/aosta/nervousaosta.png", 177, True)
 
 #Transitions
 transform moveleft:
@@ -266,7 +271,7 @@ label start:
 
     scene innervillage with dissolve
 
-    show ace at midleft with dissolve 
+    show ace at midleft with dissolve
 
     nvl show dissolve
 
@@ -296,6 +301,30 @@ label start:
     "Understood."
 
     $ renpy.say(a, "Fuck." if swearing else "****.")
+
+    hide ace with dissolve
+
+    a "Well... if there's nothing left here, I guess I might as well grab what I can and keep moving. Maybe there'll be a cannibalized refrigerator somewhere that still has rations."
+
+    who "...Now."
+
+    a "Huh!?"
+
+    show chiave at center with vpunch
+
+    $ renpy.say("Shouty Redhead", "{i}Prendilo!{/i}")
+
+    show broca angry at midleft with hpunch
+
+    $ renpy.say("Scowly Brunette", "{b}{i}Prendilo!{/i}{/b}")
+
+    show aosta nervous left at midright with dissolve
+
+    $ renpy.say("Nervous Albino", "Prendilo... wait, no, guys, this isn't him.")
+
+
+
+
 
 
 
