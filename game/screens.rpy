@@ -1717,8 +1717,8 @@ screen battle():
                 right_bar gui.muted_color
                 left_bar "#F69122"
 
-            #if (op.getparameter(ALLY)):
-            text str(op.getparameter(HEALTH)) + "HP" xanchor 0.5 xpos 20 + i * (squaresize + spacesize) + squaresize / 2 ypos 797 + squaresize / 2 outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
+            if (op.getparameter(ALLY)):
+                text str(op.getparameter(HEALTH)) + "HP" xanchor 0.5 xpos 20 + i * (squaresize + spacesize) + squaresize / 2 ypos 797 + squaresize / 2 outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
 
             bar:
                 xpos 20 + i * (squaresize + spacesize) + squaresize / 2
