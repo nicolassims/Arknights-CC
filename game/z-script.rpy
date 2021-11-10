@@ -40,8 +40,8 @@ image innervillage = Transform("bgs/village2.png", xsize=1920, ysize=1080)
 # Characters
 image ace = scaleportrait("chars/ace/ace.png", 190)
 image ace shadow = scaleportrait("chars/ace/shadowace.png", 190)
-image rocksick = scaleportrait("chars/rocksick/rocksick.png", 195)
-image rocksick left = scaleportrait("chars/rocksick/rocksick.png", 195, True)
+image rocksick = scaleportrait("chars/rocksick/rocksick.png", 210)
+image rocksick left = scaleportrait("chars/rocksick/rocksick.png", 210, True)
 image chiave = scaleportrait("chars/chiave/chiave.png", 182)
 image broca = "chars/broca/broca.png"
 image broca angry = scaleportrait("chars/broca/angrybroca.png", 189)

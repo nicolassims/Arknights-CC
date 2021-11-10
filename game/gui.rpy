@@ -113,7 +113,7 @@ define gui.name_xalign = 1.0
 
 ## The width, height, and borders of the box containing the character's name, or
 ## None to automatically size it.
-define gui.namebox_width = None
+define gui.namebox_width = 50
 define gui.namebox_height = None
 
 ## The borders of the box containing the character's name, in left, top, right,
@@ -470,6 +470,3 @@ init python:
 
         gui.nvl_button_width = 1860
         gui.nvl_button_xpos = 30
-
-
-
