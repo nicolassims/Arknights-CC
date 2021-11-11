@@ -62,6 +62,7 @@ image aosta left = scaleportrait("chars/aosta/aosta.png", 177, True)
 image aosta nervous left = scaleportrait("chars/aosta/nervousaosta.png", 177, True)
 image aosta surprised left = scaleportrait("chars/aosta/surprisedaosta.png", 177, True)
 image aosta eyesclosed left = scaleportrait("chars/aosta/eyesclosedaosta.png", 177, True)
+image blaze shadow = scaleportrait("chars/blaze/shadowblaze.png", 172, True)
 
 #Transitions
 transform moveleft:
@@ -769,28 +770,43 @@ label start:
 
     a "(That was all it took...?)"
 
+    a "Alright. I'd like to make it clear that I'll only chaperone you kids until I find something that tells me more about who I am, and who I belong with, but until then, I'm at your disposal."
 
+    show chiave happy
 
+    chiave "Glad to have you onboard!"
 
+    scene black with Dissolve(2.0)
 
+    nvl clear
 
+    nvl show
 
+    "Chiave leads you to a side room, where there's several mattresses on the floor. In spite of the early hour, your throbbing head makes sleep seem a very appealing prospect."
+
+    "You express concern that you're stealing one of the kids' beds, but you're assured that there's plenty more to go around."
+
+    "You try to stay awake, but your mind, still wracked with waves of pain, gets the better of you, and you eventually slip into a fitful sleep."
+
+    "As your heavy eyelids close, the last thing you see is a tube of lime-flavored lip balm sitting on the floor next to the mattress."
+
+    nvl clear
+
+    "In your dreams, you see..."
 
     nvl hide dissolve
 
+    show blaze shadow with dissolve
 
+    $ censor(who, "Alright, you old bastard, you'd better get back to me soon or I'll kick your ass so hard you'll have to find your way back in a wheelchair! I already lost you once. It's not happening again, got it!?")
 
+    hide blaze with dissolve
 
+    nvl show
 
+    "...Incomprehensible memories of a life you never lived."
 
-
-
-
-
-
-
-
-
+    "Or, at the very least, not one you remember."
 
     # These display lines of dialogue.
 

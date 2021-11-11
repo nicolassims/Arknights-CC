@@ -155,7 +155,7 @@ init python:
 
     def censor(who, what):
         if (not swearing):
-            swearlist = ["shit", "fuck", "damn", "piss", "bastard", "bitch"]
+            swearlist = ["shit", "fuck", "damn", "piss", "bastard", "bitch", "ass"]
 
             for swear in swearlist:
                 censor = "*" * len(swear)
