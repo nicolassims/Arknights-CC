@@ -2,7 +2,7 @@
 
     #For class operator, and the opdex
     #opdex:    ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts
-    #operator: ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts,ally,techs,level
+    #operator: ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts,ally,techs,level,movepoints,experience
 
     #techdex:  ID,name,damage,hits,aoe,dmgtype,dmgto,gaintype,start,gainper,cost,icon,charges,element,minrange,maxrange,effect,effectPower1,effectPower2,effectPower3
     #tech:     ID,name,damage,hits,aoe,dmgtype,dmgto,gaintype,start,gainper,cost,icon,charges,element,minrange,maxrange,effect,effectPower1,effectPower2,effectPower3,points
@@ -31,6 +31,7 @@
     TECHS = POINTS = 20
     LEVEL = 21
     MOVEPOINTS = 22
+    EXPERIENCE = 23
 
 
 
