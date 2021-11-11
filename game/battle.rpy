@@ -11,6 +11,11 @@
         otherdp = 0
         exiting = False
 
+        enemyxp = 0#the amount of experience these enemies will grant
+        for enemyop in otherOps:
+            enemyxp = max(enemyop.getparameter(LEVEL), 1)#get the maximum of 1 and the foe's level
+        enemyxp = int(enemyxp * (1 + len(otherOps) / 10.0))#increase total enemyxp based on the number of foes
+
         renpy.show_screen("frontman")#display the prompt to select the frontman for the battle
         first = renpy.call_screen("setup", back=False)#select the frontman
         battlefield[0] = first#assign the chosen frontman to square 1
@@ -29,9 +34,11 @@
         battlefield[8].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
 
 
+
+
     hide tactics with dissolve
 
-    while(not exiting):
+    while (not exiting):
         label badmove:
             python:
                 actor = actionlist[0]
@@ -152,3 +159,35 @@
                     renpy.say(a, "...Cut off and surrounded by enemies. Time for another last stand.")
                     renpy.say("", "Doctor, surely, you're not going to leave it at that, will you? Go on, reload your save. Fight for the dawn.")
                     MainMenu(confirm=False)()
+
+    python:
+        for op in battlefield:
+            if (op != None and op.getparameter(ALLY)):
+                ops.append(op)
+
+        for op in ops:
+            op.setparameter(EXPERIENCE, op.getparameter(EXPERIENCE) + enemyxp * 20)
+
+            while (op.getparameter(EXPERIENCE) >= fibonacci(op.getparameter(LEVEL))):
+                op.setparameter(EXPERIENCE, op.getparameter(EXPERIENCE) - fibonacci(op.getparameter(LEVEL)))
+                op.setparameter(LEVEL, op.getparameter(LEVEL) + 1)
+
+                statgains = []
+                opid = op.getparameter(ID) - 1
+                for stat in range(HEALTH, ARTSDEF + 1):
+                    statgained = 0
+                    odds = opdex[opid][stat]
+
+                    while (odds > 1):
+                        statgained += 1
+                        odds -= 1.0
+
+                    if (renpy.random.random() <= odds):
+                        statgained += 1
+
+                    statgains.append(statgained)
+
+                for i, statgain in enumerate(statgains):
+                    op.setparameter(i + HEALTH, op.getparameter(i + HEALTH) + statgains[i])
+
+                renpy.call_screen("levelup", op=op, statgains=statgains)

@@ -1820,7 +1820,7 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
 
             effectiveness = effectiveness(elements, target.getparameter(ELEMENT))
-            power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * atkbuff * effectiveness
+            power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * 2.5 * atkbuff * effectiveness
             defense = (target.getparameter(ARTSDEF) if source.getparameter(USESARTS) else target.getparameter(DEF))
 
             dmg = 0
@@ -1933,3 +1933,60 @@ screen deploy():
     else:
         image Transform("bgs/tactics.png", matrixcolor=SaturationMatrix(0), xsize=1920, ysize=1080)
         use setup(back=True)
+
+#op is an operator object
+#statgains is a five-element array that's ordered "health, atk, def, arts, artsdef"
+screen levelup(op, statgains):
+
+    frame:
+        margin (150, 75)
+        align (0.5, 0.5)
+
+    text op.getparameter(CODENAME).upper() + " LEVELED UP!" bold True size 90 align (0.5, 0.15)
+
+    hbox:
+        align (0.5, 0.6)
+        vbox:
+            spacing 120
+            text "Level:" bold True size 40
+            text "Health:" bold True size 40
+            text "Attack:" bold True size 40
+            text "Arts:" bold True size 40
+
+        vbox:
+            xsize 20
+
+        vbox:
+            spacing 120
+            text str(op.getparameter(LEVEL)) + " ⇑1" size 40
+            text str(op.getparameter(HEALTH)) + (" ⇑" + str(statgains[0]) if statgains[0] != 0 else "") size 40
+            text str(op.getparameter(ATK)) + (" ⇑" + str(statgains[1]) if statgains[1] != 0 else "") size 40
+            text str(op.getparameter(ARTS)) + (" ⇑" + str(statgains[3]) if statgains[3] != 0 else "") size 40
+
+        vbox:
+            xsize 800
+
+        vbox:
+            spacing 120
+            text "Cost:" bold True size 40
+            text "Move:" bold True size 40
+            text "Defense:" bold True size 40
+            text "Arts Def:" bold True size 40
+
+        vbox:
+            xsize 20
+
+        vbox:
+            spacing 120
+            text str(op.getparameter(COST)) size 40
+            text str(op.getparameter(MOV)) size 40
+            text str(op.getparameter(DEF)) + (" ⇑" + str(statgains[2]) if statgains[2] != 0 else "") size 40
+            text str(op.getparameter(ARTSDEF)) + (" ⇑" + str(statgains[4]) if statgains[4] != 0 else "") size 40
+
+    image op.getparameter(PORTRAITS)[0] xalign 0.5 ypos 0.25
+
+    imagebutton:
+        xfill True
+        yfill True
+        idle "ui/empty.png"
+        action [Return()]

@@ -1,5 +1,5 @@
-- Let operators level up
 - Add swearing option in pause menu
+- make base stats be able to be referenced in battle
 
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn

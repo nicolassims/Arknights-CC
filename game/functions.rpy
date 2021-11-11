@@ -162,3 +162,11 @@ init python:
                 what = what.replace(swear, censor).replace(swear.upper(), censor).replace(swear.title(), censor)
 
         renpy.say(who, what)
+
+    def fibonacci(ind):
+        if (ind == 0):
+            return 0
+        elif (ind < 3):
+            return 1
+        else:
+            return fibonacci(ind-1) + fibonacci(ind-2)
