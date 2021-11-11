@@ -98,6 +98,6 @@ label Crawl(map, startingy, startingx, knowledgemap, new):
         #if this cell has any other kind of special event...
         elif (map[y][x] <= -2):
             #then send it to the crawlEvent script, which will handle it.
-            call CrawlEvent(map.name, map[y][x])
+            call CrawlEvent(map.name, map[y][x]) from _call_CrawlEvent
             
     return

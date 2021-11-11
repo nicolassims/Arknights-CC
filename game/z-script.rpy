@@ -163,7 +163,7 @@ label start:
 
     show ace at midleft with ease
 
-    call Crawl(guerroforest, 6, 3, guerroknowledge, True)
+    call Crawl(guerroforest, 6, 3, guerroknowledge, True) from _call_Crawl
 
     show ace at center with ease
 
@@ -177,7 +177,7 @@ label start:
 
     hide ace with dissolve
 
-    call Battle(party, [Operator(ROCKSICK, -5, False, [ rocklaw ])])
+    call Battle(party, [Operator(ROCKSICK, -5, False, [ rocklaw ])]) from _call_Battle
 
     show ace at midleft with dissolve
 
