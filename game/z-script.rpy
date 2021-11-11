@@ -621,7 +621,7 @@ label start:
 
     # These display lines of dialogue.
 
-    a "{b}END OF DEMO! Thanks for playing!{/b}
+    "{b}END OF DEMO! Thanks for playing!{/b}"
 
     nvl show dissolve
 
