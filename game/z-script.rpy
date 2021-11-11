@@ -12,6 +12,10 @@ init 3 python:
     playerfirstname = "You"
     playerlastname = "The Operator"
 
+    aostaname = "Nervous Albino"
+    brocaname = "Scowly Brunette"
+    chiavename = "Shouty Redhead"
+
     doctor = 0
     killer = 0
 
@@ -25,6 +29,9 @@ init 3 python:
 
 define who = Character("???")
 define a = DynamicCharacter("playerfirstname")
+define aosta = DynamicCharacter("aostaname")
+define broca = DynamicCharacter("brocaname")
+define chiave = DynamicCharacter("chiavename")
 define narrator = nvl_narrator
 
 # Backgrounds
@@ -43,10 +50,16 @@ image ace shadow = scaleportrait("chars/ace/shadowace.png", 190)
 image rocksick = scaleportrait("chars/rocksick/rocksick.png", 210)
 image rocksick left = scaleportrait("chars/rocksick/rocksick.png", 210, True)
 image chiave = scaleportrait("chars/chiave/chiave.png", 182)
-image broca = "chars/broca/broca.png"
+image chiave shocked = scaleportrait("chars/chiave/shockedchiave.png", 182)
+image chiave confused = scaleportrait("chars/chiave/confusedchiave.png", 182)
+image chiave happy = scaleportrait("chars/chiave/happychiave.png", 182)
+image broca = scaleportrait("chars/broca/broca.png", 189)
 image broca angry = scaleportrait("chars/broca/angrybroca.png", 189)
-image aosta = "chars/aosta/aosta.png"
+image broca surprised = scaleportrait("chars/broca/surprisedbroca.png", 189)
+image aosta left = scaleportrait("chars/aosta/aosta.png", 177, True)
 image aosta nervous left = scaleportrait("chars/aosta/nervousaosta.png", 177, True)
+image aosta surprised left = scaleportrait("chars/aosta/surprisedaosta.png", 177, True)
+image aosta eyesclosed left = scaleportrait("chars/aosta/eyesclosedaosta.png", 177, True)
 
 #Transitions
 transform moveleft:
@@ -312,15 +325,291 @@ label start:
 
     show chiave at center with vpunch
 
-    $ renpy.say("Shouty Redhead", "{i}Prendilo!{/i}")
+    chiave "{i}Prendilo!{/i}"
 
     show broca angry at midleft with hpunch
 
-    $ renpy.say("Scowly Brunette", "{b}{i}Prendilo!{/i}{/b}")
+    broca "{b}{i}Prendilo!{/i}{/b}"
 
     show aosta nervous left at midright with dissolve
 
-    $ renpy.say("Nervous Albino", "Prendilo... wait, no, guys, this isn't him.")
+    aosta "Prendilo... wait, no, guys, this isn't him."
+
+    show chiave shocked
+
+    $ swearword = "fucking" if swearing else "****ing"
+
+    menu:
+        "Prendilo?":
+            show aosta surprised left
+
+            aosta "It means... well, it's impolite."
+
+            show aosta eyesclosed left
+
+            aosta "Sorry, sir. We thought you were someone else."
+
+        "Prepare to %(swearword)s die, kiddos.":
+            show aosta surprised left
+
+            aosta "...Wait. Let's not do anything rash here. Chiave, that means you."
+
+            $ chiavename = "Chiave"
+
+            show chiave confused
+
+            chiave "Hey, why are you looking at me like that?"
+
+            show aosta eyesclosed
+
+            aosta "It was your idea to jump an armed militant, since he, and I quote, \"was tall.\" Everything else about this guy makes it clear he's not our target."
+
+        "Who am I not?":
+            broca "...What kinda dumb question is that? You trying to be funny?"
+
+            show aosta surprised left
+
+            aosta "Calm down, Broca."
+
+            $ brocaname = "Broca"
+
+            show broca
+
+            broca "...Nnrgh."
+
+            show aosta eyesclosed left
+
+            aosta "Sorry, sir. We thought you were someone else."
+
+    show chiave confused
+
+    $ renpy.say(chiavename, "Well, shit. If he's not {i}him{/i}, who is he, Aosta?" if swearing else "Well, ****. If he's not {i}him{/i}, who is he, Aosta?")
+
+    $ aostaname = "Aosta"
+
+    show aosta left
+
+    aosta "Based on his clothing, a member of some low-level mercenary gang?"
+
+    a "{size=20}Low level? This brat...{/size}"
+
+    a "Who are you three? And who's your target?"
+
+    chiave "Wait? You don't know us?"
+
+    a "...Should I?"
+
+    show chiave happy
+
+    chiave "You will. Intros, guys!"
+
+    show chiave with vpunch
+
+    chiave "Chiave the chainbreaker! Leader of the premier Siracusan {i}famiglia{/i}, the freedom-fighting four!"
+
+    show broca with vpunch
+
+    broca "Broca the brusier. Enforcer and muscle of the 4F. I can bite through tires."
+
+    show aosta eyesclosed left with vpunch
+
+    aosta "Aosta. Tactician and strategist of the... {i}ugh...{/i} freedom-fighting four."
+
+    $ aostaname = "Aosta"
+    $ brocaname = "Broca"
+    $ chiavename = "Chiave"
+
+    menu:
+        "Where's your fourth?":
+            show chiave shocked
+
+            aosta "I told you that was the first thing anyone would ask."
+
+            show chiave happy
+
+            chiave "Well... we fight like four people! Each!"
+
+            a "Oh, yeah? Who are you fighting?"
+
+        "I repeat. Who's your target?":
+            show chiave shocked
+
+            chiave "{size=20}He just... ignored us...{/size}"
+
+            aosta "I told you that freedom fighters don't actually have intros."
+
+            show chiave happy
+
+        "Freedom fighters?":
+            show chiave happy
+
+            chiave "Yeah, the best in Siracusa!"
+
+            a "...Okay, who are you kids fighting?"
+
+    chiave "Our enemies are injustice and imperialism! Everything that ties a people down and makes them slaves to {b}the man!{/b}"
+
+    a "You were going to try and kill injustice with some oversized construction equipment?"
+
+    show broca surprised
+
+    broca "No-one's tried it before."
+
+    show aosta left
+
+    aosta "We're still... getting started on the whole freedom-fighter thing. We thought you were an infected."
+
+    scene white with vpunch
+
+    nvl clear
+
+    nvl show dissolve
+
+    "Your head, almost in an instant, is split, stabbed through with excrutiating pain."
+
+    "{b}Infected...{/b}"
+
+    "You know this word. It means so much to you. And yet you can't remember {i}what{/i}."
+
+    nvl hide dissolve
+
+    scene innervillage with dissolve
+
+    show broca surprised at midleft with dissolve
+
+    show aosta surprised left at midright with dissolve
+
+    show chiave confused at center with dissolve
+
+    chiave "{size=15}...alr{/size}{size=20}ight? Hey, man, can{/size} you hear me?"
+
+    a "...Just a headache. What's this \"infected\" you're talking about?"
+
+    show chiave shocked
+
+    chiave "You don't know what the infected are? Oh, man, lucky."
+
+    show chiave
+
+    chiave "The infected are these, like... ghouls. They've got these gross black crystals growing off of them, and they totally lose their minds. They try to eat people, y'know? We think that's what happened here."
+
+    nvl clear
+
+    nvl show dissolve
+
+    "It seems clear that Chiave is referring to the beast you met in the woods."
+
+    "You don't know why, but you feel, strongly, like you need to defend the infected."
+
+    "However, since you called that creature in the forest \"it\", multiple times, you have little ground to stand on."
+
+    "Still, you wonder..."
+
+    nvl hide dissolve
+
+    a "Right. How many infected have you met?"
+
+    show chiave happy
+
+    show aosta nervous left
+
+    show broca
+
+    $ renpy.say("Freedom-Fighting {s}Four{/s} Three", "One.")
+
+    a "(Yeah, that's what I thought.)"
+
+    if (rocksickspared):
+        a "Well, you don't need to worry about that infected in the forest anymore. I dealt with it."
+
+        show chiave shocked
+
+        chiave "What? By yourself? Impressive!"
+
+    a "You said you think that the people here were attacked by the infected. Where is here?"
+
+    show chiave
+
+    chiave "Like I told you, man. Siracusa."
+
+    a "No, I mean this village."
+
+    show chiave confused
+
+    chiave "...Siracusa. {i}Comprende{/i}?"
+
+    nvl clear
+
+    nvl show dissolve
+
+    "You look to your right. There's a sign posted on the fence. Though well-worn, it clearly reads... \"Siracusa.\""
+
+    scene white with vpunch
+
+    "Siracusa? A tiny abandoned village? No."
+
+    "Siracusa was a... it {i}is{/i} a..."
+
+    "..."
+
+    nvl clear
+
+    "Scratches on the walls of empty memories. Nothing comes to you."
+
+    nvl hide dissolve
+
+    scene innervillage with dissolve
+
+    show broca surprised at midleft with dissolve
+
+    show aosta surprised left at midright with dissolve
+
+    show chiave confused at center with dissolve
+
+    chiave "{size=15}...eed{/size}{size=20}a nap? That{/size} headache looks nasty!"
+
+    a "N-no. Ugh. I'm fine. So this tiny village is Siracusa. And you're fighting to free it from...?"
+
+    show broca angry
+
+    $ renpy.say(brocaname, "Those Lateran bastards." if swearing else "Those Lateran *******s.")
+
+    a "{size=20}That doesn't sound right, but{/size} what has Lateran done that's so heinous?"
+
+    show chiave shocked at center
+
+    chiave "You don't know this, either!? What rock have you been sleeping under!?"
+
+    $ renpy.say(a, "A pretty fucking big one, evidently." if swearing else "A pretty ****ing big one, evidently.")
+
+    show aosta nervous left
+
+    aosta "Wait. {size=20}It's possible this guy is a Lateran spy who's playing dumb to get us to confess to heresy...{/size}"
+
+    menu:
+        "You got me.":
+            show chiave confused
+
+            broca "I'll kill you."
+
+            a "You could try, kid. You could try."
+
+            a "(...These guys talk big, but they all flinched when I said that.)"
+
+        "I'm not.":
+            broca "That's exactly what I'd say, too."
+
+            show chiave happy
+
+            chiave "Well, that's good enough for me!"
+
+    a "Enough talk. Who is Lateran, why are you fighting them, and how does Siracusa--the tiny village, apparently--fit into this?"
+
+    show chiave
+
+    a "Alright. But if you're going to keep falling over, you might want to sit down. Come to our place?"
+
+
 
 
 
