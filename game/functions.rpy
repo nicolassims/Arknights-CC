@@ -152,3 +152,13 @@ init python:
     #height is an int in centimeters
     def scaleportrait(picture, height, flip=False):
         return Transform(picture, ysize=int(5.08 * height), fit="contain", xzoom=(-1 if flip else 1))
+
+    def censor(who, what):
+        if (not swearing):
+            swearlist = ["shit", "fuck", "damn", "piss", "bastard", "bitch"]
+
+            for swear in swearlist:
+                censor = "*" * len(swear)
+                what = what.replace(swear, censor).replace(swear.upper(), censor).replace(swear.title(), censor)
+
+        renpy.say(who, what)

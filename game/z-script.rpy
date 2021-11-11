@@ -43,6 +43,7 @@ image outcounty = im.Scale("bgs/outcounty.png", 1920, 1080)
 image tactics = Transform("bgs/tactics.png", matrixcolor=SaturationMatrix(0), xsize=1920, ysize=1080)
 image village = Transform("bgs/village.png", xsize=1920, ysize=1080)
 image innervillage = Transform("bgs/village2.png", xsize=1920, ysize=1080)
+image safehouse = Transform("bgs/safehouse.png", xsize=1920, ysize=1080)
 
 # Characters
 image ace = scaleportrait("chars/ace/ace.png", 190)
@@ -56,6 +57,7 @@ image chiave happy = scaleportrait("chars/chiave/happychiave.png", 182)
 image broca = scaleportrait("chars/broca/broca.png", 189)
 image broca angry = scaleportrait("chars/broca/angrybroca.png", 189)
 image broca surprised = scaleportrait("chars/broca/surprisedbroca.png", 189)
+image broca scowl = scaleportrait("chars/broca/scowlbroca.png", 189)
 image aosta left = scaleportrait("chars/aosta/aosta.png", 177, True)
 image aosta nervous left = scaleportrait("chars/aosta/nervousaosta.png", 177, True)
 image aosta surprised left = scaleportrait("chars/aosta/surprisedaosta.png", 177, True)
@@ -64,8 +66,6 @@ image aosta eyesclosed left = scaleportrait("chars/aosta/eyesclosedaosta.png", 1
 #Transitions
 transform moveleft:
     linear 0.5 xpos 0.15
-
-#CC == Contingency Contract && Catastrophe Caller
 
 # The game starts here.
 
@@ -81,13 +81,13 @@ label start:
 
     who "..."
 
-    a "A noise! Hostiles? Damn it, where's my squad?"
+    a "A noise! Hostiles? Where's my squad?"
 
-    a "...Wait. Squad? Hostiles? What does any of that mean...?"
+    a "...Wait. Squad? Hostiles? Who would those even be...?"
 
     show ace shadow with dissolve
 
-    a "Agh. My head hurts like a son of a bitch. Don't tell me, I was out drinking too hard last night with..."
+    a "Agh. My head hurts like I just tried to wrestle a metal crab. Don't tell me, I was out drinking too hard last night with..."
 
     a "With...?"
 
@@ -111,7 +111,7 @@ label start:
 
     window hide dissolve
 
-    a "Damn it... Where am I?"
+    a "Ugh... Where am I?"
 
     nvl show dissolve
 
@@ -127,11 +127,11 @@ label start:
 
     show ace with dissolve
 
-    a "...Hm. I'm in some shit, huh? A hammer, a shield, a whole lot of carbon-fiber body armor, and everything around me's torn to shreds."
+    a "...Hm. A hammer, a shield, a whole lot of carbon-fiber body armor, and everything around me's torn to shreds."
 
     a "Don't know who I am, don't know where I am, and I don't know why I'm kitted out like this... but all this points to me having just walked out of a pretty tough fight."
 
-    a "...Aw, shit, I don't know who I am. I don't even remember my name? What the hell happened?"
+    a "...Aw, I don't know who I am. I don't even remember my name. What the hell happened?"
 
     a "Guess I better make something up..."
 
@@ -313,7 +313,7 @@ label start:
 
     "Understood."
 
-    $ renpy.say(a, "Fuck." if swearing else "****.")
+    $ censor(a, "Fuck.")
 
     hide ace with dissolve
 
@@ -383,7 +383,7 @@ label start:
 
     show chiave confused
 
-    $ renpy.say(chiavename, "Well, shit. If he's not {i}him{/i}, who is he, Aosta?" if swearing else "Well, ****. If he's not {i}him{/i}, who is he, Aosta?")
+    $ censor(chiave, "Well, shit. If he's not {i}him{/i}, who is he, Aosta?")
 
     $ aostaname = "Aosta"
 
@@ -519,7 +519,7 @@ label start:
 
     a "(Yeah, that's what I thought.)"
 
-    if (rocksickspared):
+    if (not rocksickspared):
         a "Well, you don't need to worry about that infected in the forest anymore. I dealt with it."
 
         show chiave shocked
@@ -566,13 +566,13 @@ label start:
 
     show chiave confused at center with dissolve
 
-    chiave "{size=15}...eed{/size}{size=20}a nap? That{/size} headache looks nasty!"
+    chiave "{size=15}...eed{/size}{size=20} a nap? That{/size} headache looks nasty!"
 
     a "N-no. Ugh. I'm fine. So this tiny village is Siracusa. And you're fighting to free it from...?"
 
     show broca angry
 
-    $ renpy.say(brocaname, "Those Lateran bastards." if swearing else "Those Lateran *******s.")
+    $ censor(broca, "Those Lateran bastards.")
 
     a "{size=20}That doesn't sound right, but{/size} what has Lateran done that's so heinous?"
 
@@ -580,7 +580,7 @@ label start:
 
     chiave "You don't know this, either!? What rock have you been sleeping under!?"
 
-    $ renpy.say(a, "A pretty fucking big one, evidently." if swearing else "A pretty ****ing big one, evidently.")
+    $ censor(a, "A pretty fucking big one, evidently.")
 
     show aosta nervous left
 
@@ -607,7 +607,180 @@ label start:
 
     show chiave
 
-    a "Alright. But if you're going to keep falling over, you might want to sit down. Come to our place?"
+    chiave "Alright. But if you're going to keep falling over, you might want to sit down. Come to our place?"
+
+    pause(2.0)
+
+    a "Fine."
+
+    scene safehouse with dissolve
+
+    nvl clear
+
+    nvl show dissolve
+
+    "Chiave leads you back to his gang's safehouse, a dinky little collapsed building that looks like it might have once been a restaurant."
+
+    "He sits you down and begins to talk freely, Broca standing guard in the corner. Aosta wandered off somewhere."
+
+    "Chiave explains that the village of Siracusa is in the nation of Sconfitto, a vassal state of the ruthless and expansionist Lateran Empire."
+
+    "Ever since firearms were invented in Laterano two decades ago, the primarily-Sankta nation had been on the warpath, imposing their Thirteen Absolutes on their neighbours."
+
+    nvl clear
+
+    "As the closest geographical nation to Laterano, Sconfitto was conquered in the opening year of the war."
+
+    "Many of the Sconfittian people accepted their new subservient role without protest. Their own government at the time was corrupt and plagued by infighting."
+
+    "Besides mass conscription into the Laterano army, which every adult Sconfittian was automatically enrolled into, Laterano had left the pridebroken nation alone."
+
+    "Most Sconfittians only encountered one daily reminder of their subservience--the true name of their nation was forbidden to speak, under penalty of death."
+
+    nvl hide dissolve
+
+    show chiave confused at center with dissolve
+
+    a "So... you don't know what this place used to be called?"
+
+    chiave "Nah. We don't call it the Lateran name either, though. We don't know what our home is really called, but we know it's not that disgusting slur."
+
+    nvl clear
+
+    nvl show dissolve
+
+    "Chiave continues to explain how he and his gang ended up here."
+
+    "Apparently, they were formerly a street gang in a city further inland. A company of Lateran soldiers descended on the city one day, searching for a man who'd apparently escaped conscription."
+
+    "They wanted to fight the Laterans, but were outnumbered forty-to-one."
+
+    "So it was Chiave who made the call to retreat and come back later."
+
+    nvl clear
+
+    "When they did, the city was empty, save for the children."
+
+    nvl hide dissolve
+
+    a "...What happened to them?"
+
+    show chiave at center
+
+    chiave "What d'ya think? We grabbed as many as we could carry and got them out of there!"
+
+    a "You... carried the children?"
+
+    show broca surprised at midleft with moveinleft
+
+    broca "I carried at least seven, myself."
+
+    hide broca with moveoutleft
+
+    show chiave happy at center
+
+    chiave "He sure did! Aosta talked them into coming with us, and I rigged up a car to get us as far away from the city as possible. We found an empty village--Siracusa--and set up shop here."
+
+    show aosta left at midright with dissolve
+
+    aosta "Don't forget the help we had."
+
+    show chiave at center
+
+    chiave "How could I?"
+
+    show chiave happy at center
+
+    chiave "This super-hot chick helped us out, too! She had these crazy gravity Arts that helped us push the car the last half of the journey when it broke down."
+
+    a "...Where are these kids, then? Or this \"super-hot chick?\""
+
+    show chiave confused at center
+
+    chiave "Well... I mean, I'd love to tell you, but... uh... thing is, we still can't trust you, really."
+
+    a "You've already told me about your rebellion, your anti-Laterano sentiments. What more could you possibly reveal that would be incriminating?"
+
+    show aosta nervous left
+
+    aosta "...Good question."
+
+    show chiave happy at center
+
+    chiave "Well, you don't know where all the kids are hiding!"
+
+    a "But I {i}do{/i} know that you're hiding a bunch of kids in this village."
+
+    show aosta eyesclosed left
+
+    aosta "Chiave, please stop talking."
+
+    show aosta surprised left
+
+    aosta "On a practical note, though... hiding children isn't illegal underneath Laterano's standard vassal edicts. And we're all under the age of majority, too."
+
+    broca "..."
+
+    a "(...The big guy just looked away. Only for half a second, but there was definitely something there...)"
+
+    a "Well, legal or not, it doesn't matter. I'm not reporting you kids. Hell, I might as well join you."
+
+    show broca surprised at midleft
+
+    show chiave shocked at center with vpunch
+
+    chiave "WHAT!?"
+
+    a "(\"WHAT!?\" is right. Why'd I say that? It just came out, like...)"
+
+    a "(Like I need to be part of something.)"
+
+    show chiave confused
+
+    chiave "Man, we don't even know your name. It's a bit soon to be pledging yourself to joining the freedom fighters, isn't it?"
+
+    a "%(playerfirstname)s %(playerlastname)s. My uniform says my callsign was \"Ace,\" which sounds a bit self-aggrandizing. I actually know how to fight. Do you need anything more?"
+
+    chiave "...Well, uh..."
+
+    show broca
+
+    broca "You came from the south. Only thing that way is Rim Billiton, Laterano, and the sea. You don't look like a Cautus or Seaborn."
+
+    a "Yeah, well, I'm obviously not a Sankta, either. I'm a Pythia. And I don't know where I came from. I woke up in that forest two hours ago with a bunch of memories that I can't remember, but everything you've told me is telling me they're wrong."
+
+    show aosta eyesclosed left
+
+    aosta "That doesn't seem likely."
+
+    $ censor(chiave, "Yeah, calling bullshit on that one.")
+
+    show broca scowl
+
+    broca "...He isn't lying."
+
+    show chiave shocked
+
+    show aosta surprised left
+
+    $ censor(chiave, "No shit? Huh, sorry for doubting you, then, man.")
+
+    aosta "Yes, apologies for my suspicion. I'm sure you understand, given the stakes."
+
+    a "(That was all it took...?)"
+
+
+
+
+
+
+
+
+    nvl hide dissolve
+
+
+
+
 
 
 
