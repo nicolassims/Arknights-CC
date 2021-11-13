@@ -1856,26 +1856,16 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                 damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!"
                 incapacitated.append(target)
 
-    imagebutton:
-        xfill True
-        yfill True
-        idle "ui/empty.png"
-        action [Return(value=incapacitated)]
-
-    frame:
-        align (0.5, 0.3)
-        margin (200, 100)
-        padding (100, 50)
-        text damagereport xalign 0.5
+        use showmessage(damagereport, incapacitated)
 
 screen showmessage(message, val=None):
     use battle()
-    
+
     imagebutton:
         xfill True
         yfill True
         idle "ui/empty.png"
-        action [Return(val)]
+        action ([Return(val)] if val != "badmove" else [Jump("badmove")])
 
     frame:
         align (0.5, 0.3)
@@ -1906,17 +1896,7 @@ screen useitem():
     use battle()
 
     if (len(inventory) == 0):
-        frame:
-            align (0.5, 0.4)
-            margin (200, 100)
-            padding (100, 50)
-            text "You don't have any items!" xalign 0.5
-
-        imagebutton:
-            xfill True
-            yfill True
-            idle "ui/empty.png"
-            action [Jump("badmove")]
+        use showmessage("You don't have any items!", "badmove")
 
 screen deploy():
     use battle()
@@ -1928,17 +1908,8 @@ screen deploy():
             $ opsinbank += 1
 
     if (opsinbank == 0):
-        frame:
-            align (0.5, 0.4)
-            margin (200, 100)
-            padding (100, 50)
-            text "You have no undeployed operators!" xalign 0.5
+        use showmessage("You have no undeployed operators!", "badmove")
 
-        imagebutton:
-            xfill True
-            yfill True
-            idle "ui/empty.png"
-            action [Jump("badmove")]
     else:
         image Transform("bgs/tactics.png", matrixcolor=SaturationMatrix(0), xsize=1920, ysize=1080)
         use setup(back=True)
