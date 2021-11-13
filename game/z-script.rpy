@@ -64,11 +64,16 @@ image aosta left = scaleportrait("chars/aosta/aosta.png", 177, True)
 image aosta nervous left = scaleportrait("chars/aosta/nervousaosta.png", 177, True)
 image aosta surprised left = scaleportrait("chars/aosta/surprisedaosta.png", 177, True)
 image aosta eyesclosed left = scaleportrait("chars/aosta/eyesclosedaosta.png", 177, True)
+image aosta smile left = scaleportrait("chars/aosta/smileaosta.png", 177, True)
 image blaze shadow = scaleportrait("chars/blaze/shadowblaze.png", 172, True)
 
 #Transitions
 transform moveleft:
     linear 0.5 xpos 0.15
+
+transform mymovein(timing, start, destination):
+    yalign 1.0 xanchor 0.5 xpos start
+    linear timing xpos destination
 
 # The game starts here.
 
@@ -818,7 +823,167 @@ label start:
 
     "...Incomprehensible memories of a life you never lived."
 
-    "Or, at the very least, not one you remember."
+    "But they do not wake you, and the night passes peacefully."
+
+    #show title with dissolve
+
+    window hide dissolve
+
+    $ renpy.transition(Dissolve(2.0))
+    $ renpy.show_screen("title", title="Chapter 1", subtitle="Dustbreaking Footfalls")
+
+    pause 6.0
+
+    $ renpy.transition(dissolve)
+    $ renpy.hide_screen("title")
+
+    scene safehouse with dissolve
+
+    play music "audio/forest.mp3" loop
+
+    a "Rise and shine, kids! Up and at 'em! The early bird gets the worm!"
+
+    show chiave confused at mymovein(2.5, 1.5, 0.5)
+
+    chiave "...What the hell, man...?"
+
+    show broca angry at mymovein(1.5, -0.5, 0.25)
+
+    broca "There better be a dead body. And if there isn't, there will be."
+
+    show aosta eyesclosed left at mymovein(1.5, 1.5, 0.75)
+
+    aosta "...There are a number of benefits associated with early waking hours, not the least of which is..."
+
+    a "..."
+
+    chiave "......"
+
+    aosta "........."
+
+    show broca angry with vpunch
+
+    broca "WAKE UP!"
+
+    show aosta surprised left
+
+    aosta "...improved cognitive function!"
+
+    chiave "I don't think any of us are feeling very coglike right now, Aosta."
+
+    a "Hey! Snap to attention, you three."
+
+    show aosta smile left
+
+    show chiave
+
+    show broca
+
+    a "(Huh, they actually did...)"
+
+    a "I'm glad to see you all have your weapons on you. Never go to sleep without an obvious weapon at your side, and a hidden weapon under your pillow."
+
+    chiave "Yeah, yeah. We know all that. We're kinda tough as nails, you know."
+
+    a "..."
+
+    chiave "Anyway, since you got us up at this {i}empio{/i} hour, I hope you're prepared to pull your weight!"
+
+    a "Mine and more."
+
+    chiave "Cool. 'Cause we're heading back to the city and getting more kids."
+
+    a "Fine."
+
+    show chiave confused
+
+    chiave "...You're really okay just taking orders from me? You're like fifty years older than me."
+
+    a "Firstly, watch your mouth. I'm barely double your age."
+
+    a "Secondly, you're the leader of your men. They're clearly loyal to you. I want you to show me why. So, yeah, tell me where you want me."
+
+    chiave "...Huh. Well, okay. But, actually, why are you guys...?"
+
+    show broca surprised
+
+    broca "Who else would I follow?"
+
+    aosta "I ask myself this every day, but you've never lead us so wrong that we didn't recover. I mean, look at this. You had us attack the wrong guy, and now he's joined us. That's just the way you are."
+
+    show chiave happy
+
+    chiave "Cool!"
+
+    show chiave
+
+    chiave "Alright. Everyone grab one of those space food packets from the cooler and let's discuss the mission."
+
+    scene tactics with dissolve
+
+    nvl clear
+
+    nvl show dissolve
+
+    "Chiave explains the day's mission to you. Your target is a city about a three-hour drive northwest known as Piccino."
+
+    "The city is mostly abandoned, aside from a sparse population of children and old people."
+
+    "Your goal is to go the city and rescue as many children as you can--primarily older teens, as they're in the most danger if the Laterans come back."
+
+    nvl hide dissolve
+
+    show chiave happy with dissolve
+
+    chiave "Alright, any questions?"
+
+    label missionquestions:
+
+    menu:
+        "What resistance do you expect?":
+            chiave "None. Worst that might happen is we get attacked by some wolves on the way there."
+
+            show aosta smile left at midright with moveinright
+
+            aosta "It doesn't make much sense for Lateran to station a permanent guard in Piccino, so we should be fine."
+
+            hide aosta with moveoutright
+
+            jump missionquestions
+
+        "How will we bring the kids back?":
+            chiave "I can rig up another car! There are hundreds left around the city. Actually, I should go for a van this time."
+
+            jump missionquestions
+
+        "Do you have enough resources here to take care of the kids?":
+            chiave "Yeah. We've got years' worth of dry food, and the water and gas are still running. A few buildings even have electricity left, not to mention the car batteries, which are mostly full."
+
+            jump missionquestions
+
+        "How long will this take?":            
+            chiave "Three hours there, three hours rescuing, and three hours back."
+
+            jump missionquestions
+
+        "Is your helper from last time coming?":
+            show chiave
+
+            chiave "...Well, she was technically one of the people we rescued last time. If any of our rescues volunteered, we wouldn't turn them down, but we don't want to ask any of them to help. 'Cause how could they say no? Even if they were really scared?"
+
+            a "(...I think, maybe, I see what Broca and Aosta see in him.)"
+
+            jump missionquestions
+
+        "Let's go.":
+            show chiave happy
+
+            chiave "Hell yeah. {i}Prendilo!{/i}"
+
+
+
+
+    #$ Call("title", title="Chapter 1", subtitle="Dustbreaking Footfalls")
 
     # These display lines of dialogue.
 
