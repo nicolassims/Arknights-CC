@@ -2,6 +2,7 @@
 - make base stats be able to be referenced in battle
 - Make ROCKSICK's talent work all the time, not just when attacking
 - make deepcopies of battlers before battle
+- ensure correct amount of experience is given out for winning battles
 
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
