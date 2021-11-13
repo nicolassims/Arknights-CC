@@ -1,6 +1,4 @@
 ###LATER
-- add appropriate music
-
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
 - Define different kinds of AI
 - Implement Ace's talent

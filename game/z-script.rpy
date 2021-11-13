@@ -190,6 +190,8 @@ label start:
 
     show rocksick left at midright with dissolve
 
+    play music "audio/sad.mp3" loop
+
     who "Aaaargh... Graaahh... Gurghh..."
 
     a "Seems like it's not in any further mood to fight... Or it can't, anyway. Those are some nasty wounds."
@@ -233,6 +235,8 @@ label start:
 
     show ace at center with ease
 
+    play music "audio/forest.mp3" loop
+
     "You continue moving toward the village. As you come closer, you can see that village may be too generous a term."
 
     "It's really more of a hamlet. A small, dilapidated little township with houses composed mostly of wood and old vehicles."
@@ -262,6 +266,8 @@ label start:
     a "Damn. Where is everyone? Don't tell me that thing got to them before I did..."
 
     nvl show dissolve
+
+    stop music fadeout 2.0
 
     "The air is deathly silent in the village. Even the dust seems unwalked in."
 
@@ -321,6 +327,8 @@ label start:
     hide ace with dissolve
 
     a "Well... if there's nothing left here, I guess I might as well grab what I can and keep moving. Maybe there'll be a cannibalized refrigerator somewhere that still has rations."
+
+    play music "audio/chiave.mp3" loop
 
     who "...Now."
 
@@ -750,11 +758,11 @@ label start:
 
     broca "You came from the south. Only thing that way is Rim Billiton, Laterano, and the sea. You don't look like a Cautus or Seaborn."
 
-    a "Yeah, well, I'm obviously not a Sankta, either. I'm a Pythia. And I don't know where I came from. I woke up in that forest two hours ago with a bunch of memories that I can't remember, but everything you've told me is telling me they're wrong."
+    a "Yeah, well, I'm obviously not a Sankta, either. And I don't know where I came from. I woke up in that forest two hours ago with a bunch of memories that I can't remember, but everything you've told me is telling me they're wrong."
 
     show aosta eyesclosed left
 
-    aosta "That doesn't seem likely."
+    aosta "Even given your obvious uninformed state, that doesn't seem likely."
 
     $ censor(chiave, "Yeah, calling bullshit on that one.")
 
@@ -777,6 +785,8 @@ label start:
     show chiave happy
 
     chiave "Glad to have you onboard!"
+
+    stop music fadeout 2.0
 
     scene black with Dissolve(2.0)
 
@@ -816,9 +826,19 @@ label start:
 
     nvl show dissolve
 
+    nvl clear
+
     "And now, the requisite credits. I'll move these to the main menu later."
 
     "The Forest and the Trees by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4494-the-forest-and-the-trees. License: https://filmmusic.io/standard-license"
+
+    "Welcome to the Show by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4614-welcome-to-the-show. License: https://filmmusic.io/standard-license"
+
+    "Rains Will Fall by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4262-rains-will-fall. License: https://filmmusic.io/standard-license"
+
+    "Kawai Kitsune by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4990-kawai-kitsune. License: https://filmmusic.io/standard-license"
+
+    "Basic Implosion by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/3420-basic-implosion. License: https://filmmusic.io/standard-license"
 
     # This ends the game.
 

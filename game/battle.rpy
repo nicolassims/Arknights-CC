@@ -1,6 +1,8 @@
 ﻿label Battle(myOps, otherOps):
     window hide#Ren'Py function that hides the built-in gui
 
+    play music "audio/battle.mp3" loop
+
     show tactics with dissolve
 
     python:
