@@ -1,6 +1,5 @@
 - Add swearing option in pause menu
 - Make ROCKSICK's talent work all the time, not just when attacking
-- ensure correct amount of experience is given out for winning battles
 
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn

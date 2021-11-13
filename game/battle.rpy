@@ -167,7 +167,7 @@
                 ops.append(op)
 
         for op in ops:
-            op.setparameter(EXPERIENCE, op.getparameter(EXPERIENCE) + enemyxp * 20)
+            op.setparameter(EXPERIENCE, op.getparameter(EXPERIENCE) + enemyxp)
 
             while (op.getparameter(EXPERIENCE) >= fibonacci(op.getparameter(LEVEL))):
                 op.setparameter(EXPERIENCE, op.getparameter(EXPERIENCE) - fibonacci(op.getparameter(LEVEL)))
