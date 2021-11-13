@@ -4,7 +4,7 @@
     show tactics with dissolve
 
     python:
-        import copy
+        renpy.suspend_rollback(True)
 
         ops = copy.deepcopy(myOps)
 
@@ -36,6 +36,8 @@
         otherOps.remove(battlefield[8])#remove your enemy's frontman from your enemy's party
         battlefield[0].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
         battlefield[8].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
+
+        renpy.suspend_rollback(False)
 
     hide tactics with dissolve
 

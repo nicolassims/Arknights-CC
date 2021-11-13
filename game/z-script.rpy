@@ -4,6 +4,8 @@
 # name of the character.
 
 init 3 python:
+    import copy
+
     # Declare positions used by this game
     midleft = Position(xpos = 0.25)
     midright = Position(xpos = 0.75)
