@@ -13,6 +13,8 @@
         ownedfield = [True, None, None, None, None, None, None, None, False]#cycles through None, True, and False
         mydp = 0
         otherdp = 0
+        mydpgain = 2
+        otherdpgain = 2
         exiting = False
 
         enemyxp = 0#the amount of experience these enemies will grant
@@ -124,13 +126,22 @@
                     elif (actiontype == 'pass'):#("pass")
                         renpy.say(a, "Looks like they're just watching and waiting...")
 
-                #run end of turn clean-up
+                #RUN END OF TURN CLEAN-UP
                 actorMaxHealth = maxhp(actor)
                 if (actor.getparameter(ID) == ROCKSICK and actor.getparameter(HEALTH) < actorMaxHealth):#ROCKSICK TALENT, Rocksick's talent
                     healthgained = min(actorMaxHealth - actor.getparameter(HEALTH), actorMaxHealth / 10)
                     actor.setparameter(HEALTH, actor.getparameter(HEALTH) + healthgained)
                     damagereport = "{b}Rocksick regenerates, gaining " + str(healthgained) + " health!{/b} "
                     talentblurb = renpy.call_screen("showmessage", message=damagereport)
+
+                mydpgain = 0
+                otherdpgain = 0
+                for i, claim in enumerate(ownedfield):
+                    points = battlefieldPoints(i)
+                    if (claim == True):
+                        mydpgain += points
+                    elif (claim == False):
+                        otherdpgain += points
 
                 for op in incapacitated:
                     battlefield[battlefield.index(op)] = None
@@ -145,9 +156,9 @@
                         tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
 
                 for i, claim in enumerate(ownedfield):
-                    if (claim == True):
+                    if (actor.getparameter(ALLY) and claim == True):
                         mydp = min(99, mydp + battlefieldPoints(i))
-                    elif (claim == False):
+                    elif (not actor.getparameter(ALLY) and claim == False):
                         otherdp = min(99, otherdp + battlefieldPoints(i))
 
                 actionlist.pop(0)#this might become a problem someday if an operator can incapacitate themself

@@ -1697,8 +1697,8 @@ screen battle():
         totalspace = spacesize * 10
         squaresize = (screenwidth - totalspace) / 9
 
-    text str(mydp) + " DP" xpos 0.1 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
-    text str(otherdp) + " DP" xpos 0.9 xanchor 1.0 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
+    text str(mydp) + " DP\n{size=40}+" + str(mydpgain) + " DP p/turn{/size}" xpos 0.1 xanchor 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
+    text str(otherdp) + " D\n{size=40}+" + str(otherdpgain) + "DP p/turn{/size}" xpos 0.9 xanchor 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
 
     for i, op in enumerate(battlefield):
         $ color = "#FFF"
