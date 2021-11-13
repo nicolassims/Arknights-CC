@@ -1,9 +1,13 @@
-﻿label Battle(ops, otherOps):
+﻿label Battle(myOps, otherOps):
     window hide#Ren'Py function that hides the built-in gui
 
     show tactics with dissolve
 
     python:
+        import copy
+
+        ops = copy.deepcopy(myOps)
+
         actionlist = []
         battlefield = [None, None, None, None, None, None, None, None, None]
         ownedfield = [True, None, None, None, None, None, None, None, False]#cycles through None, True, and False
@@ -32,9 +36,6 @@
         otherOps.remove(battlefield[8])#remove your enemy's frontman from your enemy's party
         battlefield[0].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
         battlefield[8].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
-
-
-
 
     hide tactics with dissolve
 
