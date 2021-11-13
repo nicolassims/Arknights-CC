@@ -453,3 +453,18 @@ screen levelup(op, statgains):
         yfill True
         idle "ui/empty.png"
         action [Return()]
+
+screen title(title, subtitle=None):
+    if (subtitle != None):
+        $ initials = ""
+        for char in subtitle:
+            if (char.isupper()):
+                $ initials += char
+
+        text initials size 900 bold True align (0.5, 0.5) color "#41434277"
+
+    vbox:
+        align (0.5, 0.5)
+        text title size 280 bold True
+        if (subtitle != None):
+            text subtitle size 140 color "#A1A3A2" bold True
