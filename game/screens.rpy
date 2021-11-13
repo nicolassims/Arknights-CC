@@ -738,6 +738,12 @@ screen preferences():
                     textbutton _("Right") action Preference("rollback side", "right")
 
                 vbox:
+                    style_prefix "radio"
+                    label _("Profanity")
+                    textbutton _("Disable") action SetVariable("swearing", False)
+                    textbutton _("Enable") action SetVariable("swearing", True)
+
+                vbox:
                     style_prefix "check"
                     label _("Skip")
                     textbutton _("Unseen Text") action Preference("skip", "toggle")

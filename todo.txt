@@ -1,10 +1,6 @@
-- Add swearing option in pause menu
-
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
 - Define different kinds of AI
 - Implement Ace's talent
 - Implement aoe basic attacks for both players and AI
 - Implement ability to actually use items in the inventory
-
-- Remember that for skills with actual effects, you'll need to program the effect into both the ally and enemy version of the code.
