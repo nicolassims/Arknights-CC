@@ -168,12 +168,8 @@
                     renpy.say("", "Doctor, surely, you're not going to leave it at that, will you? Go on, reload your save. Fight for the dawn.")
                     MainMenu(confirm=False)()
 
-    python:
-        for op in battlefield:
-            if (op != None and op.getparameter(ALLY)):
-                ops.append(op)
-
-        for op in ops:
+    python:#end of battle
+        for op in myOps:
             op.setparameter(EXPERIENCE, op.getparameter(EXPERIENCE) + enemyxp)
 
             while (op.getparameter(EXPERIENCE) >= fibonacci(op.getparameter(LEVEL))):
