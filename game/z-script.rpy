@@ -46,6 +46,7 @@ image tactics = Transform("bgs/tactics.png", matrixcolor=SaturationMatrix(0), xs
 image village = Transform("bgs/village.png", xsize=1920, ysize=1080)
 image innervillage = Transform("bgs/village2.png", xsize=1920, ysize=1080)
 image safehouse = Transform("bgs/safehouse.png", xsize=1920, ysize=1080)
+image road = Transform("bgs/road.jpg", xsize=1920, ysize=1080)
 
 # Characters
 image ace = scaleportrait("chars/ace/ace.png", 190)
@@ -517,7 +518,10 @@ label start:
 
     "You don't know why, but you feel, strongly, like you need to defend the infected."
 
-    "However, since you called that creature in the forest \"it\", multiple times, you have little ground to stand on."
+    if (rocksickspared):
+        "However, since you called that creature in the forest \"it\", multiple times, you have little ground to stand on."
+    elif (rocksickspared):
+        "However, since you killed that creature in the forest, you have little ground to stand on."
 
     "Still, you wonder..."
 
@@ -961,7 +965,7 @@ label start:
 
             jump missionquestions
 
-        "How long will this take?":            
+        "How long will this take?":
             chiave "Three hours there, three hours rescuing, and three hours back."
 
             jump missionquestions
@@ -979,6 +983,16 @@ label start:
             show chiave happy
 
             chiave "Hell yeah. {i}Prendilo!{/i}"
+
+    scene change road
+
+    a "...Pretty out here."
+
+    chiave "Yeah, and I haven't seen the sunrise in {i}months{/i}, so thanks for breaking that streak by waking us up at the crack of dawn. Damn old people sleep schedules."
+
+    a "I have a hammer."
+
+    chiave "Big deal, I've got a wrench."
 
 
 
