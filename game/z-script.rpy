@@ -303,7 +303,7 @@ label start:
 
     "To wit: swearing."
 
-    "Would you like this game to censor such swear words for you?"
+    "Would you like this game to censor such swear words for you? This decision can be changed at any time in the Preferences menu."
 
     nvl clear
 
