@@ -145,7 +145,7 @@ init python:
         elif (id == KROOS):
             return "A seemingly lazy and flippant young sniper whose skill is unparalleled... at avoiding work. Still, her desire to get back to bed as soon as possible means she prioritizes headshots, hitting for 160% damage 20% of the time."
         elif (id == ROCKSICK):
-            return "A moaning, shambling figure. Its constant cries of pain are the only sign it's still alive. However, its unterran endurance works well in battle, regenerating 10% of its max health every time it attacks."
+            return "A moaning, shambling figure. Its constant cries of pain are the only sign it's still alive. However, its unterran endurance works well in battle, regenerating 10% of its max health at the end of each of its turns."
         else:
             return "This shouldn't show up."
 

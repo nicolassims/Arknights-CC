@@ -123,6 +123,13 @@
                         renpy.say(a, "Looks like they're just watching and waiting...")
 
                 #run end of turn clean-up
+                actorMaxHealth = maxhp(actor)
+                if (actor.getparameter(ID) == ROCKSICK and actor.getparameter(HEALTH) < actorMaxHealth):#ROCKSICK TALENT, Rocksick's talent
+                    healthgained = min(actorMaxHealth - actor.getparameter(HEALTH), actorMaxHealth / 10)
+                    actor.setparameter(HEALTH, actor.getparameter(HEALTH) + healthgained)
+                    damagereport = "{b}Rocksick regenerates, gaining " + str(healthgained) + " health!{/b} "
+                    talentblurb = renpy.call_screen("showmessage", message=damagereport)
+
                 for op in incapacitated:
                     battlefield[battlefield.index(op)] = None
                     actionlist.remove(op)

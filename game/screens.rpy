@@ -1837,12 +1837,6 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
             dmg = int(min(target.getparameter(HEALTH), dmg))
             target.setparameter(HEALTH, target.getparameter(HEALTH) - dmg)
 
-            if (source.getparameter(ID) == ROCKSICK):#ROCKSICK TALENT, Rocksick's talent
-                max = maxhp(source)
-                healthgained = min(max - source.getparameter(HEALTH), max / 10)
-                source.setparameter(HEALTH, source.getparameter(HEALTH) + healthgained)
-                damagereport += "{b}Rocksick regenerates, gaining " + str(healthgained) + " health!{/b} "
-
             damagereport += ("Ally " if source.getparameter(ALLY) else "Foe ")
             damagereport += source.getparameter(CODENAME) + " dealt " + str(dmg) + " damage to the "
             damagereport += ("ally " if target.getparameter(ALLY) else "foe ")
@@ -1873,6 +1867,21 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
         margin (200, 100)
         padding (100, 50)
         text damagereport xalign 0.5
+
+screen showmessage(message, val=None):
+    use battle()
+    
+    imagebutton:
+        xfill True
+        yfill True
+        idle "ui/empty.png"
+        action [Return(val)]
+
+    frame:
+        align (0.5, 0.3)
+        margin (200, 100)
+        padding (100, 50)
+        text message xalign 0.5
 
 #source is an operator object
 #target is an operator object

@@ -1,5 +1,5 @@
 - Add swearing option in pause menu
-- Make ROCKSICK's talent work all the time, not just when attacking
+- see if you can abstract out message functionality
 
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
