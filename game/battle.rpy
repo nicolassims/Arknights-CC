@@ -129,7 +129,7 @@
                         renpy.say(a, "Looks like they're just watching and waiting...")
 
                 #RUN END OF TURN CLEAN-UP
-                actorMaxHealth = maxhp(actor)
+                actorMaxHealth = actor.getparameter(MAXHEALTH)
                 if (actor.getparameter(ID) == ROCKSICK and actor.getparameter(HEALTH) < actorMaxHealth):#ROCKSICK TALENT, Rocksick's talent
                     healthgained = min(actorMaxHealth - actor.getparameter(HEALTH), actorMaxHealth / 10)
                     actor.setparameter(HEALTH, actor.getparameter(HEALTH) + healthgained)
@@ -208,5 +208,8 @@
 
                 for i, statgain in enumerate(statgains):
                     op.setparameter(i + HEALTH, op.getparameter(i + HEALTH) + statgains[i])
+
+                if (i == 0):#also increase maxhp
+                    op.setparameter(MAXHEALTH, op.getparameter(MAXHEALTH) + statgains[0])
 
                 renpy.call_screen("levelup", op=op, statgains=statgains)
