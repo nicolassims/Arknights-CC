@@ -299,6 +299,7 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
     for target in targets:
         python:
             if (source.getparameter(ID) == HEADHUNTER and target.getparameter(HEALTH) <= target.getparameter(MAXHEALTH) / 2):#HEADHUNTER TALENT, Headhunter's talent
+                damagereport += "{b}Headhunter sees an opening!{/b} "
                 hits *= 2
 
             for tech in target.getparameter(TECHS):
