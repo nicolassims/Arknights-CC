@@ -126,16 +126,16 @@ init python:
         else:
             return str(ind + 1) +"th Up"
 
-    def maxhp(op):
-        return math.ceil(opdex[op.getparameter(ID) - 1][HEALTH] * (10 + op.getparameter(LEVEL)) * 5)
-
     def gettechblurb(id):
         if (id == 0):#doubletapauto
             return "After two attacks, hit 1.4 times as hard, twice in one turn. Shoot style."
         elif (id == 1):#hammerdown
             return "After being hit twice, retaliate at 2.5 times your normal strength. Power style."
         elif (id == 2):#rocklaw
-            return "A desperate, clumsy swipe that drains a foe's blood, healing you by as much damage as you deal. Strike style."
+            return "A desperate, clumsy swipe that's slightly weaker than a regular attack, but drains a foe's blood, healing you by as much damage as you deal. Strike style."
+        elif (id == 3):#coltellata
+            return "A cutting stab that strikes twice, once while going in, and once while coming out. Wit style."
+
         else:
             return "This shouldn't show up."
 
@@ -146,6 +146,8 @@ init python:
             return "A seemingly lazy and flippant young sniper whose skill is unparalleled... at avoiding work. Still, her desire to get back to bed as soon as possible means she prioritizes headshots, hitting for 160% damage 20% of the time."
         elif (id == ROCKSICK):
             return "A moaning, shambling figure. Its constant cries of pain are the only sign it's still alive. However, its unterran endurance works well in battle, regenerating 10% of its max health at the end of each of its turns."
+        elif (id == HEADHUNTER):
+            return "A ruthless, or perhaps just desperate, hunter armed with little but a knife and his wits. A keen opportunist, against foes with less than half health, all his attacks and skills will have double the amount of hits."
         else:
             return "This shouldn't show up."
 

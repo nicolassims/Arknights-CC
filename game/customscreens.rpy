@@ -119,7 +119,7 @@ screen talentblurb(id):
         id -= 1
         talenttext = "{b}" + opdex[id][CODENAME] + "'s Talent: " + opdex[id][TALENT] + "{/b}\n"
 
-        talentext += gettalentblurb(id + 1)
+        talenttext += gettalentblurb(id + 1)
 
     imagebutton:
         xfill True
@@ -194,7 +194,7 @@ screen battle():
                 ypos 800 + squaresize / 2
                 xanchor 0.5
                 xsize squaresize - 20
-                range int(opdex[op.getparameter(ID) - 1][HEALTH] * (10 + op.getparameter(LEVEL)) * 5)
+                range op.getparameter(MAXHEALTH)
                 value op.getparameter(HEALTH)
                 right_bar gui.muted_color
                 left_bar "#F69122"
@@ -298,9 +298,12 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
 
     for target in targets:
         python:
+            if (source.getparameter(ID) == HEADHUNTER and target.getparameter(HEALTH) <= target.getparameter(MAXHEALTH) / 2):#HEADHUNTER TALENT, Headhunter's talent
+                hits *= 2
+
             for tech in target.getparameter(TECHS):
                 if (tech.getparameter(GAINTYPE) == "Defending"):
-                    tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
+                    tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER) * hits))
 
             effectiveness = effectiveness(elements, target.getparameter(ELEMENT))
             power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * 2.5 * atkbuff * effectiveness
@@ -331,7 +334,7 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
             if (effect != 0):
                 effectnum = effect.getparameter(EFFECT)
                 if (effectnum == 1):#draining health, used by rocklaw. Uses effectpower1 as percentage of damage done.
-                    max = maxhp(source)
+                    max = source.getparameter(MAXHEALTH)
                     source.setparameter(HEALTH, min(max, source.getparameter(HEALTH) + dmg * effect.getparameter(EFFECTPOWER1)))
                     damagereport += source.getparameter(CODENAME) + " drains " + str(dmg) + " health! "
 

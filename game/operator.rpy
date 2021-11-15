@@ -1,7 +1,7 @@
 ﻿init 2 python:
     import math
 
-    #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts,ally,techs,level,movepoints,experience
+    #ID,firstname,lastname,codename,health,atk,def,arts,artsdef,mov,cost,class,subclass,element,minrange,maxrange,talent,portraits,usesArts,ally,techs,level,movepoints,experience, maxhealth
     class Operator(ChangingClass):
         def __init__(self, id, level, ally, techs=[]):
             self.parameters = []
@@ -19,9 +19,10 @@
             self.parameters.append(ally)# set ALLY
             self.parameters.append(techs)# set TECHS
             self.parameters.append(level)# set LEVEL
-            self.parameters[HEALTH] = maxhp(self)# increase health by proper amount
+            self.parameters[HEALTH] *= 5 #set health properly
             self.parameters.append(0)# set MOVEPOINTS
             self.parameters.append(0)# set EXPERIENCE
+            self.parameters.append(self.parameters[HEALTH])#set MAXHEALTH
 
     #define specific Operators here.
     aceop = Operator(ACE, 1, True, [ hammerdown ])
