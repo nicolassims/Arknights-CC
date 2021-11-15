@@ -47,6 +47,7 @@ image village = Transform("bgs/village.png", xsize=1920, ysize=1080)
 image innervillage = Transform("bgs/village2.png", xsize=1920, ysize=1080)
 image safehouse = Transform("bgs/safehouse.png", xsize=1920, ysize=1080)
 image road = Transform("bgs/road.jpg", xsize=1920, ysize=1080)
+image sunsetroad = Transform("bgs/roadsunset.jpg", xsize=1920, ysize=1080)
 
 # Characters
 image ace = scaleportrait("chars/ace/ace.png", 190)
@@ -67,6 +68,7 @@ image aosta surprised left = scaleportrait("chars/aosta/surprisedaosta.png", 177
 image aosta eyesclosed left = scaleportrait("chars/aosta/eyesclosedaosta.png", 177, True)
 image aosta smile left = scaleportrait("chars/aosta/smileaosta.png", 177, True)
 image blaze shadow = scaleportrait("chars/blaze/shadowblaze.png", 172, True)
+image gangster = scaleportrait("chars/gangster/gangster.png", 184, True)
 
 #Transitions
 transform moveleft:
@@ -984,7 +986,7 @@ label start:
 
             chiave "Hell yeah. {i}Prendilo!{/i}"
 
-    scene change road
+    scene sunsetroad with dissolve
 
     a "...Pretty out here."
 
@@ -993,6 +995,155 @@ label start:
     a "I have a hammer."
 
     chiave "Big deal, I've got a wrench."
+
+    a "(These kids... how the hell have they managed to stay alive so long?)"
+
+    a "On that topic, if fighting becomes necessary, you all stay behind. I'll handle it."
+
+    broca "Not going to happen."
+
+    chiave "Broca, chill. Let's at least hear why he said that."
+
+    a "You haven't seen me fight before. I've barely seen me fight before. All I know is that I can. It'd be best if you kids got an understanding of what I can do before we started working together, so we don't get in each other's way."
+
+    aosta "Your logic is sound. But what if you become overwhelmed?"
+
+    a "Well, I'm not proud. You can jump in, then."
+
+    broca "Your call, boss."
+
+    chiave "Makes sense. Let's let him show off."
+
+    a "Good call."
+
+    a "(...But, really, the reason I said that was...)"
+
+    nvl clear
+
+    nvl show dissolve
+
+    "A memory flashes in your mind..."
+
+    "An argument, with someone that you respected, feared, thanked, and despised in equal measure..."
+
+    "\"Children don't fight, Doctor.\""
+
+    "\"On the contrary. When told to, no-one will fight more obediently and instantly than a child. Perhaps you meant to say that a child {i}shouldn't{/i} fight... but this is clearly not a world that privileges us with what {i}should{/i} be.\""
+
+    nvl clear
+
+    "You continue to drive down the road. Somehow, you ended up in the driver's seat. Chiave is riding shotgun, his boots up on the dashboard."
+
+    "Broca and Aosta are riding in the back, with Broca's head slightly poking out of the missing sunroof."
+
+    "You consider mentioning his vulnerability to snipers, but decide to keep the thought to yourself. You're just being paranoid."
+
+    "...In this way, dawn turns to day."
+
+    scene road with Dissolve(2.0)
+
+    chiave "Eighty-seven słoma sodas on the wall! Eighty-seven słoma sodas! Take one down, pass it around, eighty-six słoma sodas on the wall!"
+
+    nvl clear
+
+    nvl show dissolve
+
+    "In this way, dawn turns to day... {i}excrutiatingly slowly.{/i}"
+
+    nvl hide dissolve
+
+    a "(I'm going to kill him. I swear I'll kill him and join the Laterans as soon as he hits eighty-five słoma sodas--)"
+
+    show broca surprised at mymovein(0.2, -0.5, 0.5) with vpunch
+
+    broca "STOP THE CAR!"
+
+    nvl clear
+
+    nvl show dissolve
+
+    "Without question, you slam on the brakes!"
+
+    hide broca with vpunch
+
+    "The car skids to a halt, but at the very end of its slide, you hear a characteristic ripping, tearing, popping sound..."
+
+    "You instantly recognize the sound of a tire being ruined."
+
+    "You grit your teeth and leave the car to examine the damage, along with Chiave."
+
+    show chiave confused at midleft with dissolve
+
+    chiave "Well, the good news is that Aosta packed a spare tire, just in case."
+
+    chiave "The bad news is that this is a caltrop chain. And the people who use these things are..."
+
+    hide chiave with dissolve
+
+    show gangster with Dissolve(2.0)
+
+    who "Ciao."
+
+    chiave "{i}Headhunters.{/i}"
+
+    nvl clear
+
+    nvl show dissolve
+
+    "The contempt in Chiave's voice is clear."
+
+    nvl hide dissolve
+
+    show aosta left at midright with vpunch
+
+    aosta "Traitor! You'd betray your country just to get into those fascists' good books?"
+
+    who "I'd betray my country to make enough money to not starve to death, yeah. But this doesn't have to involve you kids."
+
+    show chiave confused at midleft with dissolve
+
+    chiave "I mean, you attacked our car, man..."
+
+    who "Look, just keep grandpa still, let me get these plastic ties on him, and you kids can go."
+
+    a "I'm not a Sconfittian."
+
+    who "That's for the Lateran recruiting office to figure out. You're a body, so I'll get paid."
+
+    a "Where're your allies?"
+
+    who "{i}Stai zitto.{/i}"
+
+    aosta "Well, sir, you said you wanted a chance to fight. Show us what you can do."
+
+    a "Gladly."
+
+    hide chiave with moveoutleft
+
+    hide aosta with moveoutright
+
+    show ace at mymovein(0.5, -0.5, 0.12)
+
+    show gangster at mymovein(0.5, 0.5, 0.88)
+
+    call Battle(party, [Operator(HEADHUNTER, 2, False, [ coltellata ])])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "."
+
+    nvl hide dissolve
 
 
 
