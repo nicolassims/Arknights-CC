@@ -1,3 +1,6 @@
+- Make sure that battle portraits are scaled properly
+- Make sure that battle experience is being set properly.
+
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
 - Define different kinds of AI
