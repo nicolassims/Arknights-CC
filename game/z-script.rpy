@@ -1336,6 +1336,9 @@ label start:
 
     call Crawl(piccinocity, 1, 5, piccinoknowledge, True)
 
+    #killer: 3
+    #doctor: 2
+
 
 
 
