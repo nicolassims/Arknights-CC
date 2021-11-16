@@ -1,4 +1,3 @@
-- Make sure that battle portraits are scaled properly
 - Add experience for taking killer paths
 - Create a Chiave operator.
 

@@ -66,8 +66,8 @@ screen setup(back):
         imagebutton:
             pos (20 + (i % 4) * (squaresize + spacesize) + squaresize / 2, 0.29 * (math.floor(i / 4.0) + 1) + 0.09)
             anchor (0.5, 1.0)
-            idle Transform(portrait, fit="contain", xysize=(squaresize, 400), ypos=0)
-            hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 450), ypos=50)
+            idle Transform(portrait, fit="contain", xysize=(squaresize, 375), ypos=0)
+            hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 425), ypos=25)
             action [Hide("frontman"), Show("setupstatus", op=op, back=back), Show("go", op=op)]
 
 screen setupstatus(op, back):
@@ -230,7 +230,7 @@ screen battle():
 
             add Transform(Image(op.getparameter(PORTRAITS)[0]),
                           fit="contain",
-                          xysize=(squaresize, 1000),
+                          xysize=(squaresize, 300),
                           anchor=(0.5, 1.0),
                           xpos = 20 + i * (squaresize + spacesize) + squaresize / 2,
                           ypos = 800 + squaresize / 2,
