@@ -16,7 +16,18 @@ screen buttons():
 
 screen mini_map_scr(map):
     frame:
-        align (0.5, 0.5)
+        if (len(map) < 15):
+            yalign 0.5
+        else:
+            yanchor 0.5
+            yalign (540 - (y - len(map) / 2) * 64)
+
+        if (len(map[0]) < 15):
+            xalign 0.5
+        else:
+            xanchor 0.5
+            xalign (960 - (x - len(map[0]) / 2) * 64)
+
         grid len(map[0]) len(map):
             for i in range(len(map)):
                 for j in range(len(map[0])):
