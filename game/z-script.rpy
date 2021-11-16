@@ -1332,6 +1332,8 @@ label start:
 
     hide broca
 
+    $ piccinokills = 0
+
     call Crawl(piccinocity, 1, 5, piccinoknowledge, True)
 
 
