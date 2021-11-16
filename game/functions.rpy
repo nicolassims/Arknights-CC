@@ -78,14 +78,6 @@ init python:
 
         return fullstring
 
-    def passtring(id):
-        if (id == ACE):
-            return "A wasted turn. I need to avoid those."
-        elif (id == KROOS):
-            return "Eh? Are we taking a nap on the battlefield? That might be a bit too much, even for me."
-        else:
-            return "ERROR"
-
     #ai is an int that is used to determine the ai's priority. None exists so far
     def prioritize(ai):
         #can I deploy
@@ -136,6 +128,18 @@ init python:
         elif (id == 3):#coltellata
             return "A cutting stab that strikes twice, once while going in, and once while coming out. Wit style."
 
+        else:
+            return "This shouldn't show up."
+
+    def passtring(id):
+        if (id == ACE):
+            return "Discretion is the better part of valor. Let them come to me."
+        elif (id == KROOS):
+            return "Eh? Are we taking a nap on the battlefield? That might be a bit too much, even for me."
+        elif (id == ROCKSICK):
+            return "Grrahhh... Grrhh... Garrrr...?"
+        elif (id == HEADHUNTER):
+            return "I'm just getting warmed up, {i}cazzone.{/i}"
         else:
             return "This shouldn't show up."
 
