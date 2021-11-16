@@ -149,10 +149,10 @@
                     if (op.getparameter(ID) == CHIAVE):#CHIAVE Talent, Chiave's talent
                         if (op.getparameter(ALLY)):
                             dpreport = "{b}Chiave lets out a rallying cry as he falls! Gained " + str(mydpgain * 2) + " DP!{/b} "
-                            mydp += mydpgain * 2
+                            mydp = min(mydp + mydpgain * 2, 99)
                         else:
                             dpreport = "{b}Foe Chiave lets out a rallying cry as he falls! Foes gained " + str(otherdpgain * 2) + " DP!{/b} "
-                            otherdp += otherdpgain * 2
+                            otherdp = min(otherdp + otherdpgain * 2, 99)
                         talentblurb = renpy.call_screen("showmessage", message=dpreport)
 
                     battlefield[battlefield.index(op)] = None
