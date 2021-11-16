@@ -17,7 +17,7 @@ screen buttons():
 screen mini_map_scr(map):
     frame:
         align (0.5, 0.5)
-        grid len(map) len(map[0]):
+        grid len(map[0]) len(map):
             for i in range(len(map)):
                 for j in range(len(map[0])):
                     if i == y and j == x:
@@ -306,8 +306,8 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                 if (tech.getparameter(GAINTYPE) == "Defending"):
                     tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER) * hits))
 
-            effectiveness = effectiveness(elements, target.getparameter(ELEMENT))
-            power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * 2.5 * atkbuff * effectiveness
+            effectivemulti = effectiveness(elements, target.getparameter(ELEMENT))
+            power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * 2.5 * atkbuff * effectivemulti
             defense = (target.getparameter(ARTSDEF) if source.getparameter(USESARTS) else target.getparameter(DEF))
 
             dmg = 0
@@ -330,7 +330,7 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
             damagereport += target.getparameter(CODENAME)
             damagereport += hitsStrings(hits)
             damagereport += "! "
-            damagereport += effectivestring(effectiveness, elements, target.getparameter(ELEMENT))
+            damagereport += effectivestring(effectivemulti, elements, target.getparameter(ELEMENT))
 
             if (effect != 0):
                 effectnum = effect.getparameter(EFFECT)
