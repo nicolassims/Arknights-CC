@@ -39,7 +39,6 @@
     piccinocity.append([0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0])
     piccinocity.append([0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0])
     piccinocity.append([0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0])
-
     piccinoknowledge = []
     piccinoknowledge.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     piccinoknowledge.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
