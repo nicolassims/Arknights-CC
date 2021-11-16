@@ -1,13 +1,13 @@
 ﻿'''
-A script written for an unfinished project. Runs a "dungeon crawling" system 
-    where players can move around on a map, interact with nodes, and be blocked 
-    by walls. Uses a system whereby it can be fed text files and create maps of 
+A script written for an unfinished project. Runs a "dungeon crawling" system
+    where players can move around on a map, interact with nodes, and be blocked
+    by walls. Uses a system whereby it can be fed text files and create maps of
     them.
 
-@func Crawl(int[][], int, int, int[][]) -> None: A function that takes in a 
+@func Crawl(int[][], int, int, int[][]) -> None: A function that takes in a
     completed map of an area, a starting x and y location, and a map of what the
     player knows the area to be
-@arg map: A two-dimensional array that represents an area. A 1 represents a 
+@arg map: A two-dimensional array that represents an area. A 1 represents a
     solid wall, and a 0 represents open space. Negative numbers are events.
 @arg startingy: The y-coordinate the player should load into
 @arg startingx: The x-coordinate the player should load into
@@ -32,18 +32,19 @@ label Crawl(map, startingy, startingx, knowledgemap, new):
         x = startingx
         y = startingy
         exit = False
-    
+
         if (new):
             for i in range(len(map)):
                 for j in range(len(map[i])):
-                    knowledgemap[j][i] = 0
-    
+                    knowledgemap[i][j] = 0
+
     window hide#Ren'Py function that hides the built-in gui
     show screen buttons()#Custom func that will show the nav arrows/enable wasd
     show screen mini_map_scr(map)#draws the mini map
-    
-    while(exit == False):#keep the loop running until a player navigates out     
+
+    while(exit == False):#keep the loop running until a player navigates out
         python:
+            print(str(x) + ", " + str(y))
             #this section just marks your spot, and the eight spots around you,
             #   as "known" in the knowledge map. Will not attempt to mark
             #   exterior walls as known. First section is fully commented, but
@@ -63,13 +64,13 @@ label Crawl(map, startingy, startingx, knowledgemap, new):
                 knowledgemap[y + 1][x] = 1
             if x != len(knowledgemap[0]) - 1:
                 knowledgemap[y][x + 1] = 1
-                if y != len(knowledgemap) - 1:          
+                if y != len(knowledgemap) - 1:
                     knowledgemap[y + 1][x + 1] = 1
-            
+
             crawlMoveCommand = renpy.call_screen("buttons")#wait for movement input
-            #worth mentioning that the "buttons" screen will not allow you to 
+            #worth mentioning that the "buttons" screen will not allow you to
             #   press a button that would cause you to move into a wall
-        
+
             if (crawlMoveCommand == 'F'):#Forward. Represented by ↑ character
                 y -= 1
             elif (crawlMoveCommand == 'R'):#Right. Represented by → character
@@ -78,7 +79,7 @@ label Crawl(map, startingy, startingx, knowledgemap, new):
                 y += 1
             elif (crawlMoveCommand == 'L'):#Left. Represented by ← character
                 x -= 1
-        
+
         if (map[y][x] == -1):#entering a cell with a key code of "-1", an exit
             menu:#Present these two options
                 "I'll stay a while longer...":
@@ -90,7 +91,7 @@ label Crawl(map, startingy, startingx, knowledgemap, new):
                         elif (crawlMoveCommand == 'B'):
                             y -= 1
                         elif (crawlMoveCommand == 'L'):
-                            x += 1 
+                            x += 1
                 "Time to leave.":
                     $ exit = True#set exit condition for while loop to "true"
                     hide screen buttons
@@ -99,5 +100,5 @@ label Crawl(map, startingy, startingx, knowledgemap, new):
         elif (map[y][x] <= -2):
             #then send it to the crawlEvent script, which will handle it.
             call CrawlEvent(map.name, map[y][x]) from _call_CrawlEvent
-            
+
     return

@@ -3,33 +3,12 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-init 3 python:
+init python:
     import copy
 
     # Declare positions used by this game
     midleft = Position(xpos = 0.25)
     midright = Position(xpos = 0.75)
-
-    # Declare variables used by this game
-    playerfirstname = "You"
-    playerlastname = "The Operator"
-
-    aostaname = "Nervous Albino"
-    brocaname = "Scowly Brunette"
-    chiavename = "Shouty Redhead"
-    headhuntername = "Headhunter"
-
-    doctor = 0
-    killer = 0
-
-    party = [aceop]
-
-    inventory = []
-
-    rocksickspared = None
-    headhunterspared = None
-
-    swearing = True
 
 define who = Character("???")
 define a = DynamicCharacter("playerfirstname")
@@ -51,6 +30,7 @@ image innervillage = Transform("bgs/village2.png", xsize=1920, ysize=1080)
 image safehouse = Transform("bgs/safehouse.png", xsize=1920, ysize=1080)
 image road = Transform("bgs/road.jpg", xsize=1920, ysize=1080)
 image sunsetroad = Transform("bgs/roadsunset.jpg", xsize=1920, ysize=1080)
+image city = Transform("bgs/city/city.png", xsize=1920, ysize=1080)
 
 # Characters
 image ace = scaleportrait("chars/ace/ace.png", 190)
@@ -84,6 +64,28 @@ transform mymovein(timing, start, destination):
 # The game starts here.
 
 label start:
+
+    # Declare variables used by this game
+    python:
+        playerfirstname = "You"
+        playerlastname = "The Operator"
+
+        aostaname = "Nervous Albino"
+        brocaname = "Scowly Brunette"
+        chiavename = "Shouty Redhead"
+        headhuntername = "Headhunter"
+
+        doctor = 0
+        killer = 0
+
+        party = [aceop]
+
+        inventory = []
+
+        rocksickspared = None
+        headhunterspared = None
+
+        swearing = True
 
     scene black with Dissolve(2)
 
@@ -1285,6 +1287,52 @@ label start:
 
     "You all pile back into the car after replacing the popped tire, and continue onward toward the city."
 
+    "It's quiet inside the car, and everyone is keenly on the lookout for ambushes."
+
+    if (headhunterspared):
+        "Your new guest falls asleep almost immediately, head pressed against the window as he snores lightly."
+
+
+    "Without further ado... you make it to Piccino."
+
+    scene city with dissolve
+
+    show chiave happy with dissolve
+
+    chiave "Alright. Everyone remember where the car's parked. Everyone try to bring back a car, as well."
+
+    show aosta nervous left at midright with dissolve
+
+    aosta "I recommend splitting into two distinct groups. Each team should have a member who's good at being stealthy, and one who's good at hitting hard."
+
+    chiave "Sounds good. I'll go with %(playerfirstname)s."
+
+    if headhunterspared:
+        show chiave
+
+        chiave "Oh, and Guido. I guess."
+
+        headhunter "Yeah, I'm going with the big guy."
+
+    show broca at midleft with dissolve
+
+    broca "Hrmmm. Be safe, Chiave."
+
+    chiave "No problems! We'll be in and out in a flash."
+
+    nvl clear
+
+    nvl show dissolve
+
+    "And so, with those words that tempted fate like nothing else, your first official mission with Chiave the Chainbreaker's Freedom-Fighting Famiglia begins."
+
+    hide aosta
+
+    hide chiave
+
+    hide broca
+
+    call Crawl(piccinocity, 1, 5, piccinoknowledge, True)
 
 
 
