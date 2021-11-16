@@ -22,6 +22,8 @@ screen mini_map_scr(map):
                 for j in range(len(map[0])):
                     if i == y and j == x:
                         $ tile = Solid("#FF0000", xmaximum=64, ymaximum=64)
+                    elif map[i][j] == -1 and knowledgemap[i][j] == 1:
+                        $ tile = Solid("#FF9A00", xmaximum=64, ymaximum=64)
                     elif map[i][j] < 1 and knowledgemap[i][j] == 1:
                         $ tile = Solid("#ffffff", xmaximum=64, ymaximum=64)
                     elif map[i][j] == 1 and knowledgemap[i][j] == 1:
