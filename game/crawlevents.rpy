@@ -1,29 +1,25 @@
-﻿label CrawlEvent(map, eventcode):
-    if (map == "guerroforest"):
+﻿label CrawlEvent(mapname, eventcode):
+    if (mapname == "guerroforest"):
         if eventcode == -2:
             show forest behind ace with dissolve
 
             a "This place can actually look kinda pretty. When it's not covered in burnt shit, anyway."
 
-        elif type == -3 and crawlMoveCommand == 'R':
+        elif eventcode == -3 and crawlMoveCommand == 'R':
             hide forest with dissolve
 
-    elif (map == "piccinocity"):
+    elif (mapname == "piccinocity"):
         if eventcode == -2:
             if (piccinokills < 2):
                 a "Huh? I think I hear voices... Headhunters!"
             elif (piccinokills <= 3):
                 a "More targets."
             elif (piccinokills == 4):
-                show chiave confused with dissolve
-
                 chiave "You're... you're hunting them down, aren't you?"
 
                 a "They're practice. The Laterans will be a lot harder than these mooks."
 
                 chiave "{size=20}Lives aren't practice, man...{/size}"
-
-                hide chiave with dissolve
 
                 nvl clear
 
@@ -53,3 +49,14 @@
             $ piccinokills += 1
 
             call Crawl(piccinocity, y, x, piccinoknowledge, False)
+
+        elif (eventcode == -3):
+            a "Looks like someone left some cash here... I'll take it."
+
+            nvl clear
+
+            "Gained 10 CD!"
+
+            $ cash += 10
+
+            $ map[y][x] = 0
