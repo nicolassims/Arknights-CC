@@ -17,6 +17,7 @@ init 3 python:
     aostaname = "Nervous Albino"
     brocaname = "Scowly Brunette"
     chiavename = "Shouty Redhead"
+    headhuntername = "Headhunter"
 
     doctor = 0
     killer = 0
@@ -26,6 +27,7 @@ init 3 python:
     inventory = []
 
     rocksickspared = None
+    headhunterspared = None
 
     swearing = True
 
@@ -34,6 +36,7 @@ define a = DynamicCharacter("playerfirstname")
 define aosta = DynamicCharacter("aostaname")
 define broca = DynamicCharacter("brocaname")
 define chiave = DynamicCharacter("chiavename")
+define headhunter = DynamicCharacter("headhuntername")
 define narrator = nvl_narrator
 
 # Backgrounds
@@ -1128,6 +1131,159 @@ label start:
 
     call Battle(party, [Operator(HEADHUNTER, 2, False, [ coltellata ])])
 
+    show gangster at mymovein(0.8, 0.88, 0.75)
+
+    show ace at mymovein(0.4, 0.12, 0.25)
+
+    who "...{i}Accidenti.{/i}"
+
+    a "What's your name, Headhunter?"
+
+    who "Guido. Guido Testa. What's it to you?"
+
+    $ headhuntername = "Guido"
+
+    menu:
+        "{color=FF0000}I should know the name of the man I'm going to kill.{/color}":
+                $ headhunterspared = False
+
+                show ace shadow with dissolve
+
+                nvl clear
+
+                nvl show dissolve
+
+                "The headhunter sneers at you, head held high."
+
+                "Your hammer swings down."
+
+                "And nothing gets back up."
+
+                hide gangster with dissolve
+
+                nvl show dissolve
+
+                "{color=FF0000}Your heart shifts towards the path of a killer.{/color}"
+
+                $ killer += 1
+
+                show chiave confused at midright with Dissolve(2.0)
+
+                chiave "...So that's how you fight, huh?"
+
+                a "He forfeited his right to mercy when he attacked you."
+
+                hide chiave with dissolve
+
+        "I want to talk. I want to know where your allies are.":
+            headhunter "Yeah, so do I. Guess those {i}codardi{/i} ran away as soon as they saw you."
+
+            a "Who would they be running to?"
+
+            headhunter "The dons of Piccino, probably. Two real nasty pieces of work. Capone and Gambino."
+
+            show chiave confused with dissolve
+
+            chiave "What? Dons? I haven't heard about this."
+
+            headhunter "They moved in recently. Organized up all the scum like me. They're trying to bring back the {i}famiglie.{/i}"
+
+            show chiave happy
+
+            chiave "What!? That's fantastic!"
+
+            headhunter "Hah. You just say that 'cause you don't know how bad the families ruined our country even before the war. Lateran's no worse."
+
+            show chiave confused
+
+            chiave "I... I refuse to believe that!"
+
+            headhunter "Believe whatever you want. It's no skin off my nose. Now, look, I've got a broken leg here, probably, so if you're going to leave me here, I'd prefer if you just finished me off. Better your hammer than the wolves."
+
+            menu:
+                "{color=FF0000}Finish him.{/color}":
+                    $ headhunterspared = False
+
+                    show ace shadow with dissolve
+
+                    a "As you wish."
+
+                    nvl clear
+
+                    nvl show dissolve
+
+                    "The headhunter bows his head."
+
+                    "Your hammer swings down."
+
+                    "And nothing gets back up."
+
+                    hide gangster with dissolve
+
+                    nvl show dissolve
+
+                    "{color=FF0000}Your heart shifts towards the path of a killer.{/color}"
+
+                    $ killer += 1
+
+                    chiave "...Well, he literally asked for it."
+
+                    hide chiave with dissolve
+
+                "{color=27C4CC}Help him.{/color}":
+                    $ headhunterspared = True
+
+                    a "Nah, we're not leaving you. Can we fit him in the car?"
+
+                    show chiave shocked
+
+                    show aosta surprised left at right
+
+                    show broca surprised at left with vpunch
+
+                    chiave "WHAT!?"
+
+                    a "You recruited me after attacking me. I'm going to recruit him."
+
+                    hide aosta with dissolve
+
+                    hide broca with dissolve
+
+                    headhunter "Appreciate the thought, but you guys--"
+
+                    show chiave happy
+
+                    chiave "Freedom Fighters!"
+
+                    headhunter "Yeah, I'm guessing freedom fighters don't make a whole lot of moolah. Your ideals are great and all, but I'm starving."
+
+                    a "We have food. Piccino should have plenty of abandoned stores and homes, too."
+
+                    headhunter "...What, you want to loot them? Someday this war will be over, and people'll come back to those homes and stores, you know."
+
+                    a "At the very least, we'll take you to Piccino. Like you said, leaving you out here in the wilds is just another death sentence, and I'm not going to kill you."
+
+                    headhunter "...Eh, whatever. Sure, load me up."
+
+                    nvl clear
+
+                    nvl show dissolve
+
+                    "You and Broca work to put the headhunter in the backseat of the car, squishing Aosta up next to the door. Broca's help was likely not needed, as you realize immediately after putting your hand on Guido."
+
+                    "Underneath his starched and worn suit, he is deathly thin."
+
+                    "...You mentally make a note to get this man a cheeseburger."
+
+                    "{color=27C4CC}Your heart shifts towards the path of a doctor.{/color}"
+
+                    $ doctor += 1
+
+                    $ party.append(Operator(HEADHUNTER, 2, True, [ coltellata ]))
+
+    nvl clear
+
+    "You all pile back into the car after replacing the popped tire, and continue onward toward the city."
 
 
 
