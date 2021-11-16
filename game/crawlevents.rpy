@@ -55,7 +55,7 @@
 
             nvl clear
 
-            "Gained 10 CD!"
+            "Gained 10 Dosh!"
 
             $ cash += 10
 
