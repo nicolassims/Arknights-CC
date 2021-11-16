@@ -127,6 +127,8 @@ init python:
             return "A desperate, clumsy swipe that's slightly weaker than a regular attack, but drains a foe's blood, healing you by as much damage as you deal. Strike style."
         elif (id == 3):#coltellata
             return "A cutting stab that strikes twice, once while going in, and once while coming out. Wit style."
+        elif (id == 4):#blazing wire stripper
+            return "An incredibly powerful Arts blast. Hits yourself, and everyone around you, by 3.5 times your Arts power. Arts style."
 
         else:
             return "This shouldn't show up."
@@ -140,6 +142,8 @@ init python:
             return "Grrahhh... Grrhh... Garrrr...?"
         elif (id == HEADHUNTER):
             return "I'm just getting warmed up, {i}cazzone.{/i}"
+        elif (id == CHIAVE):
+            return "Come on already! What's this \"standing around\" junk?"
         else:
             return "This shouldn't show up."
 
@@ -152,6 +156,8 @@ init python:
             return "A moaning, shambling figure. Its constant cries of pain are the only sign it's still alive. However, its unterran endurance works well in battle, regenerating 10% of its max health at the end of each of its turns."
         elif (id == HEADHUNTER):
             return "A ruthless, or perhaps just desperate, hunter armed with little but a knife and his wits. A keen opportunist, against foes with less than half health, all his attacks and skills will have double the amount of hits."
+        elif (id == CHIAVE):
+            return "A hotheaded youth that's known to throw himself out into battle with wild abandon. His powerful explosive arts clear the way for allies. Upon becoming incapacitated, he returns up to twice your current DP gain."
         else:
             return "This shouldn't show up."
 

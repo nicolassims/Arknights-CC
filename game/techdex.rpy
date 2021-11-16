@@ -5,3 +5,4 @@
     techdex.append([2,"Hammer Down",2.5,1,False,ATK,DEF,"Defending",0,1,2,"hammerdown.png",1,"Power",1,1,0,0,0,0])
     techdex.append([3,"Rocklaw",0.8,1,False,ATK,DEF,"Waiting",1,1,1,"rocklaw.png",1,"Strike",1,1,1,1,0,0])
     techdex.append([4,"Coltellata",1,2,False,ATK,DEF,"Waiting",2,1,4,"coltellata.png",1,"Wit",1,1,0,0,0,0])
+    techdex.append([5,"Blazing Wire Stripper",3.5,1,True,ARTS,ARTSDEF,"Waiting",7,1,10,"blazingwirestripper.png",1,"Arts",-2,2,0,0,0,0])

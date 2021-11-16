@@ -66,8 +66,8 @@ screen setup(back):
         imagebutton:
             pos (20 + (i % 4) * (squaresize + spacesize) + squaresize / 2, 0.29 * (math.floor(i / 4.0) + 1) + 0.09)
             anchor (0.5, 1.0)
-            idle Transform(portrait, fit="contain", xysize=(squaresize, 375), ypos=0)
-            hover Transform(portrait, fit="contain", xysize=(squaresize + 50, 425), ypos=25)
+            idle Transform(portrait, fit="contain", xysize=(700, 375), ypos=0)
+            hover Transform(portrait, fit="contain", xysize=(750, 425), ypos=25)
             action [Hide("frontman"), Show("setupstatus", op=op, back=back), Show("go", op=op)]
 
 screen setupstatus(op, back):
@@ -230,7 +230,7 @@ screen battle():
 
             add Transform(Image(op.getparameter(PORTRAITS)[0]),
                           fit="contain",
-                          xysize=(squaresize, 300),
+                          xysize=(750, 300),
                           anchor=(0.5, 1.0),
                           xpos = 20 + i * (squaresize + spacesize) + squaresize / 2,
                           ypos = 800 + squaresize / 2,
@@ -274,23 +274,35 @@ screen targeting(location, minrange, maxrange, aoe, target, deploying):
     textbutton "Back" action Jump("badmove") xalign .5 yalign .4 xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
 
     if (aoe):
-        $ print("HANDLE THIS!")
+        python:
+            targets = []
+            for i, op in enumerate(battlefield):
+                if (op != None and location + minrange <= i <= location + maxrange):
+                    targets.append(i)
 
-    for i, op in enumerate(battlefield):
-        if (((target == "op" and op != None)#if we're targeting an operator, and there's an operator on this battlefield slot...
-            or (target == "empty" and op == None)#or we're targeting an empty square, and there's no operator on this battlefield slot...
-            or target == "both")#or if we're targeting either
-            and (deploying == 0 or deploying > 0 and ownedfield[i] == True and mydp >= deploying + i * 10)#or if not deploying, or if you are deploying, and own that tile, and have enough dp to spend...
-            and location + minrange <= i <= location + maxrange):#and the possible target is within our targeting range...
-            imagebutton:
-                pos (20 + i * (squaresize + spacesize), 800)
-                xysize (squaresize, squaresize)
-                idle (Solid((155, 81, 81, 200)) if target != "empty" else Solid((67, 113, 40, 200)))#choose a red color if you can target an operator
-                hover (Solid((208, 59, 61, 200)) if target != "empty" else Solid((69, 148, 38, 200)))#choose a green color if you can target the ground
-                action Return(value=[i])
+        imagebutton:
+            pos (20 + (location + minrange) * (squaresize + spacesize), 800)
+            xysize ((maxrange - minrange + 1) * (squaresize + spacesize) - 20, squaresize)
+            idle (Solid((155, 81, 81, 200)) if target != "empty" else Solid((67, 113, 40, 200)))#choose a red color if you can target an operator
+            hover (Solid((208, 59, 61, 200)) if target != "empty" else Solid((69, 148, 38, 200)))#choose a green color if you can target the ground
+            action Return(value=targets)
 
-            if (deploying > 0):
-                text str(deploying + i * 10) + "\nDP" size 80 color (255, 255, 255, 255) xpos 50 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
+    else:
+        for i, op in enumerate(battlefield):
+            if (((target == "op" and op != None)#if we're targeting an operator, and there's an operator on this battlefield slot...
+                or (target == "empty" and op == None)#or we're targeting an empty square, and there's no operator on this battlefield slot...
+                or target == "both")#or if we're targeting either
+                and (deploying == 0 or deploying > 0 and ownedfield[i] == True and mydp >= deploying + i * 10)#or if not deploying, or if you are deploying, and own that tile, and have enough dp to spend...
+                and location + minrange <= i <= location + maxrange):#and the possible target is within our targeting range...
+                imagebutton:
+                    pos (20 + i * (squaresize + spacesize), 800)
+                    xysize (squaresize, squaresize)
+                    idle (Solid((155, 81, 81, 200)) if target != "empty" else Solid((67, 113, 40, 200)))#choose a red color if you can target an operator
+                    hover (Solid((208, 59, 61, 200)) if target != "empty" else Solid((69, 148, 38, 200)))#choose a green color if you can target the ground
+                    action Return(value=[i])
+
+                if (deploying > 0):
+                    text str(deploying + i * 10) + "\nDP" size 80 color (255, 255, 255, 255) xpos 50 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
 
 #source is an operator object
 #target is an operator object
@@ -353,10 +365,13 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     damagereport += source.getparameter(CODENAME) + " drains " + str(dmg) + " health! "
 
             if (target.getparameter(HEALTH) <= 0):
-                damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!"
+                damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!\n\n"
                 incapacitated.append(target)
 
-        use showmessage(damagereport, incapacitated)
+    if (damagereport[-2:] == "\n\n"):
+        $ damagereport = damagereport[:-3]
+
+    use showmessage(damagereport, incapacitated)
 
 screen showmessage(message, val=None):
     use battle()

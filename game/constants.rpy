@@ -38,3 +38,4 @@
     KROOS = 2
     ROCKSICK = 3
     HEADHUNTER = 4
+    CHIAVE = 5

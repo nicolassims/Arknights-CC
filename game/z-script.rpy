@@ -1334,6 +1334,8 @@ label start:
 
     $ piccinokills = 0
 
+    $ party.append(Operator(CHIAVE, 1, True, [ Tech(5) ]))
+
     call Crawl(piccinocity, 1, 5, piccinoknowledge, True)
 
     #killer: 3

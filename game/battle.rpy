@@ -146,6 +146,15 @@
                         otherdpgain += points
 
                 for op in incapacitated:
+                    if (op.getparameter(ID) == CHIAVE):#CHIAVE Talent, Chiave's talent
+                        if (op.getparameter(ALLY)):
+                            dpreport = "{b}Chiave lets out a rallying cry as he falls! Gained " + str(mydpgain * 2) + " DP!{/b} "
+                            mydp += mydpgain * 2
+                        else:
+                            dpreport = "{b}Foe Chiave lets out a rallying cry as he falls! Foes gained " + str(otherdpgain * 2) + " DP!{/b} "
+                            otherdp += otherdpgain * 2
+                        talentblurb = renpy.call_screen("showmessage", message=dpreport)
+
                     battlefield[battlefield.index(op)] = None
                     actionlist.remove(op)
                     del op
@@ -163,8 +172,9 @@
                     elif (not actor.getparameter(ALLY) and claim == False):
                         otherdp = min(99, otherdp + battlefieldPoints(i))
 
-                actionlist.pop(0)#this might become a problem someday if an operator can incapacitate themself
-                actionlist.append(actor)
+                if (len(actionlist) > 1 and actor != None):
+                    actionlist.pop(0)
+                    actionlist.append(actor)
 
                 oneAlly = False
                 oneEnemy = False
@@ -174,14 +184,14 @@
                     else:
                         oneEnemy = True
 
+                if (not oneAlly):
+                    renpy.say(a, "...Cut off and surrounded by enemies. Time for another last stand.")
+                    renpy.say("", "Doctor, surely, you're not going to leave it at that, are you? Go on, reload your save. Fight for the dawn.")
+                    MainMenu(confirm=False)()
+
                 if (not oneEnemy):
                     renpy.say(a, "...Secured the battlefield. That looks like a victory to me.")
                     exiting = True
-
-                if (not oneAlly):
-                    renpy.say(a, "...Cut off and surrounded by enemies. Time for another last stand.")
-                    renpy.say("", "Doctor, surely, you're not going to leave it at that, will you? Go on, reload your save. Fight for the dawn.")
-                    MainMenu(confirm=False)()
 
     python:#end of battle
         for op in myOps:
