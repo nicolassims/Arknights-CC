@@ -65,6 +65,10 @@ transform mymovein(timing, start, destination):
 
 label start:
 
+    jump mapsetup
+
+    label aftermaps:
+
     # Declare variables used by this game
     python:
         playerfirstname = "You"
@@ -86,6 +90,8 @@ label start:
         headhunterspared = None
 
         swearing = True
+
+        cash = 0
 
     scene black with Dissolve(2)
 
@@ -1292,7 +1298,6 @@ label start:
     if (headhunterspared):
         "Your new guest falls asleep almost immediately, head pressed against the window as he snores lightly."
 
-
     "Without further ado... you make it to Piccino."
 
     scene city with dissolve
@@ -1340,6 +1345,30 @@ label start:
 
     #killer: 3
     #doctor: 2
+
+    scene city with dissolve
+
+    a "It's quieter out there than I thought it'd be."
+
+    if (piccinokills > 0):
+        a "Mostly just headhunters."
+
+    a "No kids."
+
+    show chiave confused with dissolve
+
+    chiave "Yeah, I don't get it. Last time I was here, kids were running all over the place. Oldies, too. I guess everyone's becoming a headhunter to avoid conscription."
+
+    if (headhunterspared):
+        headhunter "Yeah, it's a great deal. Since everyone's taking advantage of it, we all know the Laterans are going to revoke the deal any day now, but it gets us by today."
+
+    nvl clear
+
+    nvl show dissolve
+
+    "The air suddenly seems struck by an intense stillness, as though everyone in this city block is holding their breath."
+
+    "Your tail twitches, and, were you capable of forming goosebumps, you'd have them."
 
 
 
