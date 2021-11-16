@@ -50,8 +50,11 @@ image aosta nervous left = scaleportrait("chars/aosta/nervousaosta.png", 177, Tr
 image aosta surprised left = scaleportrait("chars/aosta/surprisedaosta.png", 177, True)
 image aosta eyesclosed left = scaleportrait("chars/aosta/eyesclosedaosta.png", 177, True)
 image aosta smile left = scaleportrait("chars/aosta/smileaosta.png", 177, True)
-image blaze shadow = scaleportrait("chars/blaze/shadowblaze.png", 172, True)
-image gangster = scaleportrait("chars/gangster/gangster.png", 184, True)
+image blaze shadow = scaleportrait("chars/blaze/shadowblaze.png", 172)
+image gangster = scaleportrait("chars/gangster/gangster.png", 184)
+image gambino shadow left = scaleportrait("chars/gambino/shadowgambino.png", 189, True)
+image capone shadow = scaleportrait("chars/capone/shadocapone.png", 181)
+
 
 #Transitions
 transform moveleft:
@@ -1357,7 +1360,7 @@ label start:
 
     show chiave confused with dissolve
 
-    chiave "Yeah, I don't get it. Last time I was here, kids were running all over the place. Oldies, too. I guess everyone's becoming a headhunter to avoid conscription."
+    chiave "Yeah, I don't get it. Last time I was here, kids were running all over the place. Oldies, too. But there's a lot more adults just walking around openly now. I guess everyone's becoming a headhunter to avoid conscription."
 
     if (headhunterspared):
         headhunter "Yeah, it's a great deal. Since everyone's taking advantage of it, we all know the Laterans are going to revoke the deal any day now, but it gets us by today."
@@ -1369,6 +1372,19 @@ label start:
     "The air suddenly seems struck by an intense stillness, as though everyone in this city block is holding their breath."
 
     "Your tail twitches, and, were you capable of forming goosebumps, you'd have them."
+
+    show ace shadow with vpunch
+
+    a "Show yourself!"
+
+    show capone shadow at midleft with dissolve
+    show gambino shadow left at midright with dissolve
+
+    
+
+
+
+
 
 
 
