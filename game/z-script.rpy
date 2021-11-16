@@ -1318,7 +1318,7 @@ label start:
 
     broca "Hrmmm. Be safe, Chiave."
 
-    chiave "No problems! We'll be in and out in a flash."
+    chiave "No problems! We'll be in and out in a flash. Hey, %(playerfirstname)s, be careful when cutting through alleyways. There might be more headhunters around, and they like to hide in narrow spaces."
 
     nvl clear
 
