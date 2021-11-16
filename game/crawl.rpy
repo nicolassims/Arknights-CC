@@ -44,7 +44,6 @@ label Crawl(map, startingy, startingx, knowledgemap, new):
 
     while(exit == False):#keep the loop running until a player navigates out
         python:
-            print(str(x) + ", " + str(y))
             #this section just marks your spot, and the eight spots around you,
             #   as "known" in the knowledge map. Will not attempt to mark
             #   exterior walls as known. First section is fully commented, but
