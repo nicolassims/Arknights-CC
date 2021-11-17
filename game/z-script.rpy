@@ -16,6 +16,8 @@ define aosta = DynamicCharacter("aostaname")
 define broca = DynamicCharacter("brocaname")
 define chiave = DynamicCharacter("chiavename")
 define headhunter = DynamicCharacter("headhuntername")
+define gambino = DynamicCharacter("gambinoname")
+define capone = DynamicCharacter("caponename")
 define narrator = nvl_narrator
 
 # Backgrounds
@@ -52,9 +54,14 @@ image aosta eyesclosed left = scaleportrait("chars/aosta/eyesclosedaosta.png", 1
 image aosta smile left = scaleportrait("chars/aosta/smileaosta.png", 177, True)
 image blaze shadow = scaleportrait("chars/blaze/shadowblaze.png", 172)
 image gangster = scaleportrait("chars/gangster/gangster.png", 184)
-image gambino shadow left = scaleportrait("chars/gambino/shadowgambino.png", 189, True)
-image capone shadow = scaleportrait("chars/capone/shadocapone.png", 181)
-
+image gambino shadow = scaleportrait("chars/gambino/shadowgambino.png", 189)
+image gambino happy = scaleportrait("chars/gambino/happygambino.png", 189)
+image gambino = scaleportrait("chars/gambino/gambino.png", 189)
+image gambino angry = scaleportrait("chars/gambino/angrygambino.png", 189)
+image capone shadow left= scaleportrait("chars/capone/shadowcapone.png", 181, True)
+image capone happy left = scaleportrait("chars/capone/happycapone.png", 181, True)
+image capone angry left = scaleportrait("chars/capone/angrycapone.png", 181, True)
+image capone left = scaleportrait("chars/capone/capone.png", 181, True)
 
 #Transitions
 transform moveleft:
@@ -81,6 +88,8 @@ label start:
         brocaname = "Scowly Brunette"
         chiavename = "Shouty Redhead"
         headhuntername = "Headhunter"
+        gambinoname = "Chappy Wolf"
+        caponename = "Wolfy Chap"
 
         doctor = 0
         killer = 0
@@ -1373,14 +1382,139 @@ label start:
 
     "Your tail twitches, and, were you capable of forming goosebumps, you'd have them."
 
+    hide chiave
+
     show ace shadow with vpunch
 
     a "Show yourself!"
 
-    show capone shadow at midleft with dissolve
-    show gambino shadow left at midright with dissolve
+    show capone shadow left at midright with dissolve
+    show gambino shadow at midleft with dissolve
 
-    
+    gambino "Heh heh heh..."
+
+    capone "Heh heh heh..."
+
+    if (headhunterspared):
+        $ censor(headhunter, "Ah, crap, it's the Dons.")
+
+    show capone happy left with dissolve
+    show gambino happy with dissolve
+
+    capone "Well, look at this, Gambino! Seems we've got an outsider in our little city."
+
+    gambino "I've got eyes, Capone. Let's ask him what he wants, huh?"
+
+    $ gambinoname = "Gambino"
+    $ caponename = "Capone"
+
+    capone "Oooh, too direct, Gambino. Besides, I think it's clear what he wants."
+
+    if (headhunterspared):
+        capone "After all, he's got dear Guido with him. Clearly, Guido's bringing him into our {i}famiglia.{/i}"
+
+    elif (piccinokills > 1):
+        show capone angry left
+
+        capone "After all, he killed more than %(piccinokills)s of our crew."
+
+        gambino "Eh. They were just grunts. Now this guy, he looks like something."
+
+    a "What do you want with us?"
+
+    show capone happy left
+
+    capone "Why, we want to help you, {i}compagno{/i}."
+
+    show gambino
+
+    gambino "We saw you digging through the trash. Looking in dumpsters. Picking up worthless {i}garbage{/i}."
+
+    if (headhunterspared):
+        a "(He was definitely looking at Guido when he said that.)"
+
+    capone "So I figures you're looking for something, eh? Well, maybe my Family can do you a favor, and help you find it."
+
+    a "(I don't need to be told what a Family's favor means...)"
+
+    menu:
+        "I don't need your help.":
+            show gambino angry
+
+            $ censor(gambino, "We're {i}offering{/i} our help. Don't be fucking rude.")
+
+            capone "Now, Gambino, I'm sure he just doesn't understand what's in it for him."
+
+            show capone left
+
+            capone "Why don't you explain what you're looking for, and we'll tell you how we can help you?"
+
+        "I would appreciate your help.":
+            capone "Ah, you're very sensible. I like that."
+
+            show capone left
+
+            capone "Why don't you explain what you're looking for, and we'll tell you how we can help you?"
+
+    a "I'm looking for people who will be in danger of conscription when the Laterans come back."
+
+    show capone happy left
+
+    capone "Ah. I guess you haven't heard, then."
+
+    show gambino happy
+
+    gambino "Y'see, me and my blood brother, we went ahead and solved that problem."
+
+    capone "Sure, the Laterans would sweep in every few months and capture anyone they felt could serve the war effort."
+
+    gambino "But we figured somethin' out. Y'see, the Laterans won't come here as long as they get two \"volunteers\" per week. And that's easy, in a city this big."
+
+    capone "Every month, like clockwork, right before the deadline, two of our crew \"volunteers\" for the frontlines."
+
+    gambino "This keeps the Laterans off our back, and minimizes the drain to the city. A few of the boys have been getting busy with all the free time they're getting, and Piccino's population is actually rising again."
+
+    capone "{i}Perfetto.{/i}"
+
+    a "You're giving your own men to the Laterans?"
+
+    show capone angry left
+
+    capone "Hey, no, no. Don't go accusing us of anything untoward. Like I said, they \"volunteered.\""
+
+    show gambino
+
+    gambino "Which brings us to our problem. Y'see, these headhunters you've seen all around the place aren't actually recruiting for the Laterans. Nah, they're recruiting for us."
+
+    capone "And our numbers have been down recently..."
+
+    if (piccinokills > 0):
+        capone "See, you're just one man, but we've already spent more men tryin' to get you than you're worth."
+
+        gambino "It's bad math."
+
+    show capone happy left
+
+    capone "So, look, we'd like to invite you to work with us. Join our {i}famiglia{/i}, eh?"
+
+    gambino "You're a big guy. You bring in a few dozen more guys, and the books'll be open for you."
+
+    a "...You sell your own men off to your nation's oppressor. What guarantee do I have that you won't do the same to me?"
+
+    show capone angry left
+
+    capone "Stop saying that, {i}compagno{/i}."
+
+    gambino "Here's your guarantee. Mafia's honor, if you do one little job for us, we'll help you find what you were looking for and let you go back home."
+
+
+
+
+
+
+
+
+
 
 
 
