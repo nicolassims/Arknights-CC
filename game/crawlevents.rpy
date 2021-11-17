@@ -60,3 +60,61 @@
             $ cash += 10
 
             $ map[y][x] = 0
+
+    elif (mapname == "piccinocityeast"):
+        if eventcode == -2:
+            if crawlMoveCommand == 'L':
+                if (gatedown):
+                    a "There's a gate here, but the gate's open. Guess I can just walk on through."
+
+                elif (sawstation):
+                    a "There's a closed gate here. I bet that station down South would open it up."
+
+                    $ x += 1
+
+                else:
+                    a "There's a closed gate here. Maybe there's a lever somewhere that would open it."
+
+                    $ x += 1
+
+        elif eventcode == -3:
+            if (gatedown):
+                a "There's a guard station with a lever here. The lever is off."
+            else:
+                a "There's a guard station with a lever here. Looks like the lever is on, right now."
+
+                a "Should I flip it?"
+
+                menu:
+                    "Flip it.":
+                        $ gatedown = True
+
+                        who "Hey! You there, stop!"
+
+                        $ censor(a, "Damn, I was spotted...")
+
+                        hide screen buttons
+                        hide screen mini_map_scr
+
+                        python:
+                            enemyparty = [Operator(SKULLHUNTER, 7, False, [ Tech(4) ])]
+
+                        call Battle(party, enemyparty)
+
+                        if (headhunterspared):
+                            show headhunter at midright with dissolve
+
+                            headhunter "Huh, that guy... I think I might be able to copy some of his fancy knife tricks."
+
+                            a "Go ahead."
+
+                            headhunter "...Yeah, I'll have to look into that. Maybe when I've got a bit more experience."
+
+                        call Crawl(piccinocityeast, y, x, piccinoknowledgeeast, False)
+
+                    "Don't.":
+                        a "A little more information wouldn't hurt."
+
+                        $ y -= 1
+
+            $ sawstation = True

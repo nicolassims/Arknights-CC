@@ -53,7 +53,7 @@ image aosta surprised left = scaleportrait("chars/aosta/surprisedaosta.png", 177
 image aosta eyesclosed left = scaleportrait("chars/aosta/eyesclosedaosta.png", 177, True)
 image aosta smile left = scaleportrait("chars/aosta/smileaosta.png", 177, True)
 image blaze shadow = scaleportrait("chars/blaze/shadowblaze.png", 172)
-image gangster = scaleportrait("chars/gangster/gangster.png", 184)
+image headhunter = scaleportrait("chars/headhunter/headhunter.png", 184)
 image gambino shadow = scaleportrait("chars/gambino/shadowgambino.png", 189)
 image gambino happy = scaleportrait("chars/gambino/happygambino.png", 189)
 image gambino = scaleportrait("chars/gambino/gambino.png", 189)
@@ -1104,7 +1104,7 @@ label start:
 
     hide chiave with dissolve
 
-    show gangster with Dissolve(2.0)
+    show headhunter with Dissolve(2.0)
 
     who "Ciao."
 
@@ -1148,11 +1148,11 @@ label start:
 
     show ace at mymovein(0.5, -0.5, 0.12)
 
-    show gangster at mymovein(0.5, 0.5, 0.88)
+    show headhunter at mymovein(0.5, 0.5, 0.88)
 
     call Battle(party, [Operator(HEADHUNTER, 2, False, [ coltellata ])])
 
-    show gangster at mymovein(0.8, 0.88, 0.75)
+    show headhunter at mymovein(0.8, 0.88, 0.75)
 
     show ace at mymovein(0.4, 0.12, 0.25)
 
@@ -1180,7 +1180,7 @@ label start:
 
                 "And nothing gets back up."
 
-                hide gangster with dissolve
+                hide headhunter with dissolve
 
                 nvl show dissolve
 
@@ -1239,7 +1239,7 @@ label start:
 
                     "And nothing gets back up."
 
-                    hide gangster with dissolve
+                    hide headhunter with dissolve
 
                     nvl show dissolve
 
@@ -1471,7 +1471,7 @@ label start:
 
     gambino "But we figured somethin' out. Y'see, the Laterans won't come here as long as they get two \"volunteers\" per week. And that's easy, in a city this big."
 
-    capone "Every month, like clockwork, right before the deadline, two of our crew \"volunteers\" for the frontlines."
+    capone "Every week, like clockwork, right before the deadline, two of our crew \"volunteers\" for the frontlines."
 
     gambino "This keeps the Laterans off our back, and minimizes the drain to the city. A few of the boys have been getting busy with all the free time they're getting, and Piccino's population is actually rising again."
 
@@ -1589,21 +1589,25 @@ label start:
 
     show capone happy left
 
+    capone "So, hey, it'd be great if you could get in there and get out without anyone seeing, but if you need to rough up some of their men, we won't get mad at you."
+
+    gambino "Yeah, and... well, Capone said that you couldn't kill the Don, but if you happen to come across her... get creative, eh?"
+
     $ renpy.say("The Dons", "Don't fail. {i}Arrivederci!{/i}")
 
+    hide gambino with dissolve
 
+    hide capone with dissolve
+
+    $ gatedown = False
+    $ sawstation = False
+
+    call Crawl(piccinocityeast, 13, 14, piccinoknowledgeeast, True)
 
 
 
 
     nvl hide dissolve
-
-
-
-
-    #$ Call("title", title="Chapter 1", subtitle="Dustbreaking Footfalls")
-
-    # These display lines of dialogue.
 
     "{b}END OF DEMO! Thanks for playing!{/b}"
 

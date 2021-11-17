@@ -323,7 +323,7 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
 
     for target in targets:
         python:
-            if (source.getparameter(ID) == HEADHUNTER and target.getparameter(HEALTH) <= target.getparameter(MAXHEALTH) / 2):#HEADHUNTER TALENT, Headhunter's talent
+            if ((source.getparameter(ID) == SKULLHUNTER or source.getparameter(ID) == HEADHUNTER) and target.getparameter(HEALTH) <= target.getparameter(MAXHEALTH) / 2):#HEADHUNTER TALENT, Headhunter's talent
                 damagereport += "{b}Headhunter sees an opening!{/b} "
                 hits *= 2
 
@@ -332,6 +332,10 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER) * hits))
 
             effectivemulti = effectiveness(elements, target.getparameter(ELEMENT))
+
+            if (source.getparameter(SUBCLASS) == "Lord" and battlefield.index(source) - battlefield.index(target) > 1):#if it's a lord's ranged attack, apply modifier
+                atkbuff *= 0.8
+
             power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * 2.5 * atkbuff * effectivemulti
             defense = (target.getparameter(ARTSDEF) if source.getparameter(USESARTS) else target.getparameter(DEF))
 

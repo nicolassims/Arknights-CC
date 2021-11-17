@@ -140,7 +140,7 @@ init python:
             return "Eh? Are we taking a nap on the battlefield? That might be a bit too much, even for me."
         elif (id == ROCKSICK):
             return "Grrahhh... Grrhh... Garrrr...?"
-        elif (id == HEADHUNTER):
+        elif (id == HEADHUNTER or id == SKULLHUNTER):
             return "I'm just getting warmed up, {i}cazzone.{/i}"
         elif (id == CHIAVE):
             return "Come on already! What's this \"standing around\" junk?"
@@ -158,6 +158,8 @@ init python:
             return "A ruthless, or perhaps just desperate, hunter armed with little but a knife and his wits. A keen opportunist, against foes with less than half health, all his attacks and skills will have double the amount of hits."
         elif (id == CHIAVE):
             return "A hotheaded youth that's known to throw himself out into battle with wild abandon. His powerful explosive arts clear the way for allies. Upon becoming incapacitated, he returns up to twice your current DP gain."
+        elif (id == SKULLHUNTER):
+            return "A ruthless hunter armed with a collection of throwing knives and his wits. A keen opportunist, against foes with less than half health, all his attacks and skills will have double the amount of hits. Can make ranged attacks at 80% power."
         else:
             return "This shouldn't show up."
 

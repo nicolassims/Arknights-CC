@@ -39,3 +39,4 @@
     ROCKSICK = 3
     HEADHUNTER = 4
     CHIAVE = 5
+    SKULLHUNTER = 6

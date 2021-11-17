@@ -61,4 +61,38 @@ python:
     piccinoknowledge.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     piccinoknowledge.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 
+    piccinocityeast = []
+    piccinocityeast.name = "piccinocityeast"
+    piccinocityeast.append([0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0])
+    piccinocityeast.append([0,0,0,1,0,0,0,0,0,-2,0,0,0,0,0,1,0,0,0])
+    piccinocityeast.append([0,0,1,0,0,0,0,0,0,-2,0,0,0,0,0,0,1,1,0])
+    piccinocityeast.append([0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1])
+    piccinocityeast.append([1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1])
+    piccinocityeast.append([1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1])
+    piccinocityeast.append([1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,1])
+    piccinocityeast.append([1,0,0,0,0,1,0,1,0,0,0,0,0,1,0,1,0,0,1])
+    piccinocityeast.append([1,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,0,0,1])
+    piccinocityeast.append([1,0,0,1,0,0,1,0,0,0,0,1,0,0,1,0,0,0,1])
+    piccinocityeast.append([1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,0,0,1])
+    piccinocityeast.append([1,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0])
+    piccinocityeast.append([1,0,0,1,0,1,0,0,1,0,0,0,1,0,0,0,1,0,0])
+    piccinocityeast.append([1,-1,-1,1,0,1,-3,-3,1,0,0,0,1,0,0,1,0,0,0])
+    piccinocityeast.append([0,1,1,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0])
+    piccinoknowledgeeast = []
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    piccinoknowledgeeast.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+
 jump aftermaps
