@@ -110,6 +110,8 @@
 
                             headhunter "...Yeah, I'll have to look into that. Maybe when I've got a bit more experience."
 
+                            hide headhunter with dissolve
+
                         call Crawl(piccinocityeast, y, x, piccinoknowledgeeast, False)
 
                     "Don't.":

@@ -10,6 +10,7 @@ init python:
     midleft = Position(xpos = 0.25)
     midright = Position(xpos = 0.75)
 
+define narrator = nvl_narrator
 define who = Character("???")
 define a = DynamicCharacter("playerfirstname")
 define aosta = DynamicCharacter("aostaname")
@@ -18,7 +19,7 @@ define chiave = DynamicCharacter("chiavename")
 define headhunter = DynamicCharacter("headhuntername")
 define gambino = DynamicCharacter("gambinoname")
 define capone = DynamicCharacter("caponename")
-define narrator = nvl_narrator
+define rangers = DynamicCharacter("rangersname")
 
 # Backgrounds
 image black = "#000000"
@@ -33,6 +34,7 @@ image safehouse = Transform("bgs/safehouse.png", xsize=1920, ysize=1080)
 image road = Transform("bgs/road.jpg", xsize=1920, ysize=1080)
 image sunsetroad = Transform("bgs/roadsunset.jpg", xsize=1920, ysize=1080)
 image city = Transform("bgs/city/city.png", xsize=1920, ysize=1080)
+image kidhouse = Transform("bgs/kidhouse.png", xsize=1920, ysize=1080)
 
 # Characters
 image ace = scaleportrait("chars/ace/ace.png", 190)
@@ -63,6 +65,9 @@ image capone shadow left= scaleportrait("chars/capone/shadowcapone.png", 181, Tr
 image capone happy left = scaleportrait("chars/capone/happycapone.png", 181, True)
 image capone angry left = scaleportrait("chars/capone/angrycapone.png", 181, True)
 image capone left = scaleportrait("chars/capone/capone.png", 181, True)
+image rangers = scaleportrait("chars/rangers/rangers.png", 179)
+image rangers thinking = scaleportrait("chars/rangers/thinkingrangers.png", 179)
+
 
 #Transitions
 transform moveleft:
@@ -91,6 +96,7 @@ label start:
         headhuntername = "Headhunter"
         gambinoname = "Chappy Wolf"
         caponename = "Wolfy Chap"
+        rangersname = "Albino Savra"
 
         doctor = 0
         killer = 0
@@ -1599,13 +1605,229 @@ label start:
 
     hide capone with dissolve
 
+    hide ace with dissolve
+
     $ gatedown = False
     $ sawstation = False
 
     call Crawl(piccinocityeast, 13, 14, piccinoknowledgeeast, True)
 
+    nvl clear
 
+    nvl show dissolve
 
+    "You make your way to the storehouse the Dons had pointed you to."
+
+    "You hear many high-pitched chattering voices coming from inside. There's definitely some children here, even if Lisa isn't."
+
+    "You take a deep breath and reach toward the doorknob--but before you make contact, the door opens."
+
+    show rangers with dissolve
+
+    rangers "Oh. Hello, young man. Can I help you?"
+
+    a "I--"
+
+    show chiave shocked at midleft with vpunch
+
+    chiave "Grandpa Rangers!? You're here!? I thought the Laterans had snatched you up!"
+
+    $ rangersname = "Rangers"
+
+    rangers "Eeeh hee hee. No, they passed right over an old sack of bones like me. And quite right, too. I'd never be able to wrap my head around their new-fangled firearm devices."
+
+    show chiave happy
+
+    $ censor(chiave, "That's bullshit, Gramps! Everyone knows that you're still an ace shot with that bow.")
+
+    show rangers thinking
+
+    rangers "Language, m'boy."
+
+    $ censor(chiave, "Shit, sorry.")
+
+    rangers "Well, please, Chiave, come in."
+
+    show rangers
+
+    rangers "You too, young man."
+
+    if (headhunterspared):
+        rangers "And you too, Guido. How's that arrow wound healing up?"
+
+        headhunter "Still infected."
+
+        rangers "Oh, dear. Well, perhaps someone inside can do something about that."
+
+    scene kidhouse with dissolve
+
+    nvl clear
+
+    nvl show dissolve
+
+    "As you make your way into the safehouse, two things strike you."
+
+    "Firstly: someone, or perhaps many someones, has tried very hard to make this place accommodatable for children."
+
+    "The walls are covered in baby-blue wallpaper, and handmade dolls and blankets are lying all over the floor."
+
+    "Secondly: You are practically knee-deep in children the moment you walk through the door."
+
+    nvl clear
+
+    "You are barely able to maneuver, as children, seemingly without fear, dart around and between your legs in the middle of their games of tag and hide-and-seek."
+
+    nvl hide
+
+    show rangers thinking with dissolve
+
+    rangers "Pardon them. Given our circumstances, we didn't think it necessary to impress upon them the importance of personal space."
+
+    a "We? Are you part of the family of the former Don, then?"
+
+    show rangers
+
+    rangers "...Hrrm. You've been talking to the East side family, then."
+
+    show rangers thinking
+
+    show chiave confused at midright with dissolve
+
+    chiave "Whaddya mean, gramps?"
+
+    if (headhunterspared):
+        rangers "...Guido already knows this. And I thank you for keeping quiet about it."
+
+        show headhunter at midleft with dissolve
+
+        headhunter "Eh, fuggedaboutit."
+
+    show rangers
+
+    rangers "Young man. May I have your name?"
+
+    a "%(playerfirstname)s %(playerlastname)s."
+
+    rangers "I see. Well, %(playerfirstname)s, I imagine the twin Dons of the West Side told you that one or the other of the children we have here is a relative of the East Side's Don? A woman of unparalleled Arts prowess?"
+
+    a "Yes."
+
+    show rangers thinking
+
+    rangers "Pure fiction."
+
+    a "Hm?"
+
+    rangers "We have no Don. We have no family. It's just my apprentice and I taking care of several dozen children. We've taken over a clinic, a grocery store, and a movie theater. That's the sum total strength of the West Side Family."
+
+    show chiave shocked
+
+    chiave "What!? Then you're... you're basically...?"
+
+    show rangers
+
+    rangers "Defenseless, besides my ability to tell stories that lead Gambino and Capone to think we're hiding some great power."
+
+    rangers "They've gotten bolder, though. Even if they're only sending an outsider such as yourself to acquire insurance against us, this is merely a prelude to more aggressive actions later on."
+
+    a "They said you want open war with Laterano."
+
+    show rangers thinking
+
+    rangers "I think, looking at the mighty army we have amassed here, you can draw your own conclusions about the truthfulness of that statement."
+
+    show rangers
+
+    rangers "The West Side Dons claim to be working for the betterment of Piccino by avoiding direct conflict with the Laterans, but they're helping them as much as they're helping Piccino."
+
+    rangers "The Laterans would be content with one conscript a month from a city they've already plundered as much as they have Piccino."
+
+    rangers "Their \"two a week\" policy is purely so that they can justify turning the entire adult population of the city against each other as Headhunters."
+
+    rangers "...Which they do, because when one is running blind and scared of their supposed allies, it's very hard to notice what benefits their superior reaps from them."
+
+    if (headhunterspared):
+        rangers "...No offense, Guido."
+
+        $ censor(headhunter, "I knew that already. Why'd you think I never told those bastards about you?")
+
+    show chiave confused
+
+    chiave "But, then... what do we do?"
+
+    rangers "What you came here to do, I imagine. Take as many children from this place as you can. Don't tell me where you're taking them--when we are overrun, I don't want my weakness to betray you."
+
+    rangers "But if we let Gambino and Capone have their way, they'll deplete this city far faster than the Laterans ever could. It's a matter of months before they run out of adults."
+
+    rangers "It's best to get the older children out of here before they start looking like acceptable targets."
+
+    chiave "...We're just supposed to leave you here, gramps?"
+
+    rangers "Oh, I'm one stiff breeze and a bad cough away from dying, anyway. It's the children that deserve a future."
+
+    who "Ra-ng-ers!~ Vermeil stole your bow again!"
+
+    rangers "Ah, excuse me. I think a certain little troublemaker requires my attention."
+
+    hide rangers with moveoutleft
+
+    pause 1.0
+
+    show ace with dissolve
+
+    chiave "We're not just going to let him die, are we? Besides, no way we can transport all these kids to Siracusa."
+
+    if (headhunterspared):
+        headhunter "...What'd you say? What was that name you said?"
+
+        chaive "Our home base. It's a little village called Siracusa."
+
+        headhunter "Oh. ...Carry on."
+
+    chiave "We don't have enough resources to support all these kids. I thought it'd be fine if we brought back twenty or so more kids, but even if we took multiple trips, there's at least two hundred here!"
+
+    chiave "We'd run out of food in weeks. I don't know how quickly we could make more. Aosta would know..."
+
+    a "...We want a more permanent solution, then. Something that makes Gambino and Capone less of a threat."
+
+    if (piccinokills >= 5):
+        chiave "...I don't want to kill any more of them."
+
+        a "Noted."
+
+    a "The way I see it, we have two practical options."
+
+    a "A {color=FF0000}messy way{/color} and a {color=27C4CC}sneaky way{/color}."
+
+    if (piccinokills >= 5):
+        chiave "I think... maybe... I'm really not cut out to make these decisions. Life and death are... a lot more real than I thought they were."
+
+    else:
+        show chiave happy
+
+        chiave "Hey, let's go with the messy way! These traitors deserve it."
+
+        if (headhunterspared):
+            chiave "...Er, no offense, Guido."
+
+        a "Don't be so hasty. At least hear out my plans, first."
+
+    #a "Number one: Work with one of Gambino or Capone's underlings."
+
+    #if (headhunterspared):
+    #    a "Guido here will work for that. No-one knows they basically fired you, do they?"
+
+    #    headhunter "Nah, just the five of us."
+
+    #    headhunter "...That seemed like a lot fewer loose ends before I said it out loud."
+
+    #a "We kill Gambino and Capone, and this underling steps in as the new Don. We negotiate a deal with this new Don that they'll do whatever we tell them, or else we'll replace them just as easily as we put them in power."
+
+    #chiave "...I'm really looking forward to hearing number two."
+
+    #a "We split up Gambino and Capone. Find something that they'll argue about, and turn them against each other. Their family will spli
+
+    
 
     nvl hide dissolve
 
