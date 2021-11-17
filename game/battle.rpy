@@ -155,26 +155,30 @@
                             otherdp = min(otherdp + otherdpgain * 2, 99)
                         talentblurb = renpy.call_screen("showmessage", message=dpreport)
 
+                    if (op == actor):
+                        actor = None
+
                     battlefield[battlefield.index(op)] = None
                     actionlist.remove(op)
                     del op
 
-                if (actor.getparameter(MOVEPOINTS) < 1):#if this unit can't move at least one square yet...
-                    actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) + actor.getparameter(MOV))#increase their move points by the requisite amount
+                if (actor != None):
+                    if (actor.getparameter(MOVEPOINTS) < 1):#if this unit can't move at least one square yet...
+                        actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) + actor.getparameter(MOV))#increase their move points by the requisite amount
 
-                for tech in actor.getparameter(TECHS):
-                    if (tech.getparameter(GAINTYPE) == "Waiting"):
-                        tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
+                    for tech in actor.getparameter(TECHS):
+                        if (tech.getparameter(GAINTYPE) == "Waiting"):
+                            tech.setparameter(POINTS, min(tech.getparameter(COST) * tech.getparameter(CHARGES), tech.getparameter(POINTS) + tech.getparameter(GAINPER)))
 
-                for i, claim in enumerate(ownedfield):
-                    if (actor.getparameter(ALLY) and claim == True):
-                        mydp = min(99, mydp + battlefieldPoints(i))
-                    elif (not actor.getparameter(ALLY) and claim == False):
-                        otherdp = min(99, otherdp + battlefieldPoints(i))
+                    for i, claim in enumerate(ownedfield):
+                        if (actor.getparameter(ALLY) and claim == True):
+                            mydp = min(99, mydp + battlefieldPoints(i))
+                        elif (not actor.getparameter(ALLY) and claim == False):
+                            otherdp = min(99, otherdp + battlefieldPoints(i))
 
-                if (len(actionlist) > 1 and actor != None):
-                    actionlist.pop(0)
-                    actionlist.append(actor)
+                    if (len(actionlist) > 1):
+                        actionlist.pop(0)
+                        actionlist.append(actor)
 
                 oneAlly = False
                 oneEnemy = False
