@@ -58,6 +58,7 @@ image gambino shadow = scaleportrait("chars/gambino/shadowgambino.png", 189)
 image gambino happy = scaleportrait("chars/gambino/happygambino.png", 189)
 image gambino = scaleportrait("chars/gambino/gambino.png", 189)
 image gambino angry = scaleportrait("chars/gambino/angrygambino.png", 189)
+image gambino nervous = scaleportrait("chars/gambino/nervousgambino.png", 189)
 image capone shadow left= scaleportrait("chars/capone/shadowcapone.png", 181, True)
 image capone happy left = scaleportrait("chars/capone/happycapone.png", 181, True)
 image capone angry left = scaleportrait("chars/capone/angrycapone.png", 181, True)
@@ -1507,31 +1508,93 @@ label start:
 
     gambino "Here's your guarantee. Mafia's honor, if you do one little job for us, we'll help you find what you were looking for and let you go back home."
 
+    a "I'll listen to your offer, then decide whether I want to do it."
+
+    show gambino nervous
+
+    gambino "So, here's the thing. Pretty much all the men and women in this city were conscripted. Leaves it nice and open for my Family to move in, you dig?"
+
+    capone "Yeah. But the former Don--former as in before the war--has her own little family that stays on the West side of the city."
+
+    show gambino
+
+    gambino "Now, we're good with working together. As you know, two's company."
+
+    show capone happy left
+
+    capone "But three's a crowd."
+
+    a "You want me to kill the former Don."
+
+    capone "Hah, no, I don't think you could. Her Arts would turn you inside-out before you could blink."
+
+    gambino "But the Don's got a husband, and that husband's got a daughter, and that daughter has a daughter, and we know where that daughter is."
+
+    show capone left
+
+    capone "Of course, she's an innocent child. We're not going to hurt her. But her family wants open war with the Laterans."
+
+    gambino "I like taking the direct route, but even I know that's suicide."
+
+    capone "We don't want the West side thinking we're weak just 'cause we're not charging at the Laterans, crossbows drawn."
+
+    show capone happy left
+
+    capone "So, if you could grab little Lisa for us, that'd be... insurance."
+
+    a "...Little Lisa. She's a child?"
+
+    gambino "Yeah. Most of the kids and old folks in town fled West when we moved in."
+
+    a "(Well, that explains why there's only been headhunters here on the East side...)"
+
+    a "(It might be best to go along with them for now. At the very least, they'll be able to get me to the kids. Once I have them, I can decide if the Dons get Lisa. Either way, all the other kids will come home with me.)"
+
+    show ace
+
+    a "Fine."
+
+    a "Point me in the right direction."
+
+    capone "That's what I like to hear! Knew I had a good feeling about you. Glad our headhunters didn't get you before we could negotiate this deal."
+
+    if (headhunterspared):
+        a "I'll need Guido."
+
+        show capone angry left
+
+        show gambino angry
+
+        pause 2.0
+
+        show capone happy left
+
+        show gambino happy
+
+        a "Sure, sure. Usually, we have a very specific punishment for failure, but we'll just give him to you."
+
+        headhunter "...Thanks, %(playerfirstname)s."
+
+    nvl clear
+
+    nvl show dissolve
+
+    "Gambino and Capone show you on a map of the city where Lisa's safehouse is. Security should be minimal. It's essentially a straight line there and back."
+
+    "...In a way, this irritates you. You were hoping you'd have more time to think about what you'll do."
+
+    "They walk you to the border to the West Side and give you a hearty slap on the back, with some friendly parting words."
+
+    show gambino happy
+
+    show capone happy left
+
+    $ renpy.say("The Dons", "Don't fail. {i}Arrivederci!{/i}")
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    "."
 
     nvl hide dissolve
 
