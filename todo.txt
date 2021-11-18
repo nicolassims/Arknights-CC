@@ -1,4 +1,5 @@
 - Add experience for taking killer paths
+- Define aceop outside of init
 
 ###LATER
 - make sure that allies who can incapacitate themselves are handled properly at the end of the turn
