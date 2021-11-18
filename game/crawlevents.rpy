@@ -44,11 +44,11 @@
                 for i in range(enemycount):
                     enemyparty.append(Operator(HEADHUNTER, renpy.random.randint(4, 8), False, [ Tech(4) ]))
 
-            call Battle(party, enemyparty)
+            call Battle(party, enemyparty) from _call_Battle_1
 
             $ piccinokills += 1
 
-            call Crawl(piccinocity, y, x, piccinoknowledge, False)
+            call Crawl(piccinocity, y, x, piccinoknowledge, False) from _call_Crawl_1
 
         elif (eventcode == -3):
             a "Looks like someone left some cash here... I'll take it."
@@ -99,7 +99,7 @@
                         python:
                             enemyparty = [Operator(SKULLHUNTER, 7, False, [ Tech(4) ])]
 
-                        call Battle(party, enemyparty)
+                        call Battle(party, enemyparty) from _call_Battle_2
 
                         if (headhunterspared):
                             show headhunter at midright with dissolve
@@ -112,7 +112,7 @@
 
                             hide headhunter with dissolve
 
-                        call Crawl(piccinocityeast, y, x, piccinoknowledgeeast, False)
+                        call Crawl(piccinocityeast, y, x, piccinoknowledgeeast, False) from _call_Crawl_2
 
                     "Don't.":
                         a "A little more information wouldn't hurt."
