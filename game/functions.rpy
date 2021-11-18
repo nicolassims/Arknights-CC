@@ -19,7 +19,7 @@ init python:
         elif (hits == 5):
             return " with five hits"
         else:
-            return "ERROR"
+            return " with " + str(hits) + " hits"
 
     def effectiveness(offensetypes, defensetypes):
         effect = 1
@@ -83,7 +83,7 @@ init python:
         #can I deploy
         for op in otherOps:#for every enemy operator
             for i, square in enumerate(battlefield):#for every square on the battlefield
-                if (op.getparameter(COST) + (8 - i) * 10 <= otherdp and square == None):#if you have enough dp to deploy there and the square is unoccupied
+                if (ownedfield[i] == False and op.getparameter(COST) + (8 - i) * 10 <= otherdp and square == None):#if you have enough dp to deploy there and the square is unoccupied
                     return ("deploy", op, i)#return "deploy", the enemy operator being deployed, and the cell they're being deployed to
 
         #can I use a tech
@@ -129,7 +129,10 @@ init python:
             return "A cutting stab that strikes twice, once while going in, and once while coming out. Wit style."
         elif (id == 4):#blazing wire stripper
             return "An incredibly powerful Arts blast. Hits yourself, and everyone around you, by 3.5 times your Arts power. Arts style."
-
+        elif (id == 5):#wolf's fist
+            return "A blindingly-fast flurry of ten punches, each hitting at 20% strength. Can shove a foe back. Strike style."
+        elif (id == 6):#wolf's eye
+            return "An Arts-infused charged shot that does 1.5 times your Arts power. Reduces the hit target's defense to zero until the end of their next turn. Shoot style."
         else:
             return "This shouldn't show up."
 
@@ -144,6 +147,10 @@ init python:
             return "I'm just getting warmed up, {i}cazzone.{/i}"
         elif (id == CHIAVE):
             return "Come on already! What's this \"standing around\" junk?"
+        elif (id == GAMBINO):
+            return "You want me to hang back? Grrr... there's nothin' that survives getting between me and the most direct route to my prey."
+        elif (id == CAPONE):
+            return "The key to winning a battle is patience. I see you know this."
         else:
             return "This shouldn't show up."
 
@@ -160,6 +167,10 @@ init python:
             return "A hotheaded youth that's known to throw himself out into battle with wild abandon. His powerful explosive arts clear the way for allies. Upon becoming incapacitated, he returns up to twice your current DP gain."
         elif (id == SKULLHUNTER):
             return "A ruthless hunter armed with a collection of throwing knives and his wits. A keen opportunist, against foes with less than half health, all his attacks and skills will have double the amount of hits. Can make ranged attacks at 80% power."
+        elif (id == GAMBINO):
+            return "A reckless mafia Don who charges into battle, gaining territory quickly. After incapacitating a foe, his momentum carries him one square forward."
+        elif (id == CAPONE):
+            return "A patient mafia Don who relies on coordinated strikes to bring down even the biggest foes. When attacking a foe that is being blocked by an ally, will hit at 150% of his normal power."
         else:
             return "This shouldn't show up."
 

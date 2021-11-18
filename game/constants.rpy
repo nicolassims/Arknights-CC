@@ -40,3 +40,5 @@
     HEADHUNTER = 4
     CHIAVE = 5
     SKULLHUNTER = 6
+    GAMBINO = 7
+    CAPONE = 8

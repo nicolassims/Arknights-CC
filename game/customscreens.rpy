@@ -187,7 +187,7 @@ screen battle():
         totalspace = spacesize * 10
         squaresize = (screenwidth - totalspace) / 9
 
-    text str(mydp) + " DP\n{size=40}+" + str(mydpgain) + " DP p/turn{/size}" xpos 0.1 xanchor 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
+    text str(mydp) + " DP\n{size=40}+" + str(mydpgain) + "DP p/turn{/size}" xpos 0.1 xanchor 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
     text str(otherdp) + " DP\n{size=40}+" + str(otherdpgain) + "DP p/turn{/size}" xpos 0.9 xanchor 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
 
     for i, op in enumerate(battlefield):
@@ -311,7 +311,7 @@ screen targeting(location, minrange, maxrange, aoe, target, deploying):
 #elements is an array of element strings, usually just one
 #effect is either zero or a tech object
 screen useattack(source, targets, hits, atkbuff, elements, effect):
-    use battle()
+    #use battle()
 
     $ damagereport = ""
 
@@ -367,6 +367,14 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     max = source.getparameter(MAXHEALTH)
                     source.setparameter(HEALTH, min(max, source.getparameter(HEALTH) + dmg * effect.getparameter(EFFECTPOWER1)))
                     damagereport += source.getparameter(CODENAME) + " drains " + str(dmg) + " health! "
+                elif (effectnum == 3):#shoving the foe back. Uses effectpower1 as squares to be pushed back //FIX THIS: for pushing a foe more than one square back
+                    targetpos = battlefield.index(target)
+                    squaresback = effect.getparameter(EFFECTPOWER1)
+                    pushpos = targetpos + (squaresback if source.getparameter(ALLY) else -squaresback)
+                    if (battlefield[pushpos] == None and pushpos >= 0):
+                        damagereport += ("Ally " if source.getparameter(ALLY) else "Foe ") + source.getparameter(CODENAME) + " shoves " + ("ally " if target.getparameter(ALLY) else "foe ") + target.getparameter(CODENAME) + " back! "
+                        battlefield[targetpos] = None
+                        battlefield[pushpos] = target
 
             if (target.getparameter(HEALTH) <= 0):
                 damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!\n\n"

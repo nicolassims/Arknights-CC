@@ -158,13 +158,20 @@
                     if (op == actor):
                         actor = None
 
-                    battlefield[battlefield.index(op)] = None
+                    if (actor != None and actor.getparameter(ID) == GAMBINO):#GAMBINO TALENT, Gambino's talent
+                        battlefield[battlefield.index(op)] = actor
+                        battlefield[actorpos] = None
+                        actorpos = battlefield.index(actor)
+                        ownedfield[actorpos] = actor.getparameter(ALLY)
+                        talentblurb = renpy.call_screen("showmessage", message="{b}Gambino keeps charging forward!{/b}")
+                    else:
+                        battlefield[battlefield.index(op)] = None
+
                     actionlist.remove(op)
                     del op
 
                 if (actor != None):
-                    if (actor.getparameter(MOVEPOINTS) < 1):#if this unit can't move at least one square yet...
-                        actor.setparameter(MOVEPOINTS, actor.getparameter(MOVEPOINTS) + actor.getparameter(MOV))#increase their move points by the requisite amount
+                    actor.setparameter(MOVEPOINTS, min(max(actor.getparameter(MOV), 1), actor.getparameter(MOVEPOINTS) + actor.getparameter(MOV)))#increase their move points by the requisite amount
 
                     for tech in actor.getparameter(TECHS):
                         if (tech.getparameter(GAINTYPE) == "Waiting"):

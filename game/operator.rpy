@@ -27,6 +27,4 @@
     #define specific Operators here.
     aceop = Operator(ACE, 1, True, [ hammerdown ])
 
-    kroosop = Operator(KROOS, 2, True, [ doubletapauto ])
-
     rocksickop = Operator(ROCKSICK, 1, False, [ rocklaw ])

@@ -2027,6 +2027,11 @@ label start:
 
     "The only thing that remains is whether you can execute it."
 
+    $ party.append(Operator(KROOS, 3, True, [ doubletapauto]))
+    $ party.append(Operator(GAMBINO, 5, True, [ Tech(6) ]))
+
+    call Battle(party, [Operator(GAMBINO, 10, False, [ Tech(6) ]), Operator(HEADHUNTER, 1, False, []), Operator(HEADHUNTER, 1, False, []), Operator(HEADHUNTER, 1, False, []), Operator(HEADHUNTER, 1, False, [])])
+
 
 
 
