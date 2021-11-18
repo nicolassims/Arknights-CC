@@ -34,6 +34,7 @@ image safehouse = Transform("bgs/safehouse.png", xsize=1920, ysize=1080)
 image road = Transform("bgs/road.jpg", xsize=1920, ysize=1080)
 image sunsetroad = Transform("bgs/roadsunset.jpg", xsize=1920, ysize=1080)
 image city = Transform("bgs/city/city.png", xsize=1920, ysize=1080)
+image raincity = Transform("bgs/city/raincity.png", xsize=1920, ysize=1080)
 image kidhouse = Transform("bgs/kidhouse.png", xsize=1920, ysize=1080)
 
 # Characters
@@ -72,6 +73,8 @@ image suzuran happy = scaleportrait("chars/suzuran/happysuzuran.png", 137)
 image shamare = scaleportrait("chars/shamare/shamare.png", 138)
 image vermeil = scaleportrait("chars/vermeil/vermeil.png", 153)
 image kroos = scaleportrait("chars/kroos/kroos.png", 154)
+image kroos surprised = scaleportrait("chars/kroos/surprisedkroos.png", 154)
+image kroos happy = scaleportrait("chars/kroos/happykroos.png", 154)
 
 #Transitions
 transform moveleft:
@@ -111,7 +114,7 @@ label start:
 
         rocksickspared = None
         headhunterspared = None
-        messyway = None
+        sneakyway = None
 
         swearing = True
 
@@ -1837,10 +1840,10 @@ label start:
 
     menu:
         "{color=FF0000}Do this the messy way.{/color}":
-            $ messyway = True
+            $ sneakyway = False
 
         "{color=27C4CC}Do this the sneaky way.{/color}":
-            $ messyway = False
+            $ sneakyway = True
 
     nvl clear
 
@@ -1862,6 +1865,8 @@ label start:
 
     show suzuran with dissolve
 
+    pause 1.0
+
     "She greeted you happily as soon as Rangers said Chiave and you could be trusted. You understand that, despite her age, she has incredible talent with Arts."
 
     "You judged that, given her skillsets could be utilized in a supportive role, and her natural skill at Arts, the Laterans might find a use for her. So it's best if they don't find her."
@@ -1871,6 +1876,8 @@ label start:
     "Poveglia Amare, codename \"Shamare,\" was brought on for very similar reasons. Her voodoo-style arts, which she already had an incredible amount of control over, would make her a useful asset even if not on the frontlines."
 
     show shamare at midleft with dissolve
+
+    pause 1.0
 
     "However, in all other aspects, she could be considered the opposite of Suzuran. She scowled at you, and is constantly hiding behind her doll, making clear that \"Morti\" does not like or trust you."
 
@@ -1900,7 +1907,7 @@ label start:
 
     "You were all ready to leave, when..."
 
-    nvl show dissolve
+    nvl hide dissolve
 
     who "Here I am!"
 
@@ -1910,13 +1917,115 @@ label start:
 
     hide vermeil
 
-    show kroos with vpunch
+    show kroos at midleft with vpunch
+
+    pause 1.0
 
     "...A Cautus you had previously assumed was one of the children under Rangers' protection introduced herself."
 
-    "Coco" "Coco Dutch, at ya service! 
+    "Coco" "Hi-hiii~ I'm Coco~ I might be inexperienced, but I'll do the best I can~"
 
+    a "...Rangers, what the hell is this?"
 
+    show rangers thinking at midright with dissolve
+
+    rangers "Well, this is my apprentice. I believe I mentioned her before."
+
+    a "She's basically a child herself."
+
+    "Coco" "Oh, that's mean~! I might be small, but that's just because I don't get enough sleep~!"
+
+    show chiave happy with vpunch
+
+    chiave "Tell me about it! This guy woke us up at 6 AM this morning. 6! AM!"
+
+    hide chiave with dissolve
+
+    show kroos surprised
+
+    "Coco" "Oh, no! That's terrible~! Are you a bad guy after all, Mister?"
+
+    a "She just called me Mister. {i}Shamare{/i} didn't even call me Mister. How old is this girl, Rangers?"
+
+    show kroos
+
+    "Coco" "{i}It's not polite to ask a lady's age.{/i}"
+
+    a "(...Why did I just get a chill up my spine?)"
+
+    a "I... alright. I could use someone who knows what this city's been going through over the past few months. But Rangers, how will you...?"
+
+    show rangers
+
+    rangers "Oh, I can always train up another apprentice. There's a certain little kitten I've got my eye on. I think she'll be very impressive, when she's older."
+
+    a "..."
+
+    show rangers thinking
+
+    rangers "I wish you would stop giving me that expression. I'm really not a pervy old man."
+
+    a "...Sorry."
+
+    hide kroos with dissolve
+
+    show rangers at mymovein(0.5, 0.75, 0.5)
+
+    a "I'll take the kids to the car that Chiave got ready, and then we can head out."
+
+    a "If all goes well, Capone and Gambino should be less of a problem. If not... well, Chiave'll make sure the kids get to Siracusa, at the very least."
+
+    "Child" "Ooooh! You said a bad word!"
+
+    a "Hm?"
+
+    "Child" "My Mommy told me you aren't supposed to say that word!"
+
+    a "(Siracusa? Then, could that be...)"
+
+    a "Rangers, do you know what the name of this country used to be?"
+
+    show rangers thinking
+
+    rangers "I'm... well, I'm afraid my memory isn't quite what it used to be."
+
+    if (headhunterspared):
+        headhunter "Let's just quit yapping about it. I heard the Laterans can tell when we say it."
+
+    a "...Alright. Something to think about in the future, I guess."
+
+    rangers "Good luck, young man. Walk in the dust."
+
+    a "Hm?"
+
+    show rangers
+
+    rangers "Oh, it's an old saying from when I was younger. I forget its meaning, but I quite like how it sounds."
+
+    scene raincity with dissolve
+
+    nvl clear
+
+    nvl show dissolve
+
+    "By the time you leave Rangers' orphanage, the sky has fully darkened, with a heavy downpour of rain soaking you through to the bones."
+
+    if (headhunterspared):
+        "Guido throws his coat over Suzuran's shoulders."
+
+    "Lacking a coat, Chiave spreads his arms like a bat and tries to cover Shamare."
+
+    "You are too focused on what is coming next to worry about saving the children from a bit of water."
+
+    nvl clear
+
+    if (sneakyway):
+        "Your plan is complicated, but well-formed."
+
+    else:
+        "Your plan is simple."
+
+    "The only thing that remains is whether you can execute it."
 
 
 
