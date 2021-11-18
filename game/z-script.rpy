@@ -67,7 +67,11 @@ image capone angry left = scaleportrait("chars/capone/angrycapone.png", 181, Tru
 image capone left = scaleportrait("chars/capone/capone.png", 181, True)
 image rangers = scaleportrait("chars/rangers/rangers.png", 179)
 image rangers thinking = scaleportrait("chars/rangers/thinkingrangers.png", 179)
-
+image suzuran = scaleportrait("chars/suzuran/suzuran.png", 137)
+image suzuran happy = scaleportrait("chars/suzuran/happysuzuran.png", 137)
+image shamare = scaleportrait("chars/shamare/shamare.png", 138)
+image vermeil = scaleportrait("chars/vermeil/vermeil.png", 153)
+image kroos = scaleportrait("chars/kroos/kroos.png", 154)
 
 #Transitions
 transform moveleft:
@@ -107,6 +111,7 @@ label start:
 
         rocksickspared = None
         headhunterspared = None
+        messyway = None
 
         swearing = True
 
@@ -1156,7 +1161,7 @@ label start:
 
     show headhunter at mymovein(0.5, 0.5, 0.88)
 
-    call Battle(party, [Operator(HEADHUNTER, 2, False, [ coltellata ])])
+    call Battle(party, [Operator(HEADHUNTER, 2, False, [ coltellata ])]) from _call_Battle_3
 
     show headhunter at mymovein(0.8, 0.88, 0.75)
 
@@ -1360,7 +1365,7 @@ label start:
 
     $ party.append(Operator(CHIAVE, 1, True, [ Tech(5) ]))
 
-    call Crawl(piccinocity, 1, 5, piccinoknowledge, True)
+    call Crawl(piccinocity, 1, 5, piccinoknowledge, True) from _call_Crawl_3
 
     #killer: 3
     #doctor: 2
@@ -1577,7 +1582,7 @@ label start:
 
         show gambino happy
 
-        a "Sure, sure. Usually, we have a very specific punishment for failure, but we'll just give him to you."
+        capone "Sure, sure. Usually, we have a very specific consequence for failure, but we'll just give him to you."
 
         headhunter "...Thanks, %(playerfirstname)s."
 
@@ -1610,7 +1615,7 @@ label start:
     $ gatedown = False
     $ sawstation = False
 
-    call Crawl(piccinocityeast, 13, 14, piccinoknowledgeeast, True)
+    call Crawl(piccinocityeast, 13, 14, piccinoknowledgeeast, True) from _call_Crawl_4
 
     nvl clear
 
@@ -1778,11 +1783,15 @@ label start:
     chiave "We're not just going to let him die, are we? Besides, no way we can transport all these kids to Siracusa."
 
     if (headhunterspared):
+        show headhunter with dissolve
+
         headhunter "...What'd you say? What was that name you said?"
 
-        chaive "Our home base. It's a little village called Siracusa."
+        chiave "Our home base. It's a little village called Siracusa."
 
         headhunter "Oh. ...Carry on."
+
+        hide headhunter with dissolve
 
     chiave "We don't have enough resources to support all these kids. I thought it'd be fine if we brought back twenty or so more kids, but even if we took multiple trips, there's at least two hundred here!"
 
@@ -1810,7 +1819,107 @@ label start:
         if (headhunterspared):
             chiave "...Er, no offense, Guido."
 
+            headhunter "Nah, I'm scum. No offense taken."
+
         a "Don't be so hasty. At least hear out my plans, first."
+
+    nvl clear
+
+    nvl show dissolve
+
+    "You explain your two plans to Chiave. He seems to be having some difficulty wrapping his head around them, and wishes that Aosta was here."
+
+    "At the end, Chiave leaves the decisions to you."
+
+    "You're very aware of the monumentous nature of this decision."
+
+    "Think this through. Some roads cannot be unwalked."
+
+    menu:
+        "{color=FF0000}Do this the messy way.{/color}":
+            $ messyway = True
+
+        "{color=27C4CC}Do this the sneaky way.{/color}":
+            $ messyway = False
+
+    nvl clear
+
+    "A decision is made."
+
+    "You can only hope that the consequences that lie in wait later on are within your acceptable parameters."
+
+    hide ace with dissolve
+
+    hide chiave with dissolve
+
+    "{i}2 Hours Later...{/i}"
+
+    "You're ready to leave Piccino. In your company are several children that you thought might prove useful to the Lateran war effort."
+
+    nvl clear
+
+    "Lisa Tani. At Chiave's recommendation, you've advised her to operate under the codename \"Suzuran.\""
+
+    show suzuran with dissolve
+
+    "She greeted you happily as soon as Rangers said Chiave and you could be trusted. You understand that, despite her age, she has incredible talent with Arts."
+
+    "You judged that, given her skillsets could be utilized in a supportive role, and her natural skill at Arts, the Laterans might find a use for her. So it's best if they don't find her."
+
+    nvl clear
+
+    "Poveglia Amare, codename \"Shamare,\" was brought on for very similar reasons. Her voodoo-style arts, which she already had an incredible amount of control over, would make her a useful asset even if not on the frontlines."
+
+    show shamare at midleft with dissolve
+
+    "However, in all other aspects, she could be considered the opposite of Suzuran. She scowled at you, and is constantly hiding behind her doll, making clear that \"Morti\" does not like or trust you."
+
+    "You also have some concerns about her outfit, but after lightly threatening Rangers under the assumption he was an old pervert, he maintains that she's just \"weird,\" and chose to dress herself like that."
+
+    nvl clear
+
+    "Your third charge directly asked to join you."
+
+    show vermeil at midright with dissolve
+
+    "Vermeil" "Vermeil, hunter. You won't regret giving work to me."
+
+    a "Vermeil?"
+
+    "Vermeil" "It's the name of the village where this cloak was made. No-one gets my real name. It might let... {i}him{/i} find me..."
+
+    nvl show dissolve
+
+    "Rangers pulls you aside and quietly explains that Vermeil says there's a Lateran agent personally stalking her."
+
+    "Children can have such active imaginations."
+
+    nvl clear
+
+    "In any case, your new pint-sized companions are not vital to your plan. Except, maybe, for Lisa. But if she couldn't handle what you asked of her, there were plenty of backups."
+
+    "You were all ready to leave, when..."
+
+    nvl show dissolve
+
+    who "Here I am!"
+
+    hide suzuran
+
+    hide shamare
+
+    hide vermeil
+
+    show kroos with vpunch
+
+    "...A Cautus you had previously assumed was one of the children under Rangers' protection introduced herself."
+
+    "Coco" "Coco Dutch, at ya service! 
+
+
+
+
+
 
     #a "Number one: Work with one of Gambino or Capone's underlings."
 
@@ -1827,7 +1936,7 @@ label start:
 
     #a "We split up Gambino and Capone. Find something that they'll argue about, and turn them against each other. Their family will spli
 
-    
+
 
     nvl hide dissolve
 
