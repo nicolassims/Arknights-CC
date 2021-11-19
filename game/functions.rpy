@@ -132,7 +132,7 @@ init python:
         elif (id == 5):#wolf's fist
             return "A blindingly-fast flurry of ten punches, each hitting at 20% strength. Can shove a foe back. Strike style."
         elif (id == 6):#wolf's eye
-            return "An Arts-infused charged shot that does 1.5 times your Arts power. Reduces the hit target's defense to zero until the end of their next turn. Shoot style."
+            return "An Arts-infused charged shot that does 1.5 times your Arts power. Reduces the hit target's defense to zero for three turns. Shoot style."
         else:
             return "This shouldn't show up."
 

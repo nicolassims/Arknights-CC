@@ -367,6 +367,16 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     max = source.getparameter(MAXHEALTH)
                     source.setparameter(HEALTH, min(max, source.getparameter(HEALTH) + dmg * effect.getparameter(EFFECTPOWER1)))
                     damagereport += source.getparameter(CODENAME) + " drains " + str(dmg) + " health! "
+
+                elif (effectnum == 2):#stat changing through multiplication. EFFECTPOWER 1 is the stat being affected, EFFECTPOWER 2 is the amount of effect, and EFFECTPOWER 3 is the duration in turns
+                    affectedstat = effect.getparameter(EFFECTPOWER1)
+                    amount = effect.getparameter(EFFECTPOWER2)
+                    duration = effect.getparameter(EFFECTPOWER3)
+                    #format is [operator, stat, amount, multiplication, turnsleft, originalstat]. that's [object, int, float/int, bool/float, int, int]
+                    originstat = target.getparameter(affectedstat)
+                    target.setparameter(affectedstat, originstat * amount)
+                    buffs.append([target, affectedstat, amount, True, duration, originstat])
+
                 elif (effectnum == 3):#shoving the foe back. Uses effectpower1 as squares to be pushed back //FIX THIS: for pushing a foe more than one square back
                     targetpos = battlefield.index(target)
                     squaresback = effect.getparameter(EFFECTPOWER1)

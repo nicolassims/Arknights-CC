@@ -10,6 +10,7 @@
 
         ops = copy.deepcopy(myOps)
 
+        buffs = []#format is [operator, stat, amount, multiplication, turnsleft, originalstat]. that's [object, int, float/int, bool/float, int, int]
         actionlist = []
         battlefield = [None, None, None, None, None, None, None, None, None]
         ownedfield = [True, None, None, None, None, None, None, None, False]#cycles through None, True, and False
@@ -203,6 +204,25 @@
                 if (not oneEnemy):
                     renpy.say(a, "...Secured the battlefield. That looks like a victory to me.")
                     exiting = True
+
+                #format is [operator, stat, amount, multiplication, turnsleft, originalstat]. that's [object, int, float/int, bool, int, int]
+                for i, buff in enumerate(buffs):
+                    if (buff[0] != None):
+                        buff[4] -= 1#increment the buff
+                        if (buff[4] < 0):#revert the buff
+                            if (buff[3]):
+                                if (buff[2] == 0):
+                                    buff[0].setparameter(buff[1], buff[5])
+                                else:
+                                    buff[0].setparameter(buff[1], buff[0].getparameter(buff[1]) / buff[2])
+                            else:
+                                buff[0].setparameter(buff[1], buff[0].getparameter(buff[1]) - buff[2])
+
+                            del buff
+
+                    else:
+                        #remove it
+                        del buff
 
     python:#end of battle
         for op in myOps:
