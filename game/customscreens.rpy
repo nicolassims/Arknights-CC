@@ -374,8 +374,11 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     duration = effect.getparameter(EFFECTPOWER3)
                     #format is [operator, stat, amount, multiplication, turnsleft, originalstat]. that's [object, int, float/int, bool/float, int, int]
                     originstat = target.getparameter(affectedstat)
-                    target.setparameter(affectedstat, originstat * amount)
+                    newstat = originstat * amount
+                    target.setparameter(affectedstat, newstat)
                     buffs.append([target, affectedstat, amount, True, duration, originstat])
+                    damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + "'s " + statstring(affectedstat) + " was " + ("increased" if effectnum > 1 else "reduced") + " to " + string(newstat) + "! "
+
 
                 elif (effectnum == 3):#shoving the foe back. Uses effectpower1 as squares to be pushed back //FIX THIS: for pushing a foe more than one square back
                     targetpos = battlefield.index(target)

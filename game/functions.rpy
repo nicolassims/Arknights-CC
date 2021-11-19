@@ -195,3 +195,17 @@ init python:
             return 1
         else:
             return fibonacci(ind-1) + fibonacci(ind-2)
+
+    def statstring(stat):
+        if (stat == ATK):
+            return "attack"
+        elif (stat == DEF):
+            return "defense"
+        elif (stat == ARTS):
+            return "arts power"
+        elif (stat == ARTSDEF):
+            return "arts defense"
+        elif (stat == MOV):
+            return "movement"
+        else:
+            return "ERROR"

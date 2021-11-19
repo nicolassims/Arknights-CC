@@ -2031,7 +2031,7 @@ label start:
     $ party.append(Operator(GAMBINO, 5, True, [ Tech(6) ]))
     $ party.append(Operator(CAPONE, 5, True, [ Tech(7) ]))
 
-    call Battle(party, [Operator(GAMBINO, 500, False, [ Tech(6) ]), Operator(HEADHUNTER, 1, False, []), Operator(HEADHUNTER, 1, False, []), Operator(HEADHUNTER, 1, False, []), Operator(HEADHUNTER, 1, False, [])])
+    call Battle(party, [Operator(GAMBINO, 10, False, [ Tech(6) ]), Operator(CAPONE, 10, False, [ Tech(7) ])])
 
 
 
