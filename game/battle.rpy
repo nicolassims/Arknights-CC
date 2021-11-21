@@ -1,4 +1,4 @@
-﻿label Battle(myOps, otherOps):
+﻿label Battle(myOps, otherOps, passedbattlefield=None, passedownedfield=None):
     window hide#Ren'Py function that hides the built-in gui
 
     play music "audio/battle.mp3" loop
@@ -12,8 +12,14 @@
 
         buffs = []#format is [operator, stat, amount, multiplication, turnsleft, originalstat]. that's [object, int, float/int, bool/float, int, int]
         actionlist = []
-        battlefield = [None, None, None, None, None, None, None, None, None]
-        ownedfield = [True, None, None, None, None, None, None, None, False]#cycles through None, True, and False
+        if (passedbattlefield == None):
+            battlefield = [None, None, None, None, None, None, None, None, None]
+        else:
+            battlefield = passedbattlefield
+        if (passedownedfield == None):
+            ownedfield = [True, None, None, None, None, None, None, None, False]#cycles through None, True, and False
+        else:
+            ownedfield = passedownedfield
         mydp = 0
         otherdp = 0
         mydpgain = 2
@@ -28,19 +34,27 @@
         renpy.show_screen("frontman")#display the prompt to select the frontman for the battle
         first = renpy.call_screen("setup", back=False)#select the frontman
         battlefield[0] = first#assign the chosen frontman to square 1
-        battlefield[8] = otherOps[0]#assign the enemy's frontman to square 9
         myCost = first.getparameter(COST)#get the DP saved by choosing this frontman
-        otherCost = otherOps[0].getparameter(COST)#get the DP saved by the enemy
-        #It's your turn if you saved less than the foe, or if you saved the same amount, but got lucky
-        actionlist.append(first)
-        if (myCost < otherCost or (myCost == otherCost and renpy.random.random() <= .5)):
-            actionlist.append(otherOps[0])
+        if (len(otherOps) != 0):
+            otherCost = otherOps[0].getparameter(COST)#get the DP saved by the enemy
+            #It's your turn if you saved less than the foe, or if you saved the same amount, but got lucky
+            actionlist.append(first)
+            if (myCost < otherCost or (myCost == otherCost and renpy.random.random() <= .5)):
+                actionlist.append(otherOps[0])
+            else:
+                actionlist.insert(0, otherOps[0])
+            battlefield[8] = otherOps[0]#assign the enemy's frontman to square 9
+            otherOps.remove(battlefield[8])#remove your enemy's frontman from your enemy's party
+            battlefield[8].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
         else:
-            actionlist.insert(0, otherOps[0])
-        ops.remove(battlefield[0])#remove your frontman from your party
-        otherOps.remove(battlefield[8])#remove your enemy's frontman from your enemy's party
+            otherCost = 99
+            for op in battlefield:
+                if (op != None):
+                    actionlist.append(op)
+
         battlefield[0].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
-        battlefield[8].setparameter(MOVEPOINTS, 1)#set movement to 1, so you don't have to skip your first turn
+        ops.remove(battlefield[0])#remove your frontman from your party
+
 
         renpy.suspend_rollback(False)
 

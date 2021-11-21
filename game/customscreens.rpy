@@ -377,17 +377,21 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     newstat = originstat * amount
                     target.setparameter(affectedstat, newstat)
                     buffs.append([target, affectedstat, amount, True, duration, originstat])
-                    damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + "'s " + statstring(affectedstat) + " was " + ("increased" if effectnum > 1 else "reduced") + " to " + string(newstat) + "! "
+                    damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + "'s " + statstring(affectedstat) + " was " + ("increased" if effectnum > 1 else "reduced") + " to " + str(newstat) + "! "
 
 
                 elif (effectnum == 3):#shoving the foe back. Uses effectpower1 as squares to be pushed back //FIX THIS: for pushing a foe more than one square back
-                    targetpos = battlefield.index(target)
-                    squaresback = effect.getparameter(EFFECTPOWER1)
-                    pushpos = targetpos + (squaresback if source.getparameter(ALLY) else -squaresback)
-                    if (battlefield[pushpos] == None and pushpos >= 0):
-                        damagereport += ("Ally " if source.getparameter(ALLY) else "Foe ") + source.getparameter(CODENAME) + " shoves " + ("ally " if target.getparameter(ALLY) else "foe ") + target.getparameter(CODENAME) + " back! "
-                        battlefield[targetpos] = None
-                        battlefield[pushpos] = target
+                    if (target.getparameter(ID) != ACE):
+                        targetpos = battlefield.index(target)
+                        squaresback = effect.getparameter(EFFECTPOWER1)
+                        pushpos = targetpos + (squaresback if source.getparameter(ALLY) else -squaresback)
+                        if (battlefield[pushpos] == None and pushpos >= 0):
+                            damagereport += ("Ally " if source.getparameter(ALLY) else "Foe ") + source.getparameter(CODENAME) + " shoves " + ("ally " if target.getparameter(ALLY) else "foe ") + target.getparameter(CODENAME) + " back! "
+                            battlefield[targetpos] = None
+                            battlefield[pushpos] = target
+                    else:
+                        damagereport += "{b}Ace cannot be moved back!{/b} "#ACE TALENT, Ace's talent
+
 
             if (target.getparameter(HEALTH) <= 0):
                 damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!\n\n"
