@@ -1,5 +1,4 @@
 - Add experience for taking killer paths
-- Define aceop outside of init
 
 ###LATER
 - Define different kinds of AI

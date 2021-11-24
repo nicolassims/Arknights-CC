@@ -108,7 +108,7 @@ label start:
         doctor = 0
         killer = 0
 
-        party = [aceop]
+        party = [Operator(ACE, 1, True, [ hammerdown ])]
 
         inventory = []
 
@@ -2031,7 +2031,7 @@ label start:
     $ party.append(Operator(GAMBINO, 5, True, [ Tech(6) ]))
     $ party.append(Operator(CAPONE, 5, True, [ Tech(7) ]))
 
-    call Battle([Operator(ACE, 9, True, [ hammerdown ]), Operator(KROOS, 3, True, [ doubletapauto]), Operator(CHIAVE, 5, True, [ Tech(5) ])], 
+    call Battle([Operator(ACE, 9, True, [ hammerdown ]), Operator(KROOS, 3, True, [ doubletapauto]), Operator(CHIAVE, 5, True, [ Tech(5) ])],
         [],
         [None, None, None, None, None, None, None, Operator(GAMBINO, 5, False, [ Tech(6) ]), Operator(CAPONE, 5, False, [ Tech(7) ])],
         [True, None, None, None, None, None, None, False, False])

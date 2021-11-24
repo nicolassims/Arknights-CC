@@ -23,8 +23,3 @@
             self.parameters.append(0)# set MOVEPOINTS
             self.parameters.append(0)# set EXPERIENCE
             self.parameters.append(self.parameters[HEALTH])#set MAXHEALTH
-
-    #define specific Operators here.
-    aceop = Operator(ACE, 1, True, [ hammerdown ])
-
-    rocksickop = Operator(ROCKSICK, 1, False, [ rocklaw ])
