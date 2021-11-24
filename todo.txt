@@ -1,4 +1,6 @@
 - Add experience for taking killer paths
+- Add music up to end of Piccino arc
+- Add special sound effect and notification when a new party member joins the team
 
 ###LATER
 - Define different kinds of AI
