@@ -323,6 +323,9 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
 
     for target in targets:
         python:
+            targetpos = battlefield.index(target)
+            sourcepos = battlefield.index(source)
+
             if ((source.getparameter(ID) == SKULLHUNTER or source.getparameter(ID) == HEADHUNTER) and target.getparameter(HEALTH) <= target.getparameter(MAXHEALTH) / 2):#HEADHUNTER TALENT, Headhunter's talent
                 damagereport += "{b}Headhunter sees an opening!{/b} "
                 hits *= 2
@@ -333,8 +336,15 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
 
             effectivemulti = effectiveness(elements, target.getparameter(ELEMENT))
 
-            if (source.getparameter(SUBCLASS) == "Lord" and battlefield.index(source) - battlefield.index(target) > 1):#if it's a lord's ranged attack, apply modifier
+            if (source.getparameter(SUBCLASS) == "Noble" and battlefield.index(source) - battlefield.index(target) > 1):#if it's a noble's ranged attack, apply modifier
                 atkbuff *= 0.8
+
+            if (source.getparameter(ID) == CAPONE):#CAPONE TALENT, Capone's talent
+                allyspace = targetpos + (-1 if source.getparameter(ALLY) else 1)
+                print(allyspace)
+                if (battlefield[allyspace] != None and battlefield[allyspace].getparameter(ALLY) == source.getparameter(ALLY)):
+                    damagereport += "{b}Capone blasts the locked-down target!{/b} "
+                    atkbuff *= 1.5
 
             power = (source.getparameter(ARTS) if source.getparameter(USESARTS) else source.getparameter(ATK)) * 2.5 * atkbuff * effectivemulti
             defense = (target.getparameter(ARTSDEF) if source.getparameter(USESARTS) else target.getparameter(DEF))
@@ -379,7 +389,6 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     buffs.append([target, affectedstat, amount, True, duration, originstat])
                     damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + "'s " + statstring(affectedstat) + " was " + ("increased" if effectnum > 1 else "reduced") + " to " + str(newstat) + "! "
 
-
                 elif (effectnum == 3):#shoving the foe back. Uses effectpower1 as squares to be pushed back //FIX THIS: for pushing a foe more than one square back
                     if (target.getparameter(ID) != ACE):
                         targetpos = battlefield.index(target)
@@ -391,7 +400,6 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                             battlefield[pushpos] = target
                     else:
                         damagereport += "{b}Ace cannot be moved back!{/b} "#ACE TALENT, Ace's talent
-
 
             if (target.getparameter(HEALTH) <= 0):
                 damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + " incapacitated!\n\n"
