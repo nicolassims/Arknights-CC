@@ -1411,7 +1411,7 @@ label start:
 
     gambino "Heh heh heh..."
 
-    capone "Heh heh heh..."
+    capone "Hah hah hah..."
 
     if (headhunterspared):
         $ censor(headhunter, "Ah, crap, it's the Dons.")
@@ -2036,6 +2036,100 @@ label start:
 
     #$ party.append(Operator(GAMBINO, 5, True, [ Tech(6) ]))
     #$ party.append(Operator(CAPONE, 5, True, [ Tech(7) ]))
+
+    nvl hide dissolve
+
+    show capone shadow left at midright with dissolve
+    show gambino shadow at midleft with dissolve
+    show ace with dissolve
+
+    gambino "Heh heh heh..."
+
+    capone "Hah hah hah..."
+
+    a "Capone. Gambino."
+
+    show gambino happy
+    show capone happy left
+
+    gambino "I see you've got the girl! Nice, nice. Ciao, little Lisa."
+
+    capone "Well done, {i}compagno{/i}. See, Gambino? I told you he wasn't going to betray us. You need to have a bit more faith in my plans."
+
+    gambino "I would, if you didn't have a hard-on for taking the most complicated path to any goal. I could've charged in there myself and gotten Lisa out months ago."
+
+    show capone angry left
+
+    capone "And if you got shot, {i}idiota{/i}? Half the men are loyal to you."
+
+    show gambino angry
+
+    gambino "More than half. You know that they're tired of waiting around for your \"schemes\" to unfold, yeah?"
+
+    capone "Sure, they're impatient and thickheaded, so it's no wonder they'd rather follow you. But you'd get them all killed!"
+
+    gambino "As opposed to you, who'd get them killed slowly, which is {i}better{/i}, eh?"
+
+    a "Ahem."
+
+    capone "What!? Can't you see we're--"
+
+    show gambino happy
+    show capone happy left
+
+    capone "Oh, of course. What sort of impression are we giving our guest, hm? Please, hand over Lisa, {i}compagno{/i}, and we'll help you find... whatever you were looking for."
+
+    $ sneakyway = False
+
+    if (sneakyway):
+        a "Sure. Just one question."
+
+
+    else:
+        a "No."
+
+        show capone angry left
+        show gambino angry
+
+        capone "Eh, I must've misheard you. You want to run that by me again?"
+
+        gambino "You're not backing out on our deal now, are you? 'Cause that's a bad idea."
+
+        a "I'm here to kill you. Lisa will be leaving with me. And we'll appoint someone else as the don of Piccino. Your men will gladly accept a new boss who doesn't sell them to the Laterans."
+
+        capone "..."
+
+        gambino "..."
+
+        show capone happy left
+        show gambino happy
+
+        capone "You disappoint me, \"Ace.\" I really thought that you'd make a good addition to our {i}famiglia.{/i} I guess I should've listened to Gambino, eh?"
+
+        gambino "That's what I've been trying to tell you, {i}fratello{/i}. But, eh, a lesson learned late is still a lesson learned, eh?"
+
+        capone "Seems even an old wolf like me can learn some new tricks."
+
+        gambino "Speaking of tricks, I'm sometimes known as the attack dog of the Piccino Famiglia."
+
+        capone "He knows a trick or two."
+
+        gambino "Wanna see?"
+
+        show capone angry left
+        show gambino angry
+
+        capone "{i}Sic 'em.{/i}"
+
+        call Battle(party,
+            [],
+            [None, None, None, None, None, None, None, Operator(GAMBINO, 5, False, [ Tech(6) ]), Operator(CAPONE, 5, False, [ Tech(7) ])],
+            [True, None, None, None, None, None, None, False, False])
+
+        a "Battle over..."
+
+
+
 
     call Battle([Operator(ACE, 9, True, [ hammerdown ]), Operator(KROOS, 3, True, [ doubletapauto]), Operator(CHIAVE, 5, True, [ Tech(5) ])],
         [],
