@@ -387,7 +387,7 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
                     newstat = originstat * amount
                     target.setparameter(affectedstat, newstat)
                     buffs.append([target, affectedstat, amount, True, duration, originstat])
-                    damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + "'s " + statstring(affectedstat) + " was " + ("increased" if effectnum > 1 else "reduced") + " to " + str(newstat) + "! "
+                    damagereport += ("Ally " if target.getparameter(ALLY) else "Foe ") + target.getparameter(CODENAME) + "'s " + statstring(affectedstat) + " was " + ("increased" if amount > 1 else "reduced") + " to " + str(newstat) + "! "
 
                 elif (effectnum == 3):#shoving the foe back. Uses effectpower1 as squares to be pushed back //FIX THIS: for pushing a foe more than one square back
                     if (target.getparameter(ID) != ACE):
