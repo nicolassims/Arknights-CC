@@ -1314,7 +1314,9 @@ label start:
 
                     $ doctor += 1
 
-                    $ party.append(Operator(HEADHUNTER, 2, True, [ coltellata ]))
+                    $ headhunterop = Operator(HEADHUNTER, 2, True, [ coltellata ])
+                    $ renpy.call_screen("Newmember", op=headhunterop)
+                    $ party.append(headhunterop)
 
     nvl clear
 
@@ -1365,8 +1367,9 @@ label start:
     hide broca
 
     $ piccinokills = 0
-
-    $ party.append(Operator(CHIAVE, 1, True, [ Tech(5) ]))
+    $ chiaveop = Operator(CHIAVE, 1, True, [ Tech(5) ])
+    $ renpy.call_screen("Newmember", op=chiaveop)
+    $ party.append(chiaveop)
 
     call Crawl(piccinocity, 1, 5, piccinoknowledge, True) from _call_Crawl_3
 
@@ -1925,6 +1928,10 @@ label start:
 
     "Coco" "Hi-hiii~ I'm Coco~ I might be inexperienced, but I'll do the best I can~"
 
+    $ kroosop = Operator(KROOS, 3, True, [ doubletapauto])
+    $ renpy.call_screen("Newmember", op=kroosop)
+    $ party.append(kroosop)
+
     a "...Rangers, what the hell is this?"
 
     show rangers thinking at midright with dissolve
@@ -2027,9 +2034,8 @@ label start:
 
     "The only thing that remains is whether you can execute it."
 
-    $ party.append(Operator(KROOS, 3, True, [ doubletapauto]))
-    $ party.append(Operator(GAMBINO, 5, True, [ Tech(6) ]))
-    $ party.append(Operator(CAPONE, 5, True, [ Tech(7) ]))
+    #$ party.append(Operator(GAMBINO, 5, True, [ Tech(6) ]))
+    #$ party.append(Operator(CAPONE, 5, True, [ Tech(7) ]))
 
     call Battle([Operator(ACE, 9, True, [ hammerdown ]), Operator(KROOS, 3, True, [ doubletapauto]), Operator(CHIAVE, 5, True, [ Tech(5) ])],
         [],
