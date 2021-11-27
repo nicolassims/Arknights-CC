@@ -201,6 +201,7 @@ screen battle():
 
         text str(battlefieldPoints(i)) size 180 color (0, 0, 0, 60) xpos 60 + i * (squaresize + spacesize) ypos 800 xysize (squaresize, squaresize)
 
+    for i, op in enumerate(battlefield):
         if (op != None):
             bar:
                 xpos 20 + i * (squaresize + spacesize) + squaresize / 2
@@ -235,6 +236,25 @@ screen battle():
                           xpos = 20 + i * (squaresize + spacesize) + squaresize / 2,
                           ypos = 800 + squaresize / 2,
                           xzoom = 1 if op.getparameter(ALLY) else -1)
+
+            $ minrange = op.getparameter(MINRANGE)
+            $ maxrange = op.getparameter(MAXRANGE)
+            imagebutton:
+                anchor (0.5, 1.0)
+                pos (20 + i * (squaresize + spacesize) + squaresize / 2, 800 + squaresize / 2)
+                xysize (squaresize, 300)
+                idle Transform(Solid((0, 0, 0, 200)), pos=(0, 0))
+                hover Transform(Solid((208, 59, 61, 100)), pos=(200, 200))
+                action NullAction()
+
+            #$ minrange = op.getparameter(MINRANGE)
+            #$ maxrange = op.getparameter(MAXRANGE)
+            #imagebutton:
+            #    pos (20 + (i + (minrange if op.getparameter(ALLY) else -maxrange)) * (squaresize + spacesize), 800)
+            #    xysize ((maxrange - minrange + 1) * (squaresize + spacesize) - 20, squaresize)
+            #    idle Solid((67, 113, 40, 100))#choose a red color if you can target an operator
+            #    hover Solid((208, 59, 61, 100))#choose a green color if you can target the ground
+            #    action NullAction()
 
             text orderstring(actionlist.index(op)) xanchor 0.5 xpos 20 + i * (squaresize + spacesize) + squaresize / 2 ypos 800 + squaresize / 2 - 50 outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
 
