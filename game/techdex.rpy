@@ -7,4 +7,4 @@
     techdex.append([4,"Coltellata",1,2,False,ATK,DEF,"Waiting",2,1,4,"coltellata.png",1,"Wit",1,1,0,0,0,0])
     techdex.append([5,"Blazing Wire Stripper",3.5,1,True,ARTS,ARTSDEF,"Waiting",7,1,10,"blazingwirestripper.png",1,"Arts",-2,2,0,0,0,0])
     techdex.append([6,"Wolf's Fist",0.2,10,False,ATK,DEF,"Waiting",0,1,3,"wolfsfist.png",1,"Strike",1,1,3,1,0,0])
-    techdex.append([7,"Wolf's Eye",1.5,1,False,ARTS,ARTSDEF,"Waiting",3,1,5,"wolfseye.png",1,"Shoot",1,3,2,6,0,3])
+    techdex.append([7,"Wolf's Eye",1.5,1,False,ARTS,ARTSDEF,"Waiting",3,2,4,"wolfseye.png",1,"Shoot",1,3,2,6,0,3])
