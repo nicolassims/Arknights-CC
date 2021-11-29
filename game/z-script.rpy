@@ -2172,7 +2172,7 @@ label start:
 
         gambino "Oh, yeah? And what would change tomorrow if you disappeared today? Do the men need to be told to do the same neighborhood shakedowns they've been doing for the past two months? You're through."
 
-        a "(Now's my chance. I've become the kingmaker. I can goad either of them into attacking the other. The only question left is.... who would be a better ally in the future?"
+        a "(Now's my chance. I've become the kingmaker. I can goad either of them into attacking the other. The only question left is.... who would be a better ally in the future?)"
 
         a "(Capone is cunning. He can help with strategies and tactical plays. He probably has greater knowledge about the nations of this world, as well as the political situations this Lateran war has caused.)"
 
@@ -2543,17 +2543,17 @@ label start:
 
         nvl clear
 
-        "The streets seem empty. You can see gangsters rushing out of your way out of the corner of your eye. There's a power vacuum here, ripe and ready to be stepped into. Without problems, you find and abandoned car, and make your way back to the rendezvous point, where Aosta and Broca are waiting."
+        "The streets seem empty. You can see gangsters rushing out of your way out of the corner of your eye. There's a power vacuum here, ripe and ready to be stepped into. Without problems, you find an abandoned car, and make your way back to the rendezvous point, where Aosta and Broca are waiting."
 
     "Their discouragement at being unable to find a single child is quickly dispelled as you explain what's happened on your side."
 
     "They do not believe you even for a moment, though the veracity of your story isn't helped by Chiave's enthusiastic embellishments."
 
     if (headhunterspared):
-        "You allow them to disbelieve. They'll see the truth eventually. For now, the three kids, the three gang members, Guido, and you, all pile into your respective vehicles, and begin the drive back to Siracusa."
+        "You allow them to disbelieve. They'll see the truth eventually. For now, the three kids, the three freedom fighters, Guido, and you, all pile into your respective vehicles, and begin the drive back to Siracusa."
 
     else:
-        "You allow them to disbelieve. They'll see the truth eventually. For now, the three kids, the three gang members, and you, all pile into your respective vehicles, and begin the drive back to Siracusa."
+        "You allow them to disbelieve. They'll see the truth eventually. For now, the three kids, the three freedom fighters, and you, all pile into your respective vehicles, and begin the drive back to Siracusa."
 
     scene sunsetroad with dissolve
 
@@ -2569,8 +2569,6 @@ label start:
 
     #killer: 4
     #doctor: 3
-
-    nvl show dissolve
 
     nvl clear
 
