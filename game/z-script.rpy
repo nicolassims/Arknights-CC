@@ -71,6 +71,7 @@ image rangers = scaleportrait("chars/rangers/rangers.png", 179)
 image rangers thinking = scaleportrait("chars/rangers/thinkingrangers.png", 179)
 image suzuran = scaleportrait("chars/suzuran/suzuran.png", 137)
 image suzuran happy = scaleportrait("chars/suzuran/happysuzuran.png", 137)
+image suzuran surprised = scaleportrait("chars/suzuran/surprisedsuzuran.png", 137)
 image shamare = scaleportrait("chars/shamare/shamare.png", 138)
 image vermeil = scaleportrait("chars/vermeil/vermeil.png", 153)
 image kroos = scaleportrait("chars/kroos/kroos.png", 154)
@@ -1218,7 +1219,7 @@ label start:
 
             a "Who would they be running to?"
 
-            headhunter "The dons of Piccino, probably. Two real nasty pieces of work. Capone and Gambino."
+            headhunter "The Dons of Piccino, probably. Two real nasty pieces of work. Capone and Gambino."
 
             show chiave confused with dissolve
 
@@ -2037,9 +2038,6 @@ label start:
 
     "The only thing that remains is whether you can execute it."
 
-    #$ party.append(Operator(GAMBINO, 5, True, [ Tech(6) ]))
-    #$ party.append(Operator(CAPONE, 5, True, [ Tech(7) ]))
-
     nvl hide dissolve
 
     show capone shadow left at midright with dissolve
@@ -2199,13 +2197,12 @@ label start:
                 $ caponeop = Operator(CAPONE, 5, True, [ Tech(7) ])
                 $ renpy.call_screen("Newmember", op=caponeop)
                 $ party.append(caponeop)
+                $ gambinoalive = False
+                $ caponealive = True
 
                 hide gambino
                 hide capone
                 hide ace
-
-                gambinoalive = False
-                caponealive = True
 
                 call Battle(party, [Operator(GAMBINO, 10, False, [ Tech(6) ])])
 
@@ -2227,15 +2224,238 @@ label start:
                 $ gambinoop = Operator(GAMBINO, 5, True, [ Tech(6) ])
                 $ renpy.call_screen("Newmember", op=gambinoop)
                 $ party.append(gambinoop)
+                $ gambinoalive = True
+                $ caponealive = False
 
                 hide gambino
                 hide capone
                 hide ace
 
-                gambinoalive = True
-                caponealive = False
-
                 call Battle(party, [Operator(CAPONE, 10, False, [ Tech(7) ])])
+
+        if (gambinoalive):
+            show ace at center with dissolve
+
+            a "...Well, that's that, then."
+
+            show gambino at midleft with dissolve
+
+            hide ace with dissolve
+
+            gambino "He's really dead, huh? I never thought I'd be free of him."
+
+            gambino "..."
+
+            gambino "Aw, Capone, why'd you have to go and make me hurt ya, huh? I only wanted you to get that I could be more than you let me be."
+
+            capone "...Grrk."
+
+            gambino "Huh? You're still alive?"
+
+            show capone shadow left at midright with Dissolve(3.0)
+
+            capone "Ah, you {i}bastardo{/i}. I always told you that if you killed me, I'd get the last word in."
+
+            show gambino happy at midleft
+
+            gambino "Yeah, but I figured you'd shoot me or somethin', not talk at me some more."
+
+            capone "Yeah, well you always were impatient, brother."
+
+            show gambino
+
+            gambino "...I'm sorry, brother."
+
+            capone "Eh. I attacked first. And I guess... I wasn't as clever as I thought I was. I let a random stranger turn my best friend against me in a matter of hours."
+
+            gambino "You're really an idiot if you think that you \"let\" anything happen. You never had control over any of this."
+
+            capone "Hah hah hah... I'd argue with you, but since I'm dying, I guess you've got a point."
+
+            pause 2.0
+
+            gambino "...Hey. I wouldn't do it again."
+
+        else:
+            show ace at center with dissolve
+
+            a "...Well, that's that, then."
+
+            show capone at midright with dissolve
+
+            hide ace with dissolve
+
+            capone "Gambino, you fool... I never actually thought that you could die. I figured that if I shot you, you'd just get back up."
+
+            capone "..."
+
+            capone "Gambino, why'd you force my hand like this? We had a good deal going. We could've kept at it for another few decades, at least..."
+
+            gambino "...Grrk."
+
+            capone "Gambino!? How on... I shot you through both lungs!"
+
+            show gambino shadow at midleft with Dissolve(3.0)
+
+            capone "...Didya... Ugh... Didya really think I was going to let you pretend this was {i}my{/i} fault, huh?"
+
+            show capone happy
+
+            capone "Oh, Gambino. You were always stubborn to a fault."
+
+            gambino "Heh. Got that from my brother."
+
+            show capone
+
+            capone "...I'm sorry, brother."
+
+            gambino "Bah. With my hot temper, I'm just surprised I haven't tried to kill you before now."
+
+            capone "Guess I have to thank you for trying when it's just me and a couple of strangers. If you did this in front of the men... well, I'd still win, but I'd hate to have to take out the guys who joined you."
+
+            gambino "Heh heh heh... Get it straight. If you tried this again... ugh... you wouldn't win."
+
+            pause 2.0
+
+            capone "...Gambino? I wouldn't do it again."
+
+        a "Alright, that's all I needed to hear."
+
+        gambino "Huh?"
+
+        capone "Huh?"
+
+        a "Lisa, if you will, please."
+
+        show suzuran happy with dissolve
+
+        "Suzuran" "Yes, Mr. Ace. I'll do my best!"
+
+        nvl clear
+
+        nvl show dissolve
+
+        "Lisa closes her eyes and focuses her Arts through her staff. As her power flows through the ground, the area around you is illuminated by a bright blue haze."
+
+        "This is not a surprise to you, of course, as during the two hours you spent at Rangers' orphanage, you determined Lisa had a very valuable noncombat proficiency."
+
+        "Namely, she can heal a person back to full health, even when they're almost at the point of death."
+
+        nvl clear
+
+        "As Lisa concentrates, a little bead of sweat running down her diminutive forehead, the fallen mafioso's wounds start to seal, and the dried blood on his clothes starts to dissipate, washed away by Lisa's aura of purity."
+
+        "{color=27C4CC}Your heart shifts towards the path of a doctor.{/color}"
+
+        "...and so does {color=27C4CC}another{/color}."
+
+        $ doctor += 1
+
+        show gambino nervous
+
+        show capone left
+
+        gambino "...Heh, this is awkward."
+
+        capone "Yeah, I don't think we would've been quite so direct if we knew we were both going to survive that encounter."
+
+        gambino "...Well, there's something to be said for bein' direct, heh?"
+
+        capone "Maybe a bit."
+
+        hide suzuran with dissolve
+
+        show ace with dissolve
+
+        a "You're both too valuable for me to let either of you die for some stupid reason. But it better be clear to you both that I could outfight you, Gambino, and outsmart you, Capone."
+
+        show gambino angry
+        show capone angry left
+
+        gambino "Yeah, what's your point?"
+
+        a "I want in to the Piccino {i}famiglia{/i}."
+
+        capone "That's what we were offering! You didn't have to kill one of us to get it!"
+
+        a "I thought this way would make the seriousness of my intent clear."
+
+        show gambino nervous
+
+        gambino "...Was that a joke?"
+
+        a "I'll let you continue ruling Piccino. You can do whatever you want as long as you follow three conditions."
+
+        show capone left
+
+        capone "Careful, Ace. You're still neck-deep in our turf. Don't ask too much of us."
+
+        nvl clear
+
+        nvl show dissolve
+
+        "You raise your hammer."
+
+        "They both flinch."
+
+        "Point made."
+
+        a "Condition one: You stop giving away so many Piccinians. The Laterans don't need that many. Let there be some adults in this city that don't work for your family. You need shopkeepers. You need teachers. You need infrastructure."
+
+        a "Right now, you're just burning down the candle, with no plan for what you'll do when the wick reaches your fingers."
+
+        capone "...It'll be difficult to explain to the men our sudden change of strategy."
+
+        $ censor (gambino, "You kidding? They'll be relieved as hell. They won't question anything.")
+
+        a "Condition two: You leave the West side alone. If any of your men fight the West Don's men, enter her territory, or even look too hard at that side of the city, I'm coming back."
+
+        gambino "Well, the Don's granddaughter just brought someone back to life, so, yeah, I don't think I want to tangle with that kind of Arts power anyway. Fine by me."
+
+        a "Condition three: You two are available to me whenever I need you. I'm planning on crossing continents. I'm planning on being a big player in this war. I'll need you to fight by my side once in a while. Think you can do that?"
+
+        capone "...As long as we're not too far away from the city for too long, I suppose that's fine..."
+
+        gambino "We can't both be gone at the same time, but yeah, we could do that. Been tryin' to get out more, anyway..."
+
+        a "Good. And remember, if you break any of these three conditions, I'm coming back to dismantle your {i}famiglia{/i} myself."
+
+        capone "Even from what I've seen, I don't think you could... but I don't want to risk it."
+
+        a "Smart."
+
+        a "...Oh, one more thing."
+
+        gambino "Eh?"
+
+        if (headhunterspared):
+            a "Guido's good. You're not killing him."
+
+            show gambino angry
+            show capone angry
+
+            $ censor(capone, "Goddamn, I was hoping you'd forgotten about that.")
+
+            headhunter "Dons, seriously, what's your beef? What did I do to make you hate me so much?"
+
+            gambino "Oh, not much, you just brought {i}this{/i} monster directly to us, unraveling the {i}famiglia{/i} that took us months to set up, in a matter of hours."
+
+            headhunter "...Oh, fair."
+
+            a "Water under the bridge. Now, we need a car. Something sporty."
+
+        else:
+            a "We need a car. Get us something sporty."
+
+        capone "Agh. This guy's intolerable, huh, Gambino?"
+
+        gambino "Full agreement."
+
+        nvl clear
+
+        nvl show dissolve
+
+        "Though they grumble, the Dons eventually produce a vehicle that fits your criteria, and twenty minutes later, you're at the rendezvous point with Aosta and Broca."
 
     else:
         a "No."
@@ -2247,7 +2467,7 @@ label start:
 
         gambino "You're not backing out on our deal now, are you? 'Cause that's a bad idea."
 
-        a "I'm here to kill you. Lisa will be leaving with me. And we'll appoint someone else as the don of Piccino. Your men will gladly accept a new boss who doesn't sell them to the Laterans."
+        a "I'm here to kill you. Lisa will be leaving with me. And we'll appoint someone else as the Don of Piccino. Your men will gladly accept a new boss who doesn't sell them to the Laterans."
 
         capone "..."
 
@@ -2289,41 +2509,72 @@ label start:
         hide capone
         hide ace
 
-        gambinoalive = False
-        caponealive = False
+        $ gambinoalive = False
+        $ caponealive = False
 
         call Battle(party,
             [],
             [None, None, None, None, None, None, None, Operator(GAMBINO, 5, False, [ Tech(6) ]), Operator(CAPONE, 5, False, [ Tech(7) ])],
             [True, None, None, None, None, None, None, False, False])
 
+        show ace at midleft with dissolve
 
+        a "...Well, that's that, then."
 
+        show chiave confused at midright with dissolve
 
+        chiave "...We really killed them. Both of them. They were... they were just alive, and now..."
 
+        show suzuran surprised with dissolve
 
-    #a "Number one: Work with one of Gambino or Capone's underlings."
+        nvl clear
 
-    #if (headhunterspared):
-    #    a "Guido here will work for that. No-one knows they basically fired you, do they?"
+        nvl show dissolve
 
-    #    headhunter "Nah, just the five of us."
+        "You look back at the rest of your companions. Chiave is shuddering, having developed a fascination with his wrench. Shamare and Vermeil are looking very intently at the ground, glistening pinpricks in the corners of their eyes."
 
-    #    headhunter "...That seemed like a lot fewer loose ends before I said it out loud."
+        "Lisa, though... she's hugging her seven tails to her chest, but looking directly at your bloodied hammer. Her big, emerald, eyes stare at you without judgement--with understanding."
 
-    #a "We kill Gambino and Capone, and this underling steps in as the new Don. We negotiate a deal with this new Don that they'll do whatever we tell them, or else we'll replace them just as easily as we put them in power."
+        "{color=FF0000}Your heart shifts towards the path of a killer.{/color}"
 
-    #chiave "...I'm really looking forward to hearing number two."
+        "...and so does {color=FF0000}another.{/color}"
 
-    #a "We split up Gambino and Capone. Find something that they'll argue about, and turn them against each other. Their family will spli
+        $ killer += 1
 
+        nvl clear
 
+        "The streets seem empty. You can see gangsters rushing out of your way out of the corner of your eye. There's a power vacuum here, ripe and ready to be stepped into. Without problems, you find and abandoned car, and make your way back to the rendezvous point, where Aosta and Broca are waiting."
 
-    nvl hide dissolve
+    "Their discouragement at being unable to find a single child is quickly dispelled as you explain what's happened on your side."
 
-    "{b}END OF DEMO! Thanks for playing!{/b}"
+    "They do not believe you even for a moment, though the veracity of your story isn't helped by Chiave's enthusiastic embellishments."
+
+    if (headhunterspared):
+        "You allow them to disbelieve. They'll see the truth eventually. For now, the three kids, the three gang members, Guido, and you, all pile into your respective vehicles, and begin the drive back to Siracusa."
+
+    else:
+        "You allow them to disbelieve. They'll see the truth eventually. For now, the three kids, the three gang members, and you, all pile into your respective vehicles, and begin the drive back to Siracusa."
+
+    scene sunsetroad with dissolve
+
+    nvl clear
+
+    "Your head is racing with plans. How will you utilize your newly-acquired asset? You wonder..."
+
+    "All that you can be certain of is that you've now shifted the balance of power in this world in a relatively minor way. Certainly not the sort of way the Laterans will notice."
+
+    "But enough. {i}Definitely{/i} enough for one day's work."
+
+    "You sit back with your hand on the steering wheel, and smile grimly. This is going to be a fun war."
+
+    #killer: 4
+    #doctor: 3
 
     nvl show dissolve
+
+    nvl clear
+
+    "{b}END OF DEMO! Thanks for playing!{/b}"
 
     nvl clear
 
