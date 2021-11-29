@@ -64,6 +64,7 @@ image gambino angry = scaleportrait("chars/gambino/angrygambino.png", 189)
 image gambino nervous = scaleportrait("chars/gambino/nervousgambino.png", 189)
 image capone shadow left= scaleportrait("chars/capone/shadowcapone.png", 181, True)
 image capone happy left = scaleportrait("chars/capone/happycapone.png", 181, True)
+image capone shout left = scaleportrait("chars/capone/shoutingcapone.png", 181, True)
 image capone angry left = scaleportrait("chars/capone/angrycapone.png", 181, True)
 image capone left = scaleportrait("chars/capone/capone.png", 181, True)
 image rangers = scaleportrait("chars/rangers/rangers.png", 179)
@@ -115,6 +116,8 @@ label start:
         rocksickspared = None
         headhunterspared = None
         sneakyway = None
+        gambinoalive = None
+        caponealive = None
 
         swearing = True
 
@@ -2079,11 +2082,160 @@ label start:
 
     capone "Oh, of course. What sort of impression are we giving our guest, hm? Please, hand over Lisa, {i}compagno{/i}, and we'll help you find... whatever you were looking for."
 
-    $ sneakyway = False
+    $ sneakyway = True
 
     if (sneakyway):
         a "Sure. Just one question."
 
+        capone "Oh, ask away!"
+
+        a "Who do I give Lisa to?"
+
+        show gambino
+        show capone left
+
+        gambino "What?"
+
+        capone "I beg your pardon?"
+
+        a "I get you two are doing your \"two-in-one\" deal. But who's calling the shots? Who decided I should nab Lisa?"
+
+        gambino "..."
+
+        capone "..."
+
+        a "(...They see what I'm doing. I need to apply more pressure.)"
+
+        a "Capone, you told me about the old Don. Was this your plan?"
+
+        show capone happy left
+
+        capone "Well, we might as well say it was."
+
+        show gambino angry
+
+        gambino "..."
+
+        a "(...Ooh, Gambino didn't like that.)"
+
+        a "\"Might as well?\" Sorry, I don't think you're being direct with me here."
+
+        show capone left
+
+        capone "I see no reason to be direct with you. You're barely an inductee into the {i}famiglia{/i}."
+
+        a "It's just, if I'm joining you guys, I need to know who I should be listening to. You do most of the talking, so--"
+
+        gambino "Both of us! We're both the Dons, {i}capisce{/i}!?"
+
+        show capone shout left
+
+        capone "Gambino! Calm down. We're having a civilized discussion here."
+
+        gambino "{i}Cazzate!{/i} You're both using a lot of words to say nothing. Listen to him and just be direct!"
+
+        capone "Direct about what!? There's no \"end goal\" to this conversation you can just rush to bull-headedly, like you do with everything else!"
+
+        gambino "Oh, yeah? So you're just going to talk circles around who's actually the boss here, huh?"
+
+        capone "It's both of us! You just said that!"
+
+        gambino "Sure, sure. So completely equal, huh? Fifty-fifty?"
+
+        show capone angry left
+
+        capone "I've told you that we both share absolute control over the Piccino {i}famiglia!{/i} It's one hundred-one hundred!"
+
+        gambino "MATH DOESN'T WORK LIKE THAT!"
+
+        capone "Oh, so now you can {i}count{/i}!?"
+
+        gambino "You shut your mouth, Capone! You know you wouldn't have a single one of the men following you without me to keep them in line!"
+
+        capone "And you wouldn't have a single man alive if it weren't for me coming up with plans that aren't as direly suicidal as yours!"
+
+        gambino "You don't know how my plans would work out, because you never let me run any of 'em! You just keep me around to yell at the men!"
+
+        show capone happy left
+
+        capone "Give the dog a cookie! You get it!"
+
+        gambino "...You... You {i}bastardo{/i}."
+
+        show capone left
+
+        capone "Face it, Gambino. You're dumb muscle. \"Ace\" here could replace you in a heartbeat."
+
+        gambino "Yeah? Well, here's something maybe you didn't consider. You're just a tactician. Disposable brainpower. Ace could replace you, too. The men wouldn't blink twice."
+
+        show capone angry left
+
+        capone "WHAT!? Dis-- disposable BRAINPOWER!? That's not-- you can't-- I'm VITAL to this operation!"
+
+        gambino "Oh, yeah? And what would change tomorrow if you disappeared today? Do the men need to be told to do the same neighborhood shakedowns they've been doing for the past two months? You're through."
+
+        a "(Now's my chance. I've become the kingmaker. I can goad either of them into attacking the other. The only question left is.... who would be a better ally in the future?"
+
+        a "(Capone is cunning. He can help with strategies and tactical plays. He probably has greater knowledge about the nations of this world, as well as the political situations this Lateran war has caused.)"
+
+        a "(Gambino, though, has the loyalty of his men. Holding Piccino would be easier with his help, and I could probably sway him toward whatever cause I want more easily than I could Capone.)"
+
+        menu:
+            "Side with Capone.":
+                capone "I've had it, Gambino! You're a useless moron I've shackled myself to for too long!"
+
+                a "Capone, I'm with you."
+
+                show capone left
+
+                capone "I... wait, pardon?"
+
+                gambino "Oh, yeah, {i}you're{/i} the smart one, but you didn't see this mook's obvious plan to turn us against each other? Well, whatever, I've been looking for an opportunity to get rid of you, too! I'll take you all on!"
+
+                show capone angry left
+
+                capone "Urrrghh... fine! Ace, prove yourself to the Piccino {i}famiglia{/i} by taking out this traitor!"
+
+                $ caponeop = Operator(CAPONE, 5, True, [ Tech(7) ])
+                $ renpy.call_screen("Newmember", op=caponeop)
+                $ party.append(caponeop)
+
+                hide gambino
+                hide capone
+                hide ace
+
+                gambinoalive = False
+                caponealive = True
+
+                call Battle(party, [Operator(GAMBINO, 10, False, [ Tech(6) ])])
+
+            "Side with Gambino.":
+                gambino "Enough, Capone! I'm changing our arrangement. I do all the work, and get none of the credit or respect! I'm not just an enforcer. I'm a Don!"
+
+                a "Gambino, I'm with you."
+
+                show gambino
+
+                gambino "You... what?"
+
+                capone "Credit? Respect? Bah! You couldn't even see this stranger's obvious plan to turn us against each other. You are due nothing but a swift end, delivered promptly by my crossbow!"
+
+                show gambino angry
+
+                gambino "Feh. You could never beat me in a straight fight, Capone. You're just making your mama cry, throwing your life away. Ace, crush this mook's skull."
+
+                $ gambinoop = Operator(GAMBINO, 5, True, [ Tech(6) ])
+                $ renpy.call_screen("Newmember", op=gambinoop)
+                $ party.append(gambinoop)
+
+                hide gambino
+                hide capone
+                hide ace
+
+                gambinoalive = True
+                caponealive = False
+
+                call Battle(party, [Operator(CAPONE, 10, False, [ Tech(7) ])])
 
     else:
         a "No."
@@ -2104,7 +2256,7 @@ label start:
         show capone happy left
         show gambino happy
 
-        capone "You disappoint me, \"Ace.\" I really thought that you'd make a good addition to our {i}famiglia.{/i} I guess I should've listened to Gambino, eh?"
+        capone "You disappoint me, \"Ace.\" I really thought that you'd make a good addition to our {i}famiglia{/i}. I guess I should've listened to Gambino, eh?"
 
         gambino "That's what I've been trying to tell you, {i}fratello{/i}. But, eh, a lesson learned late is still a lesson learned, eh?"
 
@@ -2112,7 +2264,19 @@ label start:
 
         gambino "Speaking of tricks, I'm sometimes known as the attack dog of the Piccino Famiglia."
 
-        capone "He knows a trick or two."
+        capone "And like every good attack dog, it really just takes a word to set him off."
+
+        gambino "We're a good pair, my blood brother and I. We disagree on a lot, but when we're in sync, we're pretty much unstoppable."
+
+        capone "There's a reason the men follow us. And it's not 'cause we talk pretty."
+
+        gambino "Yeah, see, we know a few ways to keep people in line. Not necessarily the by-the-book ways, nah, but they're effective."
+
+        capone "The men didn't always volunteer for the front lines, y'know. They had to be persuaded, at first."
+
+        gambino "I bet you're wondering how we persuaded them."
+
+        capone "We know a trick or two."
 
         gambino "Wanna see?"
 
@@ -2121,20 +2285,19 @@ label start:
 
         capone "{i}Sic 'em.{/i}"
 
+        hide gambino
+        hide capone
+        hide ace
+
+        gambinoalive = False
+        caponealive = False
+
         call Battle(party,
             [],
             [None, None, None, None, None, None, None, Operator(GAMBINO, 5, False, [ Tech(6) ]), Operator(CAPONE, 5, False, [ Tech(7) ])],
             [True, None, None, None, None, None, None, False, False])
 
-        a "Battle over..."
 
-
-
-
-    call Battle([Operator(ACE, 9, True, [ hammerdown ]), Operator(KROOS, 3, True, [ doubletapauto]), Operator(CHIAVE, 5, True, [ Tech(5) ])],
-        [],
-        [None, None, None, None, None, None, None, Operator(GAMBINO, 5, False, [ Tech(6) ]), Operator(CAPONE, 5, False, [ Tech(7) ])],
-        [True, None, None, None, None, None, None, False, False])
 
 
 
