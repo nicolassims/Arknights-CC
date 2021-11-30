@@ -1910,7 +1910,34 @@ label start:
 
     nvl clear
 
-    "In any case, your new pint-sized companions are not vital to your plan. Except, maybe, for Lisa. But if she couldn't handle what you asked of her, there were plenty of backups."
+    if (sneakyway):
+        "In any case, your new pint-sized companions are not vital to your plan. Except, maybe, for Lisa. But if she couldn't handle what you asked of her, there were plenty of backups."
+    else:
+        "In any case, your new pint-sized companions are not vital to your plan."
+
+    hide shamare with dissolve
+
+    show chiave confused at midleft with dissolve
+
+    chiave "Hey, I hope this isn't a rude question, but, uh, why do you and Lisa have rocks growing on your shoulders? They look kind of like... uh... this one {i}very sick{/i} man I knew..."
+
+    "Vermeil" "It's a mark of the infected."
+
+    chaive "Uh... those seven-foot people-eating zombies?"
+
+    "Vermeil" "Is that what you think the infected are?"
+
+    chiave "I mean, yeah. I've met one."
+
+    a "Exactly one."
+
+    chiave "Hey, it's not like you've met any more, %(playerfirstname)s!"
+
+    "Vermeil" "Well, now you have. I'm infected, Lisa's infected, even Poveglia's infected."
+
+    
+
+
 
     "You were all ready to leave, when..."
 
