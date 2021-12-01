@@ -2,6 +2,7 @@
 - Add music up to end of Piccino arc
 - Add special sound effect when a new party member joins the team
 - Make Capone and Gambino argue a lot more
+- Add explanation for battle mechanics
 
 ###LATER
 - Define different kinds of AI
