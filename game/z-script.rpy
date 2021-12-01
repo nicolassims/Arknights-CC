@@ -2332,7 +2332,7 @@ label start:
 
             a "...Well, that's that, then."
 
-            show capone at midright with dissolve
+            show capone left at midright with dissolve
 
             hide ace with dissolve
 
@@ -2344,19 +2344,21 @@ label start:
 
             gambino "...Grrk."
 
+            show capone shouting left
+
             capone "Gambino!? How on... I shot you through both lungs!"
 
             show gambino shadow at midleft with Dissolve(3.0)
 
             capone "...Didya... Ugh... Didya really think I was going to let you pretend this was {i}my{/i} fault, huh?"
 
-            show capone happy
+            show capone happy left
 
             capone "Oh, Gambino. You were always stubborn to a fault."
 
             gambino "Heh. Got that from my brother."
 
-            show capone
+            show capone left
 
             capone "...I'm sorry, brother."
 
