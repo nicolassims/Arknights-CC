@@ -190,6 +190,8 @@ screen battle():
     text str(mydp) + " DP\n{size=40}+" + str(mydpgain) + "DP p/turn{/size}" xpos 0.1 xanchor 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
     text str(otherdp) + " DP\n{size=40}+" + str(otherdpgain) + "DP p/turn{/size}" xpos 0.9 xanchor 0.5 size 90 bold True outlines [ (absolute(5), "#000", absolute(0), absolute(0)) ]
 
+    textbutton "Battle Basics" xminimum 350 xalign .5 yalign .1 text_xalign .5 text_size 40 text_color gui.accent_color text_hover_color gui.hover_color background Frame("gui/button/choice_idle_background.png") action Show("showmessage", message="Welcome to battle!\n\nAt the beginning of a battle, you're asked to choose a Frontman from among your active operators. A Frontman costs 0DP to deploy--however, whoever deploys the Frontman with the least DP cost will get to go first, which can be very valuable.\n\nYou win battles by removing all of your opponent's operators from the battlefield. (Even if you and your opponent both have operators left in your reserves, if they can't make it to the battlefield, they're no use to you.) You can tell how much health an operator has left by looking at the orange bar beneath each operator. When the green bar is full, that means that the operator can move forward.\n\nFor more information about each of the options show below, right-click on the button. I highly recommend doing this with all buttons, especially if this is your first battle!", val="badmove")
+
     for i, op in enumerate(battlefield):
         $ color = "#FFF"
         if (ownedfield[i] == True):
@@ -258,14 +260,14 @@ screen battleui():
     vbox:
         xalign .5 yalign .3
         hbox:
-            textbutton "Attack" action Return(value='attack') xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png")
-            textbutton " Tech " action Return(value='tech') xminimum 350 text_xalign .5 text_size 60 text_color "#826926" text_hover_color "#c98022" background Frame("gui/button/choice_idle_background.png")
+            textbutton "Attack" action Return(value='attack') xminimum 350 text_xalign .5 text_size 60 text_color "#9b5151" text_hover_color "#d03b3d" background Frame("gui/button/choice_idle_background.png") alternate Show("showmessage", message="This option lets you make a basic attack with the current operator. Most operators use their Attack stat to attack with, but some use their Arts. Attacks are not typically affected by fighting style effectiveness. Additionally, you can hover over an operator to see what their standard attack range is.", val="badmove")
+            textbutton " Tech " action Return(value='tech') xminimum 350 text_xalign .5 text_size 60 text_color "#826926" text_hover_color "#c98022" background Frame("gui/button/choice_idle_background.png") alternate Show("showmessage", message="This option lets you use one of an operator's skills. A skill needs to have full SP to use it. Most skills can gain SP through one of three ways: when their operator attacks, is hit by a foe, or simply by the passing of turns. Most skills can hit in the same range as an operator's basic attack, and {i}are{/i} affected by fighting style effectiveness.\n{b}Shield > Shoot > Strike > Shield\nArts > Power > Wit > Arts{/b}", val="badmove")
         hbox:
-            textbutton " Move " action Return(value='move') xminimum 350 text_xalign .5 text_size 60 text_color "#437128" text_hover_color "#459426" background Frame("gui/button/choice_idle_background.png")
-            textbutton " Item " action Return(value='item') xminimum 350 text_xalign .5 text_size 60 text_color "#295272" text_hover_color "#256799" background Frame("gui/button/choice_idle_background.png")
+            textbutton " Move " action Return(value='move') xminimum 350 text_xalign .5 text_size 60 text_color "#437128" text_hover_color "#459426" background Frame("gui/button/choice_idle_background.png") alternate Show("showmessage", message="This option lets you move your operator, as long as the green bar beneath their health bar is full. Some operators can replenish their move bar immediately after moving, while other heavier, or slower, operators will take more time. When your operator lands on a square, they \"claim\" that square for you, allowing you to gain DP from that square at the end of each of your turns, and deploy new operators on that square.", val="badmove")
+            textbutton " Item " action Return(value='item') xminimum 350 text_xalign .5 text_size 60 text_color "#295272" text_hover_color "#256799" background Frame("gui/button/choice_idle_background.png") alternate Show("showmessage", message="This option lets you use items on your operators. Items are often single-use, powerful buffs, debuffs, or attacks.", val="badmove")
         hbox:
-            textbutton "Deploy" action Return(value='deploy') xminimum 350 text_xalign .5 text_size 60 text_color "#772372" text_hover_color "#B739B0" background Frame("gui/button/choice_idle_background.png")
-            textbutton " Pass " action Return(value='pass') xminimum 350 text_xalign .5 text_size 60 text_color gui.accent_color text_hover_color gui.hover_color background Frame("gui/button/choice_idle_background.png")
+            textbutton "Deploy" action Return(value='deploy') xminimum 350 text_xalign .5 text_size 60 text_color "#772372" text_hover_color "#B739B0" background Frame("gui/button/choice_idle_background.png") alternate Show("showmessage", message="This option lets you deploy new operators by spending DP. Operators can only be deployed on squares you have claimed, and every square from the far-left adds an additional 10 DP to the cost of deploying the operator. You cannot deploy an operator on a square where their cost would be greater than your total DP, even if you own the square.", val="badmove")
+            textbutton " Pass " action Return(value='pass') xminimum 350 text_xalign .5 text_size 60 text_color gui.accent_color text_hover_color gui.hover_color background Frame("gui/button/choice_idle_background.png") alternate Show("showmessage", message="This option lets you skip an operator's turn. This can be useful if you want an enemy to approach you, or if you're stalling for time, in order to deploy an expensive operator. It conveys no additional defensive or DP-related benefits, though.", val="badmove")
 
 #location is an int from 0-8
 #minrange is an int
@@ -428,7 +430,7 @@ screen showmessage(message, val=None):
         xfill True
         yfill True
         idle "ui/empty.png"
-        action ([Return(val)] if val != "badmove" else [Jump("badmove")])
+        action [Hide("showmessage"), ([Return(val)] if val != "badmove" else [Jump("badmove")])]
 
     frame:
         align (0.5, 0.3)
