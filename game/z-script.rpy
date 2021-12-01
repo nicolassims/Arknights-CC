@@ -110,7 +110,8 @@ label start:
         doctor = 0
         killer = 0
 
-        party = [Operator(ACE, 1, True, [ hammerdown ])]
+        aceop = Operator(ACE, 1, True, [ hammerdown ])
+        party = [aceop]
 
         inventory = []
 
@@ -261,6 +262,10 @@ label start:
             "And nothing gets back up."
 
             "{color=FF0000}Your heart shifts towards the path of a killer.{/color}"
+
+            window hide
+
+            $ addxp(party, fibonacci(aceop.getparameter(LEVEL)))
 
             $ killer += 1
 
@@ -1204,6 +1209,10 @@ label start:
 
                 "{color=FF0000}Your heart shifts towards the path of a killer.{/color}"
 
+                window hide
+
+                $ addxp(party, fibonacci(aceop.getparameter(LEVEL)))
+
                 $ killer += 1
 
                 show chiave confused at midright with Dissolve(2.0)
@@ -1262,6 +1271,10 @@ label start:
                     nvl show dissolve
 
                     "{color=FF0000}Your heart shifts towards the path of a killer.{/color}"
+
+                    window hide
+
+                    $ addxp(party, fibonacci(aceop.getparameter(LEVEL)))
 
                     $ killer += 1
 

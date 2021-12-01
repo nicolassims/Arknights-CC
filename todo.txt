@@ -1,4 +1,3 @@
-- Add experience for taking killer paths
 - Add music up to end of Piccino arc
 - Add special sound effect when a new party member joins the team
 - Make Capone and Gambino argue a lot more
@@ -7,6 +6,7 @@
 - Set up itch.io
 - Add picture to main menu
 - Rename game to "Arknights: The Unwalked Dust"
+- Make buffs overwrite
 
 ###LATER
 - Define different kinds of AI
