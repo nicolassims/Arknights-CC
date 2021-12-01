@@ -10,6 +10,8 @@ init python:
     midleft = Position(xpos = 0.25)
     midright = Position(xpos = 0.75)
 
+    swearing = False
+
 define narrator = nvl_narrator
 define who = Character("???")
 define a = DynamicCharacter("playerfirstname")
@@ -120,8 +122,6 @@ label start:
         sneakyway = None
         gambinoalive = None
         caponealive = None
-
-        swearing = True
 
         cash = 0
 
@@ -525,6 +525,10 @@ label start:
 
     aosta "We're still... getting started on the whole freedom-fighter thing. We thought you were an infected."
 
+    stop music
+
+    play sound "audio/shatter.mp3"
+
     scene white with vpunch
 
     nvl clear
@@ -536,6 +540,8 @@ label start:
     "{b}Infected...{/b}"
 
     "You know this word. It means so much to you. And yet you can't remember {i}what{/i}."
+
+    play music "audio/calm.mp3" fadein 4.0
 
     nvl hide dissolve
 
@@ -2653,6 +2659,8 @@ label start:
     "Kawai Kitsune by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4990-kawai-kitsune. License: https://filmmusic.io/standard-license"
 
     "Basic Implosion by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/3420-basic-implosion. License: https://filmmusic.io/standard-license"
+
+    "Windswept by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4629-windswept. License: https://filmmusic.io/standard-license"
 
     # This ends the game.
 
