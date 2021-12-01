@@ -6,9 +6,18 @@
 - Set up itch.io
 - Add picture to main menu
 - Rename game to "Arknights: The Unwalked Dust"
-- Make buffs overwrite
+- Add mention of planet being called Alterra
+- Make buffs be displayed in battle
+
+- "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
+- "Thousand Steps" -- Asbestos & Magallan
+- "Alterran Story" -- Cardigan & Adnachiel
+- "Petals Ablaze" -- Perfumer & Flamebringer
+- "Alone Together" -- Saria & Silence & Ifrit
+- "Forever Tomorrow" -- Jessica & Kroos & Lava
 
 ###LATER
+- Make buffs overwrite
 - Define different kinds of AI
 - Implement aoe basic attacks for both players and AI
 - Implement ability to actually use items in the inventory
