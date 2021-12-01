@@ -1917,13 +1917,15 @@ label start:
 
     hide shamare with dissolve
 
+    hide suzuran with dissolve
+
     show chiave confused at midleft with dissolve
 
     chiave "Hey, I hope this isn't a rude question, but, uh, why do you and Lisa have rocks growing on your shoulders? They look kind of like... uh... this one {i}very sick{/i} man I knew..."
 
     "Vermeil" "It's a mark of the infected."
 
-    chaive "Uh... those seven-foot people-eating zombies?"
+    chiave "Uh... those two-meter people-eating zombies?"
 
     "Vermeil" "Is that what you think the infected are?"
 
@@ -1935,9 +1937,31 @@ label start:
 
     "Vermeil" "Well, now you have. I'm infected, Lisa's infected, even Poveglia's infected."
 
-    
+    chiave "Uh... Povey doesn't have any crystals, though."
 
+    show shamare at left with dissolve
 
+    "Shamare" "If you call me Povey again, I'll place a curse on you."
+
+    hide shamare with dissolve
+
+    "Vermeil" "Crystallization can be internal. Not all infected even reach the point of crystallization. Why didn't you learn any of this? I'm years younger than you."
+
+    show chiave happy
+
+    chiave "The Lateran Educational Board just never thought it was important, I guess! They only wanted to teach us trades and agriculture, and combat."
+
+    "Vermeil" "...I'm sorry."
+
+    chiave "Hey, it could be worse. Sure, they were teaching us to be the perfect future conscripts for their army, but at least I never had to learn history, or anything boring like that."
+
+    "Vermeil" "...I'm {i}really{/i} sorry."
+
+    hide vermeil with dissolve
+
+    show chiave shocked
+
+    chiave "Wait, what did I say?"
 
     "You were all ready to leave, when..."
 
@@ -1945,11 +1969,11 @@ label start:
 
     who "Here I am!"
 
-    hide suzuran
-
     hide shamare
 
     hide vermeil
+
+    hide chiave
 
     show kroos at midleft with vpunch
 
