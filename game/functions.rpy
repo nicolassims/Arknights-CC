@@ -209,3 +209,34 @@ init python:
             return "movement"
         else:
             return "ERROR"
+
+    def addxp(ops, amount):
+        for op in ops:
+            op.setparameter(EXPERIENCE, op.getparameter(EXPERIENCE) + amount)
+
+            while (op.getparameter(EXPERIENCE) >= fibonacci(op.getparameter(LEVEL))):
+                op.setparameter(EXPERIENCE, op.getparameter(EXPERIENCE) - fibonacci(op.getparameter(LEVEL)))
+                op.setparameter(LEVEL, op.getparameter(LEVEL) + 1)
+
+                statgains = []
+                opid = op.getparameter(ID) - 1
+                for stat in range(HEALTH, ARTSDEF + 1):
+                    statgained = 0
+                    odds = opdex[opid][stat]
+
+                    while (odds > 1):
+                        statgained += 1
+                        odds -= 1.0
+
+                    if (renpy.random.random() <= odds):
+                        statgained += 1
+
+                    statgains.append(statgained)
+
+                for i, statgain in enumerate(statgains):
+                    op.setparameter(i + HEALTH, op.getparameter(i + HEALTH) + statgains[i])
+
+                if (i == 0):#also increase maxhp
+                    op.setparameter(MAXHEALTH, op.getparameter(MAXHEALTH) + statgains[0])
+
+                renpy.call_screen("levelup", op=op, statgains=statgains)
