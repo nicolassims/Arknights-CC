@@ -556,7 +556,7 @@ screen Newmember(op):
         margin (150, 75)
         align (0.5, 0.5)
 
-    text op.getparameter(CODENAME).upper() + " JOINED THE PARTY!" bold True size 90 align (0.5, 0.15)
+    text op.getparameter(CODENAME).upper() + " JOINED THE PARTY!" bold True size 80 align (0.5, 0.15)
 
     hbox:
         align (0.5, 0.6)
