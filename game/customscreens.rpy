@@ -239,6 +239,17 @@ screen battle():
                           ypos = 800 + squaresize / 2,
                           xzoom = 1 if op.getparameter(ALLY) else -1)
 
+            $ opbuffs = 0
+            for buff in buffs:
+                if (buff[0] == op):
+                    $ txtcolor = "#FF0000"
+
+                    if (buff[2] >= 1):
+                        $ txtcolor = "#27C4CC"
+
+                    text bufftext(buff) color txtcolor xanchor 0.5 xpos 20 + i * (squaresize + spacesize) + squaresize / 2 ypos 810 - 40 * opbuffs outlines [ (absolute(2), "#000", absolute(0), absolute(0)) ]
+                    $ opbuffs += 1
+
             $ minrange = op.getparameter(MINRANGE)
             $ maxrange = op.getparameter(MAXRANGE)
             imagebutton:

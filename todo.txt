@@ -1,6 +1,5 @@
 - Set up discord
 - Set up itch.io
-- Make buffs be displayed in battle
 
 - "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
 - "Thousand Steps" -- Asbestos & Magallan

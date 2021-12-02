@@ -240,3 +240,34 @@ init python:
                     op.setparameter(MAXHEALTH, op.getparameter(MAXHEALTH) + statgains[0])
 
                 renpy.call_screen("levelup", op=op, statgains=statgains)
+
+    def bufftext(buff):
+        stat = buff[1]
+        amount = buff[2]
+        multiplication = buff[3]
+
+        bufftext = ""
+
+        if (stat == ATK):
+            bufftext += "ATK"
+        elif (stat == DEF):
+            bufftext += "DEF"
+        elif (stat == ARTS):
+            bufftext += "ARTS"
+        elif (stat == ARTSDEF):
+            bufftext += "ARTSDEF"
+        elif (stat == MOV):
+            bufftext += "MOV"
+        elif (stat == MAXHEALTH):
+            bufftext += "HEALTH"
+
+        if (multiplication):
+            bufftext += " x"
+        elif (amount > 0):
+            bufftext += " +"
+        else:
+            bufftext += " -"
+
+        bufftext += str(amount)
+
+        return bufftext
