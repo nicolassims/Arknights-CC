@@ -2723,6 +2723,12 @@ label start:
 
     "{b}END OF DEMO! Thanks for playing!{/b}"
 
+    "If you'd like to keep up-to-date on the progress of the game, please check out the discord {a=https://discord.gg/E5hdut2bXX}here{/a}."
+
+    "It's early days for this project, so feel free to provide your comments, thoughts, and--best of all--suggestions!"
+
+    "Once again, thank you for taking this journey with me.\n\nWalk in the dust."
+
     nvl clear
 
     "And now, the requisite credits. I'll move these to the main menu later."
