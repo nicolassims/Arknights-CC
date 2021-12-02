@@ -8,7 +8,6 @@
 - Rename game to "Arknights: The Unwalked Dust"
 - Add mention of planet being called Alterra
 - Make buffs be displayed in battle
-- Make battle basics not overlap techs
 
 - "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
 - "Thousand Steps" -- Asbestos & Magallan
