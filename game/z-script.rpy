@@ -1356,6 +1356,7 @@ label start:
                     $ doctor += 1
 
                     $ headhunterop = Operator(HEADHUNTER, 2, True, [ coltellata ])
+                    play sound "audio/join.mp3"
                     $ renpy.call_screen("Newmember", op=headhunterop)
                     $ party.append(headhunterop)
 
@@ -1411,6 +1412,7 @@ label start:
 
     $ piccinokills = 0
     $ chiaveop = Operator(CHIAVE, 1, True, [ Tech(5) ])
+    play sound "audio/join.mp3"
     $ renpy.call_screen("Newmember", op=chiaveop)
     $ party.append(chiaveop)
 
@@ -2030,6 +2032,7 @@ label start:
     "Coco" "Hi-hiii~ I'm Coco~ I might be inexperienced, but I'll do the best I can~"
 
     $ kroosop = Operator(KROOS, 3, True, [ doubletapauto])
+    play sound "audio/join.mp3"
     $ renpy.call_screen("Newmember", op=kroosop)
     $ party.append(kroosop)
 
@@ -2300,6 +2303,7 @@ label start:
                 capone "Urrrghh... fine! Ace, prove yourself to the Piccino {i}famiglia{/i} by taking out this traitor!"
 
                 $ caponeop = Operator(CAPONE, 5, True, [ Tech(7) ])
+                play sound "audio/join.mp3"
                 $ renpy.call_screen("Newmember", op=caponeop)
                 $ party.append(caponeop)
                 $ gambinoalive = False
@@ -2327,6 +2331,7 @@ label start:
                 gambino "Feh. You could never beat me in a straight fight, Capone. You're just making your mama cry, throwing your life away. Ace, crush this mook's skull."
 
                 $ gambinoop = Operator(GAMBINO, 5, True, [ Tech(6) ])
+                play sound "audio/join.mp3"
                 $ renpy.call_screen("Newmember", op=gambinoop)
                 $ party.append(gambinoop)
                 $ gambinoalive = True
@@ -2719,6 +2724,8 @@ label start:
     "Windswept by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4629-windswept. License: https://filmmusic.io/standard-license"
 
     "Tyrant by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/5031-tyrant. License: https://filmmusic.io/standard-license"
+
+    "Danse Macabre - Big Hit 1 by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/3589-danse-macabre---big-hit-1. License: https://filmmusic.io/standard-license."
 
     # This ends the game.
 

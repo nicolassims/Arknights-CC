@@ -1,4 +1,3 @@
-- Add special sound effect when a new party member joins the team
 - Make Capone and Gambino argue a lot more
 - Set up discord
 - Add more Rangers dialog
@@ -6,6 +5,7 @@
 - Add picture to main menu
 - Add mention of planet being called Alterra
 - Make buffs be displayed in battle
+- Rename gangsteralive variables
 
 - "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
 - "Thousand Steps" -- Asbestos & Magallan
