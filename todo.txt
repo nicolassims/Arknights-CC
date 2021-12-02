@@ -1,5 +1,6 @@
 - Set up discord
 - Set up itch.io
+- Add link to discord
 
 - "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
 - "Thousand Steps" -- Asbestos & Magallan
