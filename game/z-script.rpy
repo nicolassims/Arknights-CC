@@ -241,7 +241,7 @@ label start:
 
     show rocksick left at midright with dissolve
 
-    play music "audio/sad.mp3" loop
+    play music "audio/sad.mp3" fadein 2.0
 
     who "Aaaargh... Graaahh... Gurghh..."
 
@@ -290,7 +290,7 @@ label start:
 
     show ace at center with ease
 
-    play music "audio/forest.mp3" loop
+    play music "audio/forest.mp3" fadein 2.0
 
     "You continue moving toward the village. As you come closer, you can see that village may be too generous a term."
 
@@ -383,7 +383,7 @@ label start:
 
     a "Well... if there's nothing left here, I guess I might as well grab what I can and keep moving. Maybe there'll be a cannibalized refrigerator somewhere that still has rations."
 
-    play music "audio/chiave.mp3" loop
+    play music "audio/chiave.mp3"
 
     who "...Now."
 
@@ -619,6 +619,8 @@ label start:
 
     "You look to your right. There's a sign posted on the fence. Though well-worn, it clearly reads... \"Siracusa.\""
 
+    play sound "audio/shatter.mp3"
+
     scene white with vpunch
 
     "Siracusa? A tiny abandoned village? No."
@@ -804,6 +806,8 @@ label start:
 
     show chiave shocked at center with vpunch
 
+    play music "audio/battle.mp3"
+
     chiave "WHAT!?"
 
     a "(\"WHAT!?\" is right. Why'd I say that? It just came out, like...)"
@@ -814,7 +818,7 @@ label start:
 
     chiave "Man, we don't even know your name. It's a bit soon to be pledging yourself to joining the freedom fighters, isn't it?"
 
-    a "%(playerfirstname)s %(playerlastname)s. My uniform says my callsign was \"Ace,\" which sounds a bit self-aggrandizing. I actually know how to fight. Do you need anything more?"
+    a "%(playerfirstname)s %(playerlastname)s. My uniform says my callsign was \"Ace,\" which is a bit self-aggrandizing, but whatever, I'll use it. I actually know how to fight. Do you need anything more?"
 
     chiave "...Well, uh..."
 
@@ -826,7 +830,7 @@ label start:
 
     show aosta eyesclosed left
 
-    aosta "Even given your obvious uninformed state, that doesn't seem likely."
+    aosta "Even given your obviously uninformed state, that doesn't seem likely."
 
     $ censor(chiave, "Yeah, calling bullshit on that one.")
 
@@ -857,6 +861,8 @@ label start:
     nvl clear
 
     nvl show
+
+    stop music fadeout 8.0
 
     "Chiave leads you to a side room, where there's several mattresses on the floor. In spite of the early hour, your throbbing head makes sleep seem a very appealing prospect."
 
@@ -898,7 +904,7 @@ label start:
 
     scene safehouse with dissolve
 
-    play music "audio/forest.mp3" loop
+    play music "audio/battle.mp3" fadein 2.0
 
     a "Rise and shine, kids! Up and at 'em! The early bird gets the worm!"
 
@@ -932,6 +938,8 @@ label start:
 
     a "Hey! Snap to attention, you three."
 
+    stop music
+
     show aosta smile left
 
     show chiave
@@ -957,6 +965,8 @@ label start:
     show chiave confused
 
     chiave "...You're really okay just taking orders from me? You're like fifty years older than me."
+
+    play music "audio/chiave.mp3" fadein 2.0
 
     a "Firstly, watch your mouth. I'm barely double your age."
 
@@ -1041,6 +1051,8 @@ label start:
 
     scene sunsetroad with dissolve
 
+    play music "audio/calm.mp3" fadein 4.0
+
     a "...Pretty out here."
 
     chiave "Yeah, and I haven't seen the sunrise in {i}months{/i}, so thanks for breaking that streak by waking us up at the crack of dawn. Damn old people sleep schedules."
@@ -1095,7 +1107,7 @@ label start:
 
     scene road with Dissolve(2.0)
 
-    chiave "Eighty-seven słoma sodas on the wall! Eighty-seven słoma sodas! Take one down, pass it around, eighty-six słoma sodas on the wall!"
+    chiave "Eighty-six słoma sodas on the wall! Eighty-seven słoma sodas! Take one down, pass it around, eighty-seven słoma sodas on the wall!"
 
     nvl clear
 
@@ -1105,7 +1117,9 @@ label start:
 
     nvl hide dissolve
 
-    a "(I'm going to kill him. I swear I'll kill him and join the Laterans as soon as he hits eighty-five słoma sodas--)"
+    a "(I'm going to kill him. I swear I'll kill him and join the Laterans as soon as he hits ninety słoma sodas--)"
+
+    stop music
 
     show broca surprised at mymovein(0.2, -0.5, 0.5) with vpunch
 
@@ -1124,6 +1138,8 @@ label start:
     "You instantly recognize the sound of a tire being ruined."
 
     "You grit your teeth and leave the car to examine the damage, along with Chiave."
+
+    play music "audio/chiave.mp3" fadein 2.0
 
     show chiave confused at midleft with dissolve
 
@@ -1184,6 +1200,8 @@ label start:
     show headhunter at mymovein(0.8, 0.88, 0.75)
 
     show ace at mymovein(0.4, 0.12, 0.25)
+
+    play music "audio/sad.mp3" fadein 2.0
 
     who "...{i}Accidenti.{/i}"
 
@@ -1352,6 +1370,8 @@ label start:
 
     "Without further ado... you make it to Piccino."
 
+    play music "audio/chiave.mp3" fadein 2.0
+
     scene city with dissolve
 
     show chiave happy with dissolve
@@ -1401,6 +1421,8 @@ label start:
 
     scene city with dissolve
 
+    play music "audio/calm.mp3" fadein 2.0
+
     a "It's quieter out there than I thought it'd be."
 
     if (piccinokills > 0):
@@ -1419,6 +1441,8 @@ label start:
 
     nvl show dissolve
 
+    stop music
+
     "The air suddenly seems struck by an intense stillness, as though everyone in this city block is holding their breath."
 
     "Your tail twitches, and, were you capable of forming goosebumps, you'd have them."
@@ -1431,6 +1455,8 @@ label start:
 
     show capone shadow left at midright with dissolve
     show gambino shadow at midleft with dissolve
+
+    play music "audio/piccino.mp3"
 
     gambino "Heh heh heh..."
 
@@ -1525,7 +1551,7 @@ label start:
 
     show gambino
 
-    gambino "Which brings us to our problem. Y'see, these headhunters you've seen all around the place aren't actually recruiting for the Laterans. Nah, they're recruiting for us."
+    gambino "Which brings us to our problem. Y'see, these headhunters you've seen all around the place aren't actually all recruiting for the Laterans. Most of 'em are recruiting for us."
 
     capone "And our numbers have been down recently..."
 
@@ -1650,6 +1676,8 @@ label start:
 
     nvl show dissolve
 
+    stop music fadeout 2.0
+
     "You make your way to the storehouse the Dons had pointed you to."
 
     "You hear many high-pitched chattering voices coming from inside. There's definitely some children here, even if Lisa isn't."
@@ -1659,6 +1687,8 @@ label start:
     show rangers with dissolve
 
     rangers "Oh. Hello, young man. Can I help you?"
+
+    play music "audio/forest.mp3" fadein 2.0
 
     a "I--"
 
@@ -1742,11 +1772,13 @@ label start:
 
     a "%(playerfirstname)s %(playerlastname)s."
 
-    rangers "I see. Well, %(playerfirstname)s, I imagine the twin Dons of the West Side told you that one or the other of the children we have here is a relative of the East Side's Don? A woman of unparalleled Arts prowess?"
+    rangers "I see. Well, %(playerfirstname)s, I imagine the twin Dons of the East Side told you that one or the other of the children we have here is a relative of the West Side's Don? A woman of unparalleled Arts prowess?"
 
     a "Yes."
 
     show rangers thinking
+
+    play music "audio/sad.mp3"
 
     rangers "Pure fiction."
 
@@ -1760,7 +1792,7 @@ label start:
 
     show rangers
 
-    rangers "Defenseless, besides my ability to tell stories that lead Gambino and Capone to think we're hiding some great power."
+    rangers "Defenseless, besides my ability to tell stories that lead Gambino and Capone to think we're hiding some great power. Our population is almost entirely children and the elderly, such as myself."
 
     rangers "They've gotten bolder, though. Even if they're only sending an outsider such as yourself to acquire insurance against us, this is merely a prelude to more aggressive actions later on."
 
@@ -1772,7 +1804,7 @@ label start:
 
     show rangers
 
-    rangers "The West Side Dons claim to be working for the betterment of Piccino by avoiding direct conflict with the Laterans, but they're helping them as much as they're helping Piccino."
+    rangers "The East Side Dons claim to be working for the betterment of Piccino by avoiding direct conflict with the Laterans, but they're helping them as much as they're helping Piccino."
 
     rangers "The Laterans would be content with one conscript a month from a city they've already plundered as much as they have Piccino."
 
@@ -1811,17 +1843,6 @@ label start:
 
     chiave "We're not just going to let him die, are we? Besides, no way we can transport all these kids to Siracusa."
 
-    if (headhunterspared):
-        show headhunter with dissolve
-
-        headhunter "...What'd you say? What was that name you said?"
-
-        chiave "Our home base. It's a little village called Siracusa."
-
-        headhunter "Oh. ...Carry on."
-
-        hide headhunter with dissolve
-
     chiave "We don't have enough resources to support all these kids. I thought it'd be fine if we brought back twenty or so more kids, but even if we took multiple trips, there's at least two hundred here!"
 
     chiave "We'd run out of food in weeks. I don't know how quickly we could make more. Aosta would know..."
@@ -1849,6 +1870,8 @@ label start:
             chiave "...Er, no offense, Guido."
 
             headhunter "Nah, I'm scum. No offense taken."
+
+            hide headhunter with dissolve
 
         a "Don't be so hasty. At least hear out my plans, first."
 
@@ -1905,7 +1928,7 @@ label start:
 
     pause 1.0
 
-    "However, in all other aspects, she could be considered the opposite of Suzuran. She scowled at you, and is constantly hiding behind her doll, making clear that \"Morti\" does not like or trust you."
+    "However, in all other aspects, she could be considered the opposite of Suzuran. She scowled at you, and is constantly hiding behind her doll, making clear that \"Morte\" does not like or trust you."
 
     "You also have some concerns about her outfit, but after lightly threatening Rangers under the assumption he was an old pervert, he maintains that she's just \"weird,\" and chose to dress herself like that."
 
@@ -1952,15 +1975,19 @@ label start:
 
     a "Exactly one."
 
+    show chiave happy
+
     chiave "Hey, it's not like you've met any more, %(playerfirstname)s!"
 
     "Vermeil" "Well, now you have. I'm infected, Lisa's infected, even Poveglia's infected."
+
+    show chiave confused
 
     chiave "Uh... Povey doesn't have any crystals, though."
 
     show shamare at left with dissolve
 
-    "Shamare" "If you call me Povey again, I'll place a curse on you."
+    "Povey" "If you call me Povey again, I'll place a curse on you."
 
     hide shamare with dissolve
 
@@ -1982,17 +2009,17 @@ label start:
 
     chiave "Wait, what did I say?"
 
+    hide chiave with dissolve
+
+    nvl clear
+
     "You were all ready to leave, when..."
 
     nvl hide dissolve
 
+    play music "audio/angelina.mp3"
+
     who "Here I am!"
-
-    hide shamare
-
-    hide vermeil
-
-    hide chiave
 
     show kroos at midleft with vpunch
 
@@ -2030,6 +2057,8 @@ label start:
 
     show kroos
 
+    stop music
+
     "Coco" "{i}It's not polite to ask a lady's age.{/i}"
 
     a "(...Why did I just get a chill up my spine?)"
@@ -2047,6 +2076,8 @@ label start:
     rangers "I wish you would stop giving me that expression. I'm really not a pervy old man."
 
     a "...Sorry."
+
+    play music "audio/forest.mp3" fadein 2.0
 
     hide kroos with dissolve
 
@@ -2068,10 +2099,10 @@ label start:
 
     show rangers thinking
 
-    rangers "I'm... well, I'm afraid my memory isn't quite what it used to be."
+    rangers "I'm... well, I'm afraid my memory isn't quite what it used to be. I lived in Saigon most of my life, so..."
 
     if (headhunterspared):
-        headhunter "Let's just quit yapping about it. I heard the Laterans can tell when we say it."
+        headhunter "Yeah, I dunno either. I'm only twenty-three. ...What, is that so hard to believe?"
 
     a "...Alright. Something to think about in the future, I guess."
 
@@ -2088,6 +2119,8 @@ label start:
     nvl clear
 
     nvl show dissolve
+
+    play music "audio/piccino.mp3" fadein 2.0
 
     "By the time you leave Rangers' orphanage, the sky has fully darkened, with a heavy downpour of rain soaking you through to the bones."
 
@@ -2150,8 +2183,6 @@ label start:
 
     capone "Oh, of course. What sort of impression are we giving our guest, hm? Please, hand over Lisa, {i}compagno{/i}, and we'll help you find... whatever you were looking for."
 
-    $ sneakyway = True
-
     if (sneakyway):
         a "Sure. Just one question."
 
@@ -2161,6 +2192,8 @@ label start:
 
         show gambino
         show capone left
+
+        stop music
 
         gambino "What?"
 
@@ -2179,6 +2212,8 @@ label start:
         show capone happy left
 
         capone "Well, we might as well say it was."
+
+        play music "audio/piccino.mp3" fadein 2.0
 
         show gambino angry
 
@@ -2228,7 +2263,7 @@ label start:
 
         capone "Give the dog a cookie! You get it!"
 
-        gambino "...You... You {i}bastardo{/i}."
+        $ censor(gambino, "...You... You {i}bastardo{/i}.")
 
         show capone left
 
@@ -2303,6 +2338,8 @@ label start:
 
                 call Battle(party, [Operator(CAPONE, 10, False, [ Tech(7) ])])
 
+        play music "audio/sad.mp3" fadein 2.0
+
         if (gambinoalive):
             show ace at center with dissolve
 
@@ -2324,7 +2361,7 @@ label start:
 
             show capone shadow left at midright with Dissolve(3.0)
 
-            capone "Ah, you {i}bastardo{/i}. I always told you that if you killed me, I'd get the last word in."
+            $ censor(capone, "Ah, you {i}bastardo{/i}. I always told you that if you killed me, I'd get the last word in.")
 
             show gambino happy at midleft
 
@@ -2396,6 +2433,8 @@ label start:
         gambino "Huh?"
 
         capone "Huh?"
+
+        play music "audio/angelina.mp3" fadein 2.0
 
         a "Lisa, if you will, please."
 
@@ -2539,6 +2578,8 @@ label start:
 
         gambino "You're not backing out on our deal now, are you? 'Cause that's a bad idea."
 
+        play music "audio/chiave.mp3" fadein 2.0
+
         a "I'm here to kill you. Lisa will be leaving with me. And we'll appoint someone else as the Don of Piccino. Your men will gladly accept a new boss who doesn't sell them to the Laterans."
 
         capone "..."
@@ -2591,6 +2632,8 @@ label start:
 
         show ace at midleft with dissolve
 
+        play music "audio/sad.mp3" fadein 2.0
+
         a "...Well, that's that, then."
 
         show chiave confused at midright with dissolve
@@ -2615,7 +2658,15 @@ label start:
 
         nvl clear
 
-        "The streets seem empty. You can see gangsters rushing out of your way out of the corner of your eye. There's a power vacuum here, ripe and ready to be stepped into. Without problems, you find an abandoned car, and make your way back to the rendezvous point, where Aosta and Broca are waiting."
+        "The streets seem empty. You can see gangsters rushing out of your way out of the corner of your eye."
+
+        nvl clear
+
+        "There's a power vacuum here, ripe and ready to be stepped into."
+
+        "Without problems, you find an abandoned car, and make your way back to the rendezvous point, where Aosta and Broca are waiting."
+
+    play music "audio/forest.mp3" fadein 2.0
 
     "Their discouragement at being unable to find a single child is quickly dispelled as you explain what's happened on your side."
 
@@ -2637,7 +2688,12 @@ label start:
 
     "But enough. {i}Definitely{/i} enough for one day's work."
 
-    "You sit back with your hand on the steering wheel, and smile grimly. This is going to be a fun war."
+    if (killer > doctor):
+        "{color=FF0000}You sit back with your hand on the steering wheel, and smile grimly. This is going to be a fun war.{/color}"
+    elif (doctor > killer):
+        "{color=27C4CC}You sit back with your hand on the steering wheel, and smile determinedly. You're going to end this war.{/color}"
+    else:
+        "You sit back with your hand on the steering wheel, and smile slightly. This is war--how you've missed it."
 
     #killer: 4
     #doctor: 3
@@ -2661,6 +2717,8 @@ label start:
     "Basic Implosion by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/3420-basic-implosion. License: https://filmmusic.io/standard-license"
 
     "Windswept by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/4629-windswept. License: https://filmmusic.io/standard-license"
+
+    "Tyrant by Kevin MacLeod. Link: https://incompetech.filmmusic.io/song/5031-tyrant. License: https://filmmusic.io/standard-license"
 
     # This ends the game.
 
