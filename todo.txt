@@ -5,7 +5,6 @@
 - Add more Rangers dialog
 - Set up itch.io
 - Add picture to main menu
-- Rename game to "Arknights: The Unwalked Dust"
 - Add mention of planet being called Alterra
 - Make buffs be displayed in battle
 
