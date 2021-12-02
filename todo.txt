@@ -1,4 +1,5 @@
 - Set up itch.io
+- Change Game Window Icon
 
 - "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
 - "Thousand Steps" -- Asbestos & Magallan

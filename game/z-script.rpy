@@ -2331,7 +2331,7 @@ label start:
                 hide capone
                 hide ace
 
-                call Battle(party, [Operator(GAMBINO, 10, False, [ Tech(6) ])])
+                call Battle(party, [Operator(GAMBINO, 10, False, [ Tech(6) ])]) from _call_Battle_4
 
             "Side with Gambino.":
                 gambino "Enough, Capone! I'm changing our arrangement. I do all the work, and get none of the credit or respect! I'm not just an enforcer. I'm a Don!"
@@ -2359,7 +2359,7 @@ label start:
                 hide capone
                 hide ace
 
-                call Battle(party, [Operator(CAPONE, 10, False, [ Tech(7) ])])
+                call Battle(party, [Operator(CAPONE, 10, False, [ Tech(7) ])]) from _call_Battle_5
 
         play music "audio/sad.mp3" fadein 2.0
 
@@ -2651,7 +2651,7 @@ label start:
         call Battle(party,
             [],
             [None, None, None, None, None, None, None, Operator(GAMBINO, 5, False, [ Tech(6) ]), Operator(CAPONE, 5, False, [ Tech(7) ])],
-            [True, None, None, None, None, None, None, False, False])
+            [True, None, None, None, None, None, None, False, False]) from _call_Battle_6
 
         show ace at midleft with dissolve
 
