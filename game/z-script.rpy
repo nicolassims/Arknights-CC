@@ -824,7 +824,7 @@ label start:
 
     show broca
 
-    broca "You came from the south. Only thing that way is Rim Billiton, Laterano, and the sea. You don't look like a Cautus or Seaborn."
+    broca "You came from the south. Only thing that way is Rim Billiton, and Laterano. And you don't look like a Cautus."
 
     a "Yeah, well, I'm obviously not a Sankta, either. And I don't know where I came from. I woke up in that forest two hours ago with a bunch of memories that I can't remember, but everything you've told me is telling me they're wrong."
 
