@@ -1,4 +1,3 @@
-- Set up discord
 - Set up itch.io
 
 - "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
