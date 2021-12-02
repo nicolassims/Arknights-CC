@@ -2681,11 +2681,9 @@ label start:
 
         nvl clear
 
-        "The streets seem empty. You can see gangsters rushing out of your way out of the corner of your eye."
+        "The streets seem empty. You can see gangsters rushing out of your way out of the corner of your eye. There's a power vacuum here, ripe and ready to be stepped into."
 
         nvl clear
-
-        "There's a power vacuum here, ripe and ready to be stepped into."
 
         "Without problems, you find an abandoned car, and make your way back to the rendezvous point, where Aosta and Broca are waiting."
 
