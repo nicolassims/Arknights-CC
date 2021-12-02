@@ -1,4 +1,3 @@
-- Make Capone and Gambino argue a lot more
 - Set up discord
 - Add more Rangers dialog
 - Set up itch.io

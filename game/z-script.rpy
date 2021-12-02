@@ -1535,7 +1535,25 @@ label start:
 
     gambino "Y'see, me and my blood brother, we went ahead and solved that problem."
 
-    capone "Sure, the Laterans would sweep in every few months and capture anyone they felt could serve the war effort."
+    show capone shouting left
+
+    capone "We!? I came up with this plan entirely by myself!"
+
+    show gambino angry
+
+    gambino "Yeah, and if we were using {i}your{/i} timeline, we still wouldn't have left Roma!"
+
+    capone "And if we were using {i}your{/i} plan, we wouldn't even have a Family left!"
+
+    capone "..."
+
+    gambino "..."
+
+    show capone happy left
+
+    show gambino
+
+    capone "Hah, hah! {i}Compagno{/i}, please excuse us. We were just... airing out our grievances. Now, as we were saying, the Laterans would sweep in every few months and capture anyone they felt could serve the war effort."
 
     gambino "But we figured somethin' out. Y'see, the Laterans won't come here as long as they get two \"volunteers\" per week. And that's easy, in a city this big."
 
@@ -1610,7 +1628,7 @@ label start:
 
     capone "So, if you could grab little Lisa for us, that'd be... insurance."
 
-    a "...Little Lisa. She's a child?"
+    a "...Little Lisa. You said she's a child?"
 
     gambino "Yeah. Most of the kids and old folks in town fled West when we moved in."
 
@@ -2473,7 +2491,7 @@ label start:
 
         gambino "...Heh, this is awkward."
 
-        capone "Yeah, I don't think we would've been quite so direct if we knew we were both going to survive that encounter."
+        capone "Yeah, I don't think we would've been quite so open if we knew we were both going to survive that encounter."
 
         gambino "...Well, there's something to be said for bein' direct, heh?"
 
