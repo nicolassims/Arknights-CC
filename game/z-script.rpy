@@ -702,7 +702,7 @@ label start:
 
     "Chiave explains that the village of Siracusa is in the nation of Sconfitto, a vassal state of the ruthless and expansionist Lateran Empire."
 
-    "Ever since firearms were invented in Laterano two decades ago, the primarily-Sankta nation had been on the warpath, imposing their Thirteen Absolutes on their neighbours."
+    "Ever since firearms were invented in Laterano two decades ago, the primarily-Sankta nation had been on the warpath, imposing their Thirteen Absolutes on their neighbours. Their stated goal was to spread their faith and rule all over Alterra."
 
     nvl clear
 
