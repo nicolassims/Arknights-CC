@@ -1849,7 +1849,7 @@ label start:
 
     chiave "...We're just supposed to leave you here, gramps?"
 
-    rangers "Oh, I'm one stiff breeze and a bad cough away from dying, anyway. It's the children that deserve a future."
+    rangers "Oh, I'm one stiff breeze and a bad cough away from dying, anyway. It's the children that deserve a future. I was wandering the continent, looking for a nice place to settle down, when I came across this city. Most of these childrens' parents were conscripted... someone had to take care of them."
 
     who "Ra-ng-ers!~ Vermeil stole your bow again!"
 
@@ -2058,7 +2058,7 @@ label start:
 
     show rangers thinking at midright with dissolve
 
-    rangers "Well, this is my apprentice. I believe I mentioned her before."
+    rangers "Well, this is my apprentice. I believe I mentioned her before. Coco Dutch, though I call her \"Kroos,\" most of the time. A degree of anonymity is appreciated amongst we hideaways, oh ho ho ho..."
 
     a "She's basically a child herself."
 

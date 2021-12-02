@@ -1,5 +1,4 @@
 - Set up discord
-- Add more Rangers dialog
 - Set up itch.io
 - Add picture to main menu
 - Add mention of planet being called Alterra
