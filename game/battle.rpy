@@ -232,10 +232,10 @@
                             else:
                                 buff[0].setparameter(buff[1], buff[0].getparameter(buff[1]) - buff[2])
 
-                            del buff
+                            del buffs[i]
 
                     else:
                         #remove it
-                        del buff
+                        del buffs[i]
 
     $ addxp(myOps, enemyxp)
