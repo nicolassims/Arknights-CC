@@ -2,7 +2,6 @@
 - Set up itch.io
 - Add mention of planet being called Alterra
 - Make buffs be displayed in battle
-- Rename gangsteralive variables
 
 - "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
 - "Thousand Steps" -- Asbestos & Magallan

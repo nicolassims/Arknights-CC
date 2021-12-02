@@ -120,8 +120,8 @@ label start:
         rocksickspared = None
         headhunterspared = None
         sneakyway = None
-        gambinoalive = None
-        caponealive = None
+        gambinospared = None
+        caponespared = None
 
         cash = 0
 
@@ -2324,8 +2324,8 @@ label start:
                 play sound "audio/join.mp3"
                 $ renpy.call_screen("Newmember", op=caponeop)
                 $ party.append(caponeop)
-                $ gambinoalive = False
-                $ caponealive = True
+                $ gambinospared = False
+                $ caponespared = True
 
                 hide gambino
                 hide capone
@@ -2352,8 +2352,8 @@ label start:
                 play sound "audio/join.mp3"
                 $ renpy.call_screen("Newmember", op=gambinoop)
                 $ party.append(gambinoop)
-                $ gambinoalive = True
-                $ caponealive = False
+                $ gambinospared = True
+                $ caponespared = False
 
                 hide gambino
                 hide capone
@@ -2363,7 +2363,7 @@ label start:
 
         play music "audio/sad.mp3" fadein 2.0
 
-        if (gambinoalive):
+        if (gambinospared):
             show ace at center with dissolve
 
             a "...Well, that's that, then."
@@ -2645,8 +2645,8 @@ label start:
         hide capone
         hide ace
 
-        $ gambinoalive = False
-        $ caponealive = False
+        $ gambinospared = False
+        $ caponespared = False
 
         call Battle(party,
             [],
