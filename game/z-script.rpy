@@ -2335,7 +2335,7 @@ label start:
                 hide capone
                 hide ace
 
-                call Battle(party, [Operator(GAMBINO, 10, False, [ Tech(6) ])]) from _call_Battle_4
+                call Battle(party, [Operator(GAMBINO, 15, False, [ Tech(6) ])]) from _call_Battle_4
 
             "Side with Gambino.":
                 gambino "Enough, Capone! I'm changing our arrangement. I do all the work, and get none of the credit or respect! I'm not just an enforcer. I'm a Don!"
