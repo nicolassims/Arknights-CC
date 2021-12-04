@@ -64,7 +64,7 @@ image gambino happy = scaleportrait("chars/gambino/happygambino.png", 189)
 image gambino = scaleportrait("chars/gambino/gambino.png", 189)
 image gambino angry = scaleportrait("chars/gambino/angrygambino.png", 189)
 image gambino nervous = scaleportrait("chars/gambino/nervousgambino.png", 189)
-image capone shadow left= scaleportrait("chars/capone/shadowcapone.png", 181, True)
+image capone shadow left = scaleportrait("chars/capone/shadowcapone.png", 181, True)
 image capone happy left = scaleportrait("chars/capone/happycapone.png", 181, True)
 image capone shout left = scaleportrait("chars/capone/shoutingcapone.png", 181, True)
 image capone angry left = scaleportrait("chars/capone/angrycapone.png", 181, True)
@@ -1535,7 +1535,7 @@ label start:
 
     gambino "Y'see, me and my blood brother, we went ahead and solved that problem."
 
-    show capone shouting left
+    show capone shout left
 
     capone "We!? I came up with this plan entirely by myself!"
 
@@ -1553,7 +1553,9 @@ label start:
 
     show gambino
 
-    capone "Hah, hah! {i}Compagno{/i}, please excuse us. We were just... airing out our grievances. Now, as we were saying, the Laterans would sweep in every few months and capture anyone they felt could serve the war effort."
+    capone "Hah, hah! {i}Compagno{/i}, please excuse us. We were just... airing out our grievances."
+
+    capone "Now, as we were saying, the Laterans would sweep in every few months and capture anyone they felt could serve the war effort."
 
     gambino "But we figured somethin' out. Y'see, the Laterans won't come here as long as they get two \"volunteers\" per week. And that's easy, in a city this big."
 
@@ -2423,7 +2425,7 @@ label start:
 
             gambino "...Grrk."
 
-            show capone shouting left
+            show capone shout left
 
             capone "Gambino!? How on... I shot you through both lungs!"
 

@@ -1,6 +1,6 @@
 - Set up itch.io
 - Change Game Window Icon
-- Fix Capone looking right during first meeting
+
 - Make Guido disappear before sneakyway/messyway decision
 - "that lie in wait later on" -> "that lie in wait"
 - "Make Gambino better"
