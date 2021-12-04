@@ -1897,6 +1897,8 @@ label start:
 
         a "Don't be so hasty. At least hear out my plans, first."
 
+    hide headhunter with dissolve
+
     nvl clear
 
     nvl show dissolve

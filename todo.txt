@@ -1,7 +1,6 @@
 - Set up itch.io
 - Change Game Window Icon
 
-- Make Guido disappear before sneakyway/messyway decision
 - "that lie in wait later on" -> "that lie in wait"
 - "Make Gambino better"
 - Make Capone look left during line about being shot through both lungs
