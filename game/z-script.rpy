@@ -1485,7 +1485,7 @@ label start:
     elif (piccinokills > 1):
         show capone angry left
 
-        capone "After all, he killed more than %(piccinokills)s of our crew."
+        capone "After all, he killed more than %(piccinokills)s of our crew. And those are just the ones we know about..."
 
         gambino "Eh. They were just grunts. Now this guy, he looks like something."
 
