@@ -365,7 +365,6 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
 
             if (source.getparameter(ID) == CAPONE):#CAPONE TALENT, Capone's talent
                 allyspace = targetpos + (-1 if source.getparameter(ALLY) else 1)
-                print(allyspace)
                 if (battlefield[allyspace] != None and battlefield[allyspace].getparameter(ALLY) == source.getparameter(ALLY)):
                     damagereport += "{b}Capone blasts the locked-down target!{/b} "
                     atkbuff *= 1.5
@@ -376,7 +375,6 @@ screen useattack(source, targets, hits, atkbuff, elements, effect):
             dmg = 0
             for hit in range(hits):
                 dmg += max(1, 0.05 * power, power - defense)
-
                 if (source.getparameter(ID) == KROOS and renpy.random.random() <= 0.2):#KROOS TALENT, Kroos' talent
                     if ("{b}Kroos gets serious!{/b} " not in damagereport):
                         damagereport += "{b}Kroos gets serious!{/b} "
