@@ -2654,7 +2654,7 @@ label start:
 
         call Battle(party,
             [],
-            [None, None, None, None, None, None, None, Operator(GAMBINO, 5, False, [ Tech(6) ]), Operator(CAPONE, 5, False, [ Tech(7) ])],
+            [None, None, None, None, None, None, None, Operator(GAMBINO, 15, False, [ Tech(6) ]), Operator(CAPONE, 5, False, [ Tech(7) ])],
             [True, None, None, None, None, None, None, False, False]) from _call_Battle_6
 
         show ace at midleft with dissolve
