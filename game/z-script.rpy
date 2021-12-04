@@ -1922,7 +1922,7 @@ label start:
 
     "A decision is made."
 
-    "You can only hope that the consequences that lie in wait later on are within your acceptable parameters."
+    "You can only hope that the consequences that lie in wait are within your acceptable parameters."
 
     hide ace with dissolve
 
