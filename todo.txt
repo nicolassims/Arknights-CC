@@ -1,8 +1,6 @@
 - Set up itch.io
 - Change Game Window Icon
 
-- "Make Gambino better"
-
 - "Sanity's Burden" -- Skalter/Lappland/Specter/Texas...?
 - "Thousand Steps" -- Asbestos & Magallan
 - "Alterran Story" -- Cardigan & Adnachiel
