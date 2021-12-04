@@ -2,7 +2,6 @@
 - Change Game Window Icon
 
 - "Make Gambino better"
-- Make Capone look left during line about being shot through both lungs
 - After all, he killed more than X of our crew into word form
 - Make sure Capone's skill is working properly
 - Yeah, well, you always were impatient, brother
