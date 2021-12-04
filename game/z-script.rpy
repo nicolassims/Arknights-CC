@@ -2394,7 +2394,7 @@ label start:
 
             gambino "Yeah, but I figured you'd shoot me or somethin', not talk at me some more."
 
-            capone "Yeah, well you always were impatient, brother."
+            capone "Yeah, well, you always were impatient, brother."
 
             show gambino
 

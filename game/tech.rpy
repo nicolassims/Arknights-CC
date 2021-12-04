@@ -1,6 +1,4 @@
 ﻿init 1 python:
-    import math
-
     #ID,name,damage,hits,aoe,dmgtype,dmgto,gaintype,start,gainper,cost,icon,charges,element,minrange,maxrange,effect,effectPower1,effectPower2,effectPower3,points
     class Tech(ChangingClass):
         def __init__(self, id):
